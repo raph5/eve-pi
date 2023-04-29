@@ -1,0 +1,14 @@
+:root {
+  font-family: Arial;
+}
+
+body {
+  margin: 0;
+  background-color: #f0f2fd;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
