@@ -4,13 +4,7 @@
 
 <script lang="ts">
 import { onMount } from "svelte"
-import { initPlanet } from "../lib/planet"
-
-
-// import asynchronously ccpwgl_int module
-const ccpwglPromise = import('../lib/ccpwgl/ccpwgl_int.js')
-  .then(() => import('../lib/ccpwgl/ccpwgl.js'))
-  .then(i => i.default);
+import { initView } from "../lib/planetView/index"
 
 
 // setup canvas HTML element
@@ -47,7 +41,7 @@ onMount(() => {
   })
 
   // setup planet
-  ccpwglPromise.then(ccpwgl => initPlanet(canvas, ccpwgl))
+  initView(canvas)
 
 })
 
