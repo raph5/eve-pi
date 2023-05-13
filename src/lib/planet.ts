@@ -1,7 +1,8 @@
+import { createCamera } from "./camera"
 
 const OPTIONS = {
   textureQuality: 0,
-  shaderQuality: 'hi',
+  shaderQuality: 'lo',
   anisotropicFilter: false,
   glParams: {},
   postprocessing: false
@@ -19,7 +20,7 @@ const CAMERA_OPTIONS = {
   farPlane: 1000000,
   minPitch: -0.5,
   maxPitch: 0.35,
-  rotationSpeed: 2
+  rotationSensitivity: 2
 }
 
 export function initPlanet(canvas: HTMLCanvasElement, ccpwgl: any): void {
@@ -32,27 +33,70 @@ export function initPlanet(canvas: HTMLCanvasElement, ccpwgl: any): void {
   const mat4 = ccpwgl_int.math.mat4
 
   ccpwgl.initialize(canvas, OPTIONS)
-  console.log(canvas.getAttribute('height'))
 
-  const camera = ccpwgl.createCamera(canvas, CAMERA_OPTIONS, true)
-  const scene = ccpwgl.createScene([1, 1, 1])
+  const camera = createCamera(canvas, CAMERA_OPTIONS, true, ccpwgl_int, ccpwgl)
+  const scene = ccpwgl.loadScene('res:/dx9/scene/universe/m10_cube.red')
+  // const scene = ccpwgl.createScene([1, 1, 1])
 
-  // postprocessing desabled
-  // ccpwgl.enablePostprocessing(true)
+  // const obj = scene.loadObject('res:/dx9/model/structure/planetary/hostile/command/commh_t1/commh_t1.red')
+  const obj = scene.loadObject('res:/dx9/model/ui/hextile.red')
 
-  const planet = scene.loadPlanet(
-    11,
-    'res:/dx9/model/WorldObject/Planet/Template/Thunder/P_Thunder_08.red',
-    undefined,
-    'res:/dx9/model/worldobject/planet/Terrestrial/Terrestrial01_H.dds.0.png',
-    'res:/dx9/model/worldobject/planet/Terrestrial/Terrestrial02_H.dds.0.png'
-  )
+  // const planet = scene.loadPlanet(
+  //   11,
+  //   'res:/dx9/model/WorldObject/Planet/Template/Thunder/P_Thunder_08.red',
+  //   undefined,
+  //   'res:/dx9/model/worldobject/planet/Terrestrial/Terrestrial01_H.dds.0.png',
+  //   'res:/dx9/model/worldobject/planet/Terrestrial/Terrestrial02_H.dds.0.png'
+  // )
 
-  planet.setTransform(mat4.fromValues(
-    40000, 0, 0, 0,
-    0, 40000, 0, 0,
-    0, 0, 40000, 0,
+  // console.log(planet)
+
+  obj.setTransform(mat4.fromValues(
+    10000, 0, 0, 0,
+    0, 10000, 0, 0,
+    0, 0, 10000, 0,
     0, 0, 0, 0
   ))
+  // planet.setTransform(mat4.fromValues(
+  //   40000, 0, 0, 0,
+  //   0, 40000, 0, 0,
+  //   0, 0, 40000, 0,
+  //   0, 0, 0, 0
+  // ))
+
+  // // setup a performance shaderQuality switcher
+  // let timerStart, timerEnd
+  // let avgDt = 0
+  // let i = -30
+
+  // ccpwgl.onPreRender = () => {
+
+  //   i++
+
+  //   if(i < -1) return
+
+  //   if(timerStart) {
+  //     timerEnd = performance.now()
+  //     avgDt = ( (timerEnd - timerStart) + avgDt*i ) / (i+1)
+  //   }
+
+  //   timerStart = performance.now()
+
+  //   if(i > 20) {
+  //     ccpwgl.onPreRender = null
+      
+  //     if(avgDt > 30) {
+  //       ccpwgl_int.device.shaderModel = ccpwgl.ShaderQuality.LOW
+  //       planet.wrappedObjects[0].effectHeight.Initialize()
+
+  //       console.log(scene)
+
+  //       console.log("shader quality switched to low")
+  //     }
+  //   }
+
+  // }
 
 }
+
+// function change
