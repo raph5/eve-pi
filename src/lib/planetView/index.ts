@@ -1,11 +1,9 @@
-import * as THREE from 'three';
+import type { InitOptions } from './view'
+import View from './view'
 
 // init three.js planet view
-export function initView(cavans: HTMLElement): void {
-
-  // let's create the scene
-  const scene = new THREE.Scene()
-
-  // now
-
+export function initView(canvas: HTMLCanvasElement, options: InitOptions = {}): View {
+  return new View(canvas, options)
 }
+
+

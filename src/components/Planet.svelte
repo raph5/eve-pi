@@ -9,39 +9,34 @@ import { initView } from "../lib/planetView/index"
 
 // setup canvas HTML element
 onMount(() => {
-  
+
+  // get canvas
   const canvas = document.getElementById('planetCanvas') as HTMLCanvasElement
 
-  // resize the canvas to screen size
-  function resizeCanvas() {
-    const pixelRatio = window.devicePixelRatio ?? 1
-    canvas.setAttribute('height', Math.ceil(window.innerHeight / pixelRatio).toString())
-    canvas.setAttribute('width', Math.ceil(window.innerWidth / pixelRatio).toString())
-  }
-  
-  // setup canvas size
-  resizeCanvas()
+  // setup planet
+  const view = initView(canvas, {
+    width: window.innerWidth,
+    height: window.innerHeight
+  })
   
   // resize canvas on screen resize
+  const resize = () => view.setSize(window.innerWidth, window.innerHeight)
   let _lastResize = Date.now()
   let _timeOutResize
   window.addEventListener('resize', () => {
     const now = Date.now()
     const _dif = now - _lastResize
     if(_dif > 500) {
-      resizeCanvas()
+      resize()
       _lastResize = now
     }
     else {
       if(_timeOutResize) {
         clearTimeout(_timeOutResize)
       }
-      _timeOutResize = setTimeout(resizeCanvas, 500 - _dif)
+      _timeOutResize = setTimeout(resize, 500 - _dif)
     }
   })
-
-  // setup planet
-  initView(canvas)
 
 })
 
