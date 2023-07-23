@@ -29,7 +29,7 @@ export default class View {
   ) {
 
     // setup options
-    this.fov = options.fov ?? 60
+    this.fov = options.fov ?? 45
     this.near = options.near ?? 0.1
     this.far = options.far ?? 1000
     this.width = options.width ?? 500
@@ -46,7 +46,7 @@ export default class View {
       this.near,
       this.far
     )
-    this.camera.position.set(0, 0, 170);
+    this.camera.position.set(0, 0, 5);
 
     // finally create the renderer
     this.renderer = new THREE.WebGLRenderer({ canvas })
@@ -58,6 +58,7 @@ export default class View {
     // add a camera control tool
     // TODO: replace default camera control tool by a custom camera control tool
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+    this.controls.zoomSpeed = 1
 
     // three js helpers
     // TODO: remove helpers

@@ -5,5 +5,3 @@ import View from './view'
 export function initView(canvas: HTMLCanvasElement, options: InitOptions = {}): View {
   return new View(canvas, options)
 }
-
-
