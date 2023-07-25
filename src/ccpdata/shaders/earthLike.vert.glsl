@@ -60,7 +60,16 @@ void main() {
   v5 = attr5;
 
   r1.xyz = normalize(v3.xyz);
-  r0.xyz = normalize(sunDirection.xyz);
+  r0.xyz = cameraPosition.xyz;
+
+  // camera rotation
+  r2.xyz = r0.xyz * r0.xyz;
+  r1.w = sqrt(r2.z + r2.x) - r0.y;
+  r0.z = sqrt(r1.w*r1.w * r0.z*r0.z / r2.z + r2.x) * sign(r0.z);
+  r0.x = sqrt(r1.w*r1.w * r0.x*r0.x / r2.z + r2.x) * sign(r0.x);
+  r0.y = r0.y + sqrt(r2.z + r2.x);
+  
+  r0.xyz = normalize(r0.xyz);
   texcoord6.x = dot(r1.xyz, r0.xyz);
 
   r3.xyz = normalize(v4.xyz);

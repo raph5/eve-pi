@@ -224,17 +224,8 @@ r3.z=exp2(r0.z);
 {bvec3 tmp=greaterThanEqual(r1.xyz,vec3(0.0));r0.xyz=vec3(tmp.x?r3.x:r2.x,tmp.y?r3.y:r2.y,tmp.z?r3.z:r2.z);};
 r1.xyz=(-v1.xyz);
 r1.w=fogSettings.z;
-
-// removing cubeTexture
-// r1=g2l(textureCubeLod(s0,r1.xyz,r1.w));
-
 r2.y=fogSettings.y;
-
-// removing cubeTexture
-// r3.xyz=mix(cb2[15].xyz,r1.xyz,r2.yyy);
 r3.xyz=vec3(0);
-
-
 r0.w=saturate(v1.w);
 r0.xyz=r0.www*r3.xyz+r0.xyz;
 r1.xyz=max(r0.xyz,c19.zzz);
