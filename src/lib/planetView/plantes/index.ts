@@ -1,4 +1,5 @@
 import { time } from "../time"
+import AtmosphereTemperate from "./atmosphereTemperate"
 import PlanetTemperate from "./planetTemperate"
 
 
@@ -11,8 +12,9 @@ export function loadPlanet(scene: THREE.Scene, type = 'temperate') {
 
   // build planet
   const planet = new PlanetConstructor( time )
+  const atmosphere = new AtmosphereTemperate( time )
 
   // add planet to scene
-  scene.add( planet.mesh )
+  scene.add( planet.mesh, atmosphere.mesh )
 
 }

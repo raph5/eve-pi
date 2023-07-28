@@ -2,8 +2,8 @@ import * as THREE from 'three'
 import { base64ToBuffer, buildResUrl } from '../../utils/utils'
 
 // temporary import
-import fragmentShader from '../../../ccpdata/shaders/earthLike.frag.glsl?raw'
-import vertexShader from '../../../ccpdata/shaders/earthLike.vert.glsl?raw'
+import fragmentShader from '../../../ccpdata/shaders/atmosphere.frag.glsl?raw'
+import vertexShader from '../../../ccpdata/shaders/atmosphere.vert.glsl?raw'
 import planetSphereIndexsB64 from '../../../ccpdata/models/planetSphere/indexs.B64?raw'
 import planetSphereVerticesB64 from '../../../ccpdata/models/planetSphere/vertices.B64?raw'
 import planetTemplate from '../../../ccpdata/templates/terrestrial.json'
@@ -12,7 +12,7 @@ import type { timeUniform } from '../time'
 import { ShaderUniform } from '../shader/shaderParameter'
 import { createShaderTexture } from '../shader/shaderTexture'
 
-export default class PlanetTemperate {
+export default class AtmosphereTemperate {
 
   private geometry: THREE.BufferGeometry
   private material: THREE.ShaderMaterial
@@ -81,28 +81,18 @@ export default class PlanetTemperate {
 
     // build planetSettings
     const constantsOrder = [
-      'DetailFactors',
-      'MiscFactors',
       null,
-      'WaterColor',
-      'shallowWaterColor',
-      'SharpnessFactors',
-      'FillTint',
-      'VegetationTint',
-      'EquatorTint',
-      'mountainTint',
-      'CityLightColor',
-      'CoverageFactors',
+      'CloudsColor',
       'CloudsFactors'
     ]
 
-    const planetSettings = []
+    const atmosphereSettings = []
     for(const c of constantsOrder) {
       if(c === null) {
-        planetSettings.push( new THREE.Vector4( 0, 0, 0, 0 ) )
+        atmosphereSettings.push( new THREE.Vector4( 0, 0, 0, 0 ) )
       }
       else {
-        planetSettings.push( new THREE.Vector4( ...planetTemplate.settings[c] ) )
+        atmosphereSettings.push( new THREE.Vector4( ...planetTemplate.settings[c] ) )
       }
     }
 
@@ -111,7 +101,7 @@ export default class PlanetTemperate {
     this.uniforms.time = time
     this.uniforms.planetSettings = new ShaderUniform(
       'cb7',
-      planetSettings
+      atmosphereSettings
     )
     this.uniforms.sunDirection = new ShaderUniform(
       'sunDirection',
@@ -121,48 +111,25 @@ export default class PlanetTemperate {
       'AmbientColor',
       new THREE.Vector3( 0.1647, 0.0941, 0.0627 )
     )
-    this.uniforms.fogFactors = new ShaderUniform(
-      'fogFactors',
-      new THREE.Vector4( 0.5, 0, 0.04, 1 )
-    )
     this.uniforms.fogSettings = new ShaderUniform(
       'fogSettings',
       new THREE.Vector4( 0, 1, 7, 1 )
     )
-    this.uniforms.polesGradient = new ShaderUniform(
-      's1',
-      createShaderTexture( buildResUrl(planetTemplate.textures.PolesGradient) )
-    )
-    this.uniforms.fillTexture = new ShaderUniform(
-      's2',
-      createShaderTexture( buildResUrl(planetTemplate.textures.FillTexture), true )
-    )
-    const heightMapTexture = createShaderTexture( heightMap, false, 'linear' )
-    this.uniforms.heightMap1 = new ShaderUniform( 's3', heightMapTexture )
-    this.uniforms.heightMap2 = new ShaderUniform( 's4', heightMapTexture )
     this.uniforms.groundScattering1 = new ShaderUniform(
-      's5',
+      's0',
       createShaderTexture( buildResUrl(planetTemplate.textures.GroundScattering1), false, 'linear', 1 )
     )
     this.uniforms.groundScattering2 = new ShaderUniform(
-      's6',
+      's1',
       createShaderTexture( buildResUrl(planetTemplate.textures.GroundScattering2), false, 'linear', 1 )
     )
-    this.uniforms.cityLight = new ShaderUniform(
-      's7',
-      createShaderTexture( buildResUrl(planetTemplate.textures.CityLight) )
-    )
     this.uniforms.cloudsTexture = new ShaderUniform(
-      's8',
+      's2',
       createShaderTexture( buildResUrl(planetTemplate.textures.CloudsTexture), true )
     )
-    this.uniforms.cityDistributionTexture = new ShaderUniform(
-      's9',
-      createShaderTexture( buildResUrl(planetTemplate.textures.CityDistributionTexture) )
-    )
-    this.uniforms.cityDistributionMask = new ShaderUniform(
-      's10',
-      createShaderTexture( buildResUrl(planetTemplate.textures.CityDistributionMask) )
+    this.uniforms.cloudsCapTexture = new ShaderUniform(
+      's3',
+      createShaderTexture( buildResUrl(planetTemplate.textures.CloudCapTexture), false )
     )
 
     // binding uniforms
@@ -172,7 +139,7 @@ export default class PlanetTemperate {
 
     this.material.blending = THREE.CustomBlending; 
     this.material.blendEquation = THREE.AddEquation;
-    this.material.blendSrc = THREE.SrcAlphaFactor;
+    this.material.blendSrc = THREE.OneFactor;
     this.material.blendDst = THREE.OneMinusSrcAlphaFactor;
 
     // build mesh

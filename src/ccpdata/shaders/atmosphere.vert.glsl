@@ -1,4 +1,3 @@
-
 attribute vec4 attr0;
 attribute vec4 attr1;
 attribute vec4 attr2;
@@ -50,7 +49,7 @@ void main() {
   vec4 r4;
   vec4 r5;
 
-  vec4 c1 = vec4( 1, 0, 1000000, 0 );
+  vec4 c1 = vec4(1, 0, 1000000, 0);
 
   v0 = attr0;
   v1 = attr1;
@@ -58,7 +57,7 @@ void main() {
   v3 = attr3;
   v4 = attr4;
   v5 = attr5;
-
+  
   r1.xyz = normalize(v3.xyz);
   r0.xyz = normalize(sunDirection.xyz);
   texcoord6.x = dot(r1.xyz, r0.xyz);
@@ -74,7 +73,7 @@ void main() {
   r2.y = r0.y*10000.0;
   r2.z = r0.z*10000.0;
   r2.w = r0.w;
-  r0.xyz = (-r0.xyz)+cameraPosition;
+  r0.xyz = (-r2.xyz)+cameraPosition;
   r0.w = dot(r0.xyz, r0.xyz);
   r0.w = r0.w == 0.0?3.402823466e+38:inversesqrt(abs(r0.w));
   r0.xyz = r0.www*r0.xyz;
@@ -93,7 +92,7 @@ void main() {
   texcoord7.z = dot(r4.xyz, r0.xyz);
   texcoord4.xyz = r0.xyz;
   texcoord1.xyz = r4.xyz;
-
+  
   gl_Position = projectionMatrix * modelViewMatrix * v0;
 
   texcoord5.xyz = r2.xyz;
@@ -103,5 +102,4 @@ void main() {
   texcoord7.w = c1.y;
   color.xyz = vec3(1, 1, 1);
   color1.xyz = vec3(1, 1, 1);
-
 }
