@@ -2,8 +2,8 @@ import * as THREE from 'three'
 import { base64ToBuffer, buildResUrl } from '../../utils/utils'
 
 // temporary import
-import fragmentShader from '../../../ccpdata/shaders/atmosphere.frag.glsl?raw'
-import vertexShader from '../../../ccpdata/shaders/atmosphere.vert.glsl?raw'
+import fragmentShader from '../../../ccpdata/shaders/clouds.frag.glsl?raw'
+import vertexShader from '../../../ccpdata/shaders/clouds.vert.glsl?raw'
 import planetSphereIndexsB64 from '../../../ccpdata/models/planetSphere/indexs.B64?raw'
 import planetSphereVerticesB64 from '../../../ccpdata/models/planetSphere/vertices.B64?raw'
 import planetTemplate from '../../../ccpdata/templates/terrestrial.json'
@@ -12,7 +12,7 @@ import type { timeUniform } from '../time'
 import { ShaderUniform } from '../shader/shaderParameter'
 import { createShaderTexture } from '../shader/shaderTexture'
 
-export default class AtmosphereTemperate {
+export default class CloudsTemperate {
 
   private geometry: THREE.BufferGeometry
   private material: THREE.ShaderMaterial
@@ -86,13 +86,13 @@ export default class AtmosphereTemperate {
       'CloudsFactors'
     ]
 
-    const atmosphereSettings = []
+    const cloudsSettings = []
     for(const c of constantsOrder) {
       if(c === null) {
-        atmosphereSettings.push( new THREE.Vector4( 0, 0, 0, 0 ) )
+        cloudsSettings.push( new THREE.Vector4( 0, 0, 0, 0 ) )
       }
       else {
-        atmosphereSettings.push( new THREE.Vector4( ...planetTemplate.settings[c] ) )
+        cloudsSettings.push( new THREE.Vector4( ...planetTemplate.settings[c] ) )
       }
     }
 
@@ -101,11 +101,11 @@ export default class AtmosphereTemperate {
     this.uniforms.time = time
     this.uniforms.planetSettings = new ShaderUniform(
       'cb7',
-      atmosphereSettings
+      cloudsSettings
     )
     this.uniforms.sunDirection = new ShaderUniform(
       'sunDirection',
-      new THREE.Vector3( 1, 1, 1 )
+      new THREE.Vector3( -2, 0, 0 )
     )
     this.uniforms.AmbientColor = new ShaderUniform(
       'AmbientColor',

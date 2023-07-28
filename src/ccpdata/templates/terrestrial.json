@@ -1,12 +1,12 @@
 {
   "textures": {
-    "CityDistributionMask": "res:/dx9/model/worldobject/planet/terrestrial/citylight03_m.dds.0.png",
+    "CityDistributionMask": "res:/dx9/model/worldobject/planet/terrestrial/citylight01_m.dds.0.png",
     "PolesGradient": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
-    "CityLight": "res:/dx9/model/worldobject/planet/terrestrial/citylight03_g.dds.0.png",
-    "CityDistributionTexture": "res:/dx9/model/worldobject/planet/terrestrial/citylight03_uv.dds.0.png",
+    "CityLight": "res:/dx9/model/worldobject/planet/terrestrial/citylight01_g.dds.0.png",
+    "CityDistributionTexture": "res:/dx9/model/worldobject/planet/terrestrial/citylight01_uv.dds.0.png",
     "GroundScattering1": "res:/dx9/model/worldobject/Planet/Preset/TerrestrialScatterLight01_D.dds.0.png",
     "GroundScattering2": "res:/dx9/model/worldobject/Planet/Preset/TerrestrialScatterHue01_D.dds.0.png",
-    "CloudsTexture": "res:/dx9/model/worldobject/planet/terrestrial/clouddense04_m.dds.0.png",
+    "CloudsTexture": "res:/dx9/model/worldobject/planet/terrestrial/clouddense03_m.dds.0.png",
     "CloudCapTexture": "res:/dx9/model/worldobject/planet/terrestrial/clouddensecap04_m.dds.0.png",
     "FillTexture": "res:/dx9/model/worldobject/planet/terrestrial/terrestrialdetail04_p.dds.0.png"
   },
@@ -18,27 +18,27 @@
       1
     ],
     "CityLightColor": [
-      0.548828125,
-      0.607421875,
-      0.64697265625,
+      1.09765625,
+      1.21484375,
+      1.3525390625,
       1
     ],
     "WaterColor": [
+      0.039215087890625,
+      0.074462890625,
       0.09014892578125,
-      0.1058349609375,
-      0.1058349609375,
       1
     ],
     "DetailFactors": [
       4,
-      1.0322265625,
+      1.078125,
       0,
       0
     ],
     "VegetationTint": [
-      0.40380859375,
-      0.41552734375,
-      0.344970703125,
+      0.40771484375,
+      0.439208984375,
+      0.2587890625,
       1
     ],
     "mountainTint": [
@@ -48,45 +48,45 @@
       1
     ],
     "MiscFactors": [
-      0.031707763671875,
-      0.368408203125,
+      0.04498291015625,
+      0.439697265625,
       0,
       0
     ],
     "SharpnessFactors": [
-      5.04296875,
-      4.05078125,
-      6.03515625,
-      0.0139007568359375
+      5.01953125,
+      4.00390625,
+      6.01953125,
+      0.0147857666015625
     ],
     "CloudsFactors": [
-      0.37060546875,
-      0.72216796875,
-      2.04296875,
+      0.3759765625,
+      0.943359375,
+      2.080078125,
       1
     ],
     "CoverageFactors": [
-      0.701171875,
-      0.259033203125,
-      0.07513427734375,
-      0.6298828125
+      0.6611328125,
+      0.2353515625,
+      0.0251922607421875,
+      0.8486328125
     ],
     "shallowWaterColor": [
-      0.12152099609375,
-      0.2705078125,
-      0.2469482421875,
+      0.066650390625,
+      0.1842041015625,
+      0.188232421875,
       1
     ],
     "EquatorTint": [
-      0.568359375,
-      0.497802734375,
+      0.482177734375,
+      0.42724609375,
       0.344970703125,
       1
     ],
     "CloudsColor": [
-      0.466552734375,
-      0.42724609375,
-      0.341064453125,
+      0.8037109375,
+      0.8349609375,
+      0.8544921875,
       1
     ]
   }
