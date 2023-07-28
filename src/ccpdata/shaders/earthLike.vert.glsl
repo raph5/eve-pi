@@ -30,7 +30,6 @@ vec4 saturate(vec4 x) {
 }
 
 
-uniform vec3 sunDirection;
 uniform vec3 fogFactors;
 
 
@@ -59,8 +58,8 @@ void main() {
   v4 = attr4;
   v5 = attr5;
 
+  r0.xyz = getSunDirection(cameraPosition);
   r1.xyz = normalize(v3.xyz);
-  r0.xyz = normalize(sunDirection.xyz);
   texcoord6.x = dot(r1.xyz, r0.xyz);
 
   r3.xyz = normalize(v4.xyz);

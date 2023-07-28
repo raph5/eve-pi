@@ -1,19 +1,18 @@
 #ifdef GL_ES
-    #ifdef GL_FRAGMENT_PRECISION_HIGH
-        precision highp float;
-    #else
-        precision mediump float;
-    #endif
+  #ifdef GL_FRAGMENT_PRECISION_HIGH
+    precision highp float;
+  #else
+    precision mediump float;
+  #endif
 #endif
 varying vec4 texcoord4;
 varying vec4 color;
 varying vec4 color1;
 uniform vec4 cb2[22];
-uniform vec4 sunDirection;
 uniform vec4 fogSettings;
 #ifdef PS
-    uniform vec4 ssi;
-    varying float ssv;
+  uniform vec4 ssi;
+  varying float ssv;
 #endif
 void main() {
     vec4 v0;
@@ -30,7 +29,7 @@ void main() {
     v0 = texcoord4;
     v1 = color;
     v2 = color1;
-    r0.xyz = normalize(sunDirection.xyz);
+    r0.xyz = getSunDirection(cameraPosition);
     r0.x = dot(r0.xyz, v0.xyz);
     r0.y = dot(v0.xyz, v0.xyz);
     r0.y = r0.y == 0.0?3.402823466e+38:inversesqrt(abs(r0.y));
@@ -55,8 +54,8 @@ void main() {
     r3.x = exp2(r1.x);
     r3.y = exp2(r1.y);
     r3.z = exp2(r1.z); {
-        bvec3 tmp = greaterThanEqual(r0.xyz, vec3(0.0));
-        r0.xyz = vec3(tmp.x?r3.x:r2.x, tmp.y?r3.y:r2.y, tmp.z?r3.z:r2.z);
+      bvec3 tmp = greaterThanEqual(r0.xyz, vec3(0.0));
+      r0.xyz = vec3(tmp.x?r3.x:r2.x, tmp.y?r3.y:r2.y, tmp.z?r3.z:r2.z);
     };
     r1.xyz = max(r0.xyz, c2.zzz);
     r0.x = r1.x>0.0?log2(r1.x):-3.402823466e+38;
@@ -73,27 +72,31 @@ void main() {
     r2.z = exp2(r0.z);
     r0.xyz = r2.xyz+c2.www;
     r2.xyz = r2.xyz*c3.xxx; {
-        bvec3 tmp = greaterThanEqual(r0.xyz, vec3(0.0));
-        gl_FragColor.xyz = vec3(tmp.x?r1.x:r2.x, tmp.y?r1.y:r2.y, tmp.z?r1.z:r2.z);
+      bvec3 tmp = greaterThanEqual(r0.xyz, vec3(0.0));
+      gl_FragColor.xyz = vec3(tmp.x?r1.x:r2.x, tmp.y?r1.y:r2.y, tmp.z?r1.z:r2.z);
+
+      // background
+      gl_FragColor.x = max(gl_FragColor.x, 0.89019);
+      gl_FragColor.y = max(gl_FragColor.y, 0.93333);
+      gl_FragColor.z = max(gl_FragColor.z, 0.96862);
     };
     gl_FragColor.w = c0.x;
     #ifdef PS
-        float av = floor(clamp(gl_FragColor.a, 0.0, 1.0)*255.0+0.5);
-        if(ssi.z == 0.0) {
-            if(av*ssi.x+ssi.y<0.0)
-            discard;
+      float av = floor(clamp(gl_FragColor.a, 0.0, 1.0)*255.0+0.5);
+      if(ssi.z == 0.0) {
+        if(av*ssi.x+ssi.y<0.0)
+        discard;
+      }
+      else {
+        if(ssi.x>0.0) {
+          if(av == ssi.y)
+          discard;
         }
         else {
-            if(ssi.x>0.0) {
-                if(av == ssi.y)
-                discard;
-            }
-            else {
-                if(av! = ssi.y)
-                discard;
-            }
-    
+          if(av! = ssi.y)
+          discard;
         }
-        if(ssv<0.0)discard;
+      }
+      if(ssv<0.0)discard;
     #endif
 }

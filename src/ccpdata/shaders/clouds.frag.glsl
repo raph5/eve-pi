@@ -1,9 +1,9 @@
 #ifdef GL_ES
-    #ifdef GL_FRAGMENT_PRECISION_HIGH
-        precision highp float;
-    #else
-        precision mediump float;
-    #endif
+  #ifdef GL_FRAGMENT_PRECISION_HIGH
+    precision highp float;
+  #else
+    precision mediump float;
+  #endif
 #endif
 varying vec4 texcoord;
 varying vec4 texcoord6;
@@ -91,7 +91,8 @@ void main() {
   r2.y = exp2(r0.y);
   r2.z = exp2(r0.z);
   r0.xyz = r2.xyz+c5.zzz;
-  r2.xyz = r2.xyz*c5.www; {
+  r2.xyz = r2.xyz*c5.www;
+  {
     bvec3 tmp = greaterThanEqual(r0.xyz, vec3(0.0));
     gl_FragColor.xyz = vec3(tmp.x?r1.x:r2.x, tmp.y?r1.y:r2.y, tmp.z?r1.z:r2.z);
   };
