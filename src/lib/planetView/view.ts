@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Background from './background'
-import { loadPlanet } from './plantes'
+import { loadPlanet } from './planets'
 
 export interface InitOptions {
   fov?: number

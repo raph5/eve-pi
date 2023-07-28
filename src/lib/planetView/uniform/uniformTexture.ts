@@ -1,8 +1,7 @@
-import { text } from 'svelte/internal'
 import * as THREE from 'three'
 
 // class specialised in build textures form eveonline shaders
-export function createShaderTexture(
+export function createUniformTexture(
   textureUrl: string,
   repeat: boolean = false,
   minFilter: 'linear'|'linearMipmap' = 'linearMipmap',

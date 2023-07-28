@@ -2,7 +2,7 @@
 
 // in threejs, we can't easily update shader uniforms
 // that class will handle it 
-export class ShaderUniform<T=any> {
+export class UniformParameter<T=any> {
 
   private bindedMaterials: THREE.ShaderMaterial[] = []
 
