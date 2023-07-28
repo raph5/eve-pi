@@ -102,17 +102,9 @@ export default class Atmosphere {
         new THREE.Vector4(0.5527, 0.5801, 0.6035, 1)
       ]
     )
-    this.uniforms.cb5 = new ShaderUniform(
-      'cb5',
-      [
-        new THREE.Vector4(10000, 0, 0, 0),
-        new THREE.Vector4(0, 0.0003, 9999.9990, 0),
-        new THREE.Vector4(0, -9999.9990, 0.0003, 0)
-      ]
-    )
     this.uniforms.sunDirection = new ShaderUniform(
       'sunDirection',
-      new THREE.Vector3( -1, 1, -1)
+      new THREE.Vector3( -1, 0, 0)
     )
     this.uniforms.AmbientColor = new ShaderUniform(
       'AmbientColor',

@@ -16,7 +16,6 @@ varying vec4 color1;
 
 uniform vec4 sunDirection;
 uniform vec4 cb0[4];
-uniform vec4 cb5[3];
 
 #ifdef PS
     uniform vec4 ssf[4];
@@ -49,28 +48,21 @@ void main() {
     v3 = attr3;
     v4 = attr4;
 
-    vec4 cam = vec4(14037.6162, 37728.9063, 54472.5469, 1);
+    vec4 cam = vec4(cameraPosition.xyz, 1);
+    // vec4 cam = vec4(14037.6162, 37728.9063, 54472.5469, 1);
 
-    r0.x = dot(v3.xyz, cb5[0].xyz);
-    r0.y = dot(v3.xyz, cb5[1].xyz);
-    r0.z = dot(v3.xyz, cb5[2].xyz);
+    r0.xyz = v3.xzy;
     r1.xyz = normalize(r0.xyz);
     r0.xyz = normalize(sunDirection.xyz);
     texcoord6.x = dot(r1.xyz, r0.xyz);
-    r2.x = dot(v4.xyz, cb5[0].xyz);
-    r2.y = dot(v4.xyz, cb5[1].xyz);
-    r2.z = dot(v4.xyz, cb5[2].xyz);
+    r2.xyz = v4.xzy;
     r3.xyz = normalize(r2.xyz);
     texcoord6.y = dot(r3.xyz, r0.xyz);
-    r2.x = dot(v2.xyz, cb5[0].xyz);
-    r2.y = dot(v2.xyz, cb5[1].xyz);
-    r2.z = dot(v2.xyz, cb5[2].xyz);
+    r2.xyz = v2.xzy;
     r4.xyz = normalize(r2.xyz);
     texcoord6.z = dot(r4.xyz, r0.xyz);
     r2 = v0.xyzx*c5.xxxy+c5.yyyx;
-    r5.x = dot(r2, cb5[0]);
-    r5.y = dot(r2, cb5[1]);
-    r5.z = dot(r2, cb5[2]);
+    r5.xyz = r2.xzy;
     r2.xyz = (-r5.xyz)+cam.xyz;
     r5.xyz = normalize(r2.xyz);
     texcoord7.x = dot(r1.xyz, r5.xyz);
@@ -79,17 +71,17 @@ void main() {
     texcoord7.z = dot(r4.xyz, r5.xyz);
     texcoord1.xyz = r4.xyz;
     texcoord3.xyz = r3.xyz;
-    r1.x = cb5[0].x;
-    r1.y = cb5[1].x;
-    r1.z = cb5[2].x;
+    r1.x = 1.0;
+    r1.y = 0.0;
+    r1.z = 0.0;
     r0.w = dot(r1.xyz, r1.xyz);
     r0.w = sqrt(abs(r0.w));
     r0.w = r0.w*c5.z;
     r1.x = r0.w*cb0[0].x+(-r0.w);
     r1.y = r1.x*v1.y+r0.w;
-    r2.x = cb5[0].w;
-    r2.y = cb5[1].w;
-    r2.z = cb5[2].w;
+    r2.x = 0.0;
+    r2.y = 0.0;
+    r2.z = 0.0;
     r3.xyz = (-r2.xyz)+cam.xyz;
     r1.z = dot(r3.xyz, r3.xyz);
     r1.z = r1.z == 0.0?3.402823466e+38:inversesqrt(abs(r1.z));
@@ -162,7 +154,7 @@ void main() {
     // gl_Position.z = dot(r4, vec4(-0.2072, -0.5570, -0.8042, 57733.1875));
     // gl_Position.w = dot(r4, vec4(-0.2072, -0.5570, -0.8042, 67733.1797));
 
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(v0.zxy, 1);
+    gl_Position = projectionMatrix * modelViewMatrix * r4;
 
     r1.x = c5.x+(-v1.y);
     r0.w = r0.w*r1.x;
