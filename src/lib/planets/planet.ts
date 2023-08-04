@@ -1,6 +1,6 @@
 import * as THREE from "three"
-import { time } from "../time";
-import { UniformParameter } from "../uniform/uniformParameter";
+import { UniformParameter } from "@utils/shaders/uniformParameter";
+import type { timeUniform } from "../planetView/time";
 
 export default class Planet {
 
@@ -8,6 +8,7 @@ export default class Planet {
 
   constructor(
     private scene: THREE.Scene,
+    private time: timeUniform
   ) {
 
     this.uniforms.time = time
@@ -25,5 +26,5 @@ export default class Planet {
     )
 
   }
-  
+
 }

@@ -1,18 +1,18 @@
 import * as THREE from 'three'
-import { buildResUrl } from '../../../utils/utils'
-import { UniformParameter } from '../../uniform/uniformParameter'
-import { createUniformTexture } from '../../uniform/uniformTexture'
+import { buildResUrl } from '@utils/utils'
+import { UniformParameter } from '@utils/shaders/uniformParameter'
+import { createUniformTexture } from '@utils/shaders/uniformTexture'
 import type Planet from '../planet'
 
 // shaders
-import fragmentShader from '../../../../ccpdata/shaders/earthLike.frag.glsl?raw'
-import vertexShader from '../../../../ccpdata/shaders/earthLike.vert.glsl?raw'
+import fragmentShader from '@ccpdata/shaders/earthLike.frag.glsl?raw'
+import vertexShader from '@ccpdata/shaders/earthLike.vert.glsl?raw'
 import getSunDirection from '../shaders/getSunDirection.glsl?raw'
 
 // ccp data
-import planetSphere from '../../../../ccpdata/models/planetSphere.json'
-import planetTemplate from '../../../../ccpdata/templates/terrestrial.json'
-import heightMap from '../../../../ccpdata/textures/heightMap.png'
+import planetSphere from '@ccpdata/models/planetSphere.json'
+import planetTemplate from '@ccpdata/templates/terrestrial.json'
+import heightMap from '@ccpdata/textures/heightMap.png'
 
 export default class GlobeTemperate {
 

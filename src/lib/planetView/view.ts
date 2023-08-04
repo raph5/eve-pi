@@ -1,7 +1,8 @@
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import OrbitControls from './orbitControl'
 import Background from './background'
-import { loadPlanet } from './planets'
+import { loadPlanet } from '../planets'
+import { time } from './time'
 
 export interface InitOptions {
   fov?: number
@@ -29,7 +30,7 @@ export default class View {
   ) {
 
     // setup options
-    this.fov = options.fov ?? 45
+    this.fov = options.fov ?? 70
     this.near = options.near ?? 0.1
     this.far = options.far ?? 1000
     this.width = options.width ?? 500
@@ -46,7 +47,6 @@ export default class View {
       this.near,
       this.far
     )
-    this.camera.position.set(0, 0, 5);
 
     // finally create the renderer
     this.renderer = new THREE.WebGLRenderer({ canvas })
@@ -56,14 +56,12 @@ export default class View {
     this.renderer.setSize(this.width, this.height)
 
     // add a camera control tool
-    // TODO: replace default camera control tool by a custom camera control tool
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+    this.controls.zoom = 2
     this.controls.zoomSpeed = 1
-
-    // three js helpers
-    // TODO: remove helpers
-    const gridHelper = new THREE.GridHelper(500, 50)
-    // this.scene.add( gridHelper )
+    this.controls.minZoom = 1.2
+    this.controls.maxZoom = 3
+    this.controls.dragSpeed = 2
 
     // setup background
     const bg = new Background()
@@ -71,8 +69,7 @@ export default class View {
     this.scene.background = backgroundTexture
 
     // add default planet
-    // TODO: moove this in a proper function
-    loadPlanet( this.scene, 'temperate' )
+    loadPlanet( 'temperate', this.scene, time )
 
     // init render loop
     const renderLoop = () => {

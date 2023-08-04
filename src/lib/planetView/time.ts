@@ -1,4 +1,4 @@
-import { UniformParameter } from "./uniform/uniformParameter";
+import { UniformParameter } from "@utils/shaders/uniformParameter";
 
 // create a shared time uniform
 export const time = new UniformParameter( 'time', performance.now() / 1000 )

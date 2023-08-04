@@ -1,17 +1,17 @@
 import * as THREE from 'three'
-import { buildResUrl } from '../../../utils/utils'
-import { UniformParameter } from '../../uniform/uniformParameter'
-import { createUniformTexture } from '../../uniform/uniformTexture'
+import { buildResUrl } from '@utils/utils'
+import { UniformParameter } from '@utils/shaders/uniformParameter'
+import { createUniformTexture } from '@utils/shaders/uniformTexture'
 import type Planet from '../planet'
 
 // shaders
-import fragmentShader from '../../../../ccpdata/shaders/atmosphere.frag.glsl?raw'
-import vertexShader from '../../../../ccpdata/shaders/atmosphere.vert.glsl?raw'
+import fragmentShader from '@ccpdata/shaders/atmosphere.frag.glsl?raw'
+import vertexShader from '@ccpdata/shaders/atmosphere.vert.glsl?raw'
 import getSunDirection from '../shaders/getSunDirection.glsl?raw'
 
 // ccp data
-import planetRing from '../../../../ccpdata/models/planetRing.json'
-import planetTemplate from '../../../../ccpdata/templates/terrestrial.json'
+import planetRing from '@ccpdata/models/planetRing.json'
+import planetTemplate from '@ccpdata/templates/terrestrial.json'
 
 export default class Atmosphere {
 
