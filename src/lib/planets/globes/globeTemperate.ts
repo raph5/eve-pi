@@ -5,8 +5,8 @@ import { createUniformTexture } from '@utils/shaders/uniformTexture'
 import type Planet from '../planet'
 
 // shaders
-import fragmentShader from '@ccpdata/shaders/earthLike.frag.glsl?raw'
-import vertexShader from '@ccpdata/shaders/earthLike.vert.glsl?raw'
+import fragmentShader from '@ccpdata/shaders/temperate.frag.glsl?raw'
+import vertexShader from '@ccpdata/shaders/temperate.vert.glsl?raw'
 import getSunDirection from '../shaders/getSunDirection.glsl?raw'
 
 // ccp data
@@ -33,11 +33,6 @@ export default class GlobeTemperate {
 
       vertexShader: getSunDirection + vertexShader,
       fragmentShader: fragmentShader,
-
-      blending: THREE.CustomBlending, 
-      blendEquation: THREE.AddEquation,
-      blendSrc: THREE.SrcAlphaFactor,
-      blendDst: THREE.OneMinusSrcAlphaFactor,
 
     })
 

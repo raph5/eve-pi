@@ -76,9 +76,9 @@ void main() {
       gl_FragColor.xyz = vec3(tmp.x?r1.x:r2.x, tmp.y?r1.y:r2.y, tmp.z?r1.z:r2.z);
 
       // background
-      gl_FragColor.x = max(gl_FragColor.x, 0.89019);
-      gl_FragColor.y = max(gl_FragColor.y, 0.93333);
-      gl_FragColor.z = max(gl_FragColor.z, 0.96862);
+      gl_FragColor.x = max(gl_FragColor.x, 0.13333);
+      gl_FragColor.y = max(gl_FragColor.y, 0.13333);
+      gl_FragColor.z = max(gl_FragColor.z, 0.13333);
     };
     gl_FragColor.w = c0.x;
     #ifdef PS
