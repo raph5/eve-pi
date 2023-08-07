@@ -1,0 +1,64 @@
+{
+  "textures": {
+    "PolesMaskMap": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
+    "DistortionMap": "res:/dx9/model/worldobject/Planet/GasGiant/GasGiant01_P.dds.0.png",
+    "NoiseMap": "res:/dx9/model/worldobject/Planet/GasGiant/GasGiantDetail01_M.dds.0.png",
+    "RingsTexture": "res:/dx9/model/worldobject/planet/gasgiant/gasgiantring01_d.dds.0.png",
+    "HeightMap": "res:/dx9/model/WorldObject/planet/GasGiant/GasGiant_Mixer_Tex.dds.0.png",
+    "NoiseTexture": "res:/dx9/model/worldobject/planet/gasgiant/gasgiantringdetail01_d.dds.0.png"
+  },
+  "settings": {
+    "BandingSpeed": 0.0012178421020507812,
+    "WindFactors": [
+      0.4423828125,
+      2.27734375,
+      -0.016998291015625,
+      0.1890869140625
+    ],
+    "Saturation": 4.9453125,
+    "ringColor3": [
+      0.42919921875,
+      0.42919921875,
+      0.42333984375,
+      1
+    ],
+    "ringColor2": [
+      0.2196044921875,
+      0.2313232421875,
+      0.199951171875,
+      1
+    ],
+    "ringColor1": [
+      0.89794921875,
+      0.89404296875,
+      0.8662109375,
+      1
+    ],
+    "FuzzyEdges": 5.1953125,
+    "DistoFactors": [
+      0.1795654296875,
+      0,
+      0,
+      0
+    ],
+    "Alpha": 0.39990234375,
+    "RingsFactors": [
+      2.939453125,
+      1,
+      0.04998779296875,
+      0.73681640625
+    ],
+    "CapColor": [
+      0.09014892578125,
+      0.11761474609375,
+      0.062744140625,
+      1
+    ],
+    "DiffuseColor": [
+      0.43115234375,
+      0.470458984375,
+      0.41943359375,
+      0
+    ]
+  }
+}

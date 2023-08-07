@@ -1,0 +1,101 @@
+{
+  "textures": {
+    "GroundScattering1": "res:/dx9/model/worldobject/Planet/Preset/LavaScatterLight01_D.dds.0.png",
+    "PolesGradient": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
+    "GroundScattering2": "res:/dx9/model/worldobject/Planet/Preset/LavaScatterHue01_D.dds.0.png",
+    "FillTexture": "res:/dx9/model/worldobject/Planet/Lava/LavaMagma01_P.dds.0.png",
+    "Lava3DNoiseMap": "res:/Texture/Global/noise_volume.dds.0.png"
+  },
+  "settings": {
+    "MiscFactors": [
+      0,
+      0.474609375,
+      0,
+      0
+    ],
+    "LavaSpecular": [
+      0.04522705078125,
+      20,
+      -0.2476806640625,
+      0.7705078125
+    ],
+    "LavaColor2": [
+      5.64453125,
+      0.97412109375,
+      0,
+      1
+    ],
+    "LavaColor1": [
+      10,
+      2.2734375,
+      0,
+      1
+    ],
+    "Mid": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "High": [
+      0.04705810546875,
+      0.043121337890625,
+      0.043121337890625,
+      0
+    ],
+    "DetailFactors": [
+      4,
+      0.994140625,
+      0,
+      0
+    ],
+    "Low": [
+      0.0274505615234375,
+      0,
+      0,
+      1
+    ],
+    "AnimationFactors": [
+      0.2998046875,
+      6,
+      0.90673828125,
+      25
+    ],
+    "Parameters2": [
+      0.254150390625,
+      0,
+      0,
+      0.56982421875
+    ],
+    "Parameters1": [
+      0.040496826171875,
+      19.15625,
+      1.4462890625,
+      0.00783538818359375
+    ],
+    "AtmosphereFactors": [
+      1.0390625,
+      0.03997802734375,
+      299.75,
+      0
+    ],
+    "AtmosphereColor": [
+      0.497802734375,
+      0.070556640625,
+      0.070556640625,
+      1
+    ],
+    "wavelengthsMicroMeters": [
+      0.73291015625,
+      0.71337890625,
+      0.63916015625,
+      1
+    ],
+    "ScatteringFactors": [
+      0.00499725341796875,
+      0.0019989013671875,
+      20,
+      0
+    ]
+  }
+}

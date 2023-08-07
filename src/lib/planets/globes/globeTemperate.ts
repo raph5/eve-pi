@@ -11,8 +11,8 @@ import getSunDirection from '../shaders/getSunDirection.glsl?raw'
 
 // ccp data
 import planetSphere from '@ccpdata/models/planetSphere.json'
-import planetTemplate from '@ccpdata/templates/terrestrial.json'
-import heightMap from '@ccpdata/textures/heightMap.png'
+import planetTemplate from '@ccpdata/templates/temperate/temperate09.json'
+import heightMap from '@ccpdata/textures/heightMap1.png'
 
 export default class GlobeTemperate {
 
@@ -72,7 +72,7 @@ export default class GlobeTemperate {
     )
     this.uniforms.polesGradient = new UniformParameter(
       's1',
-      createUniformTexture( buildResUrl(planetTemplate.textures.PolesGradient) )
+      createUniformTexture( buildResUrl(planetTemplate.textures.PolesGradient), true )
     )
     this.uniforms.fillTexture = new UniformParameter(
       's2',

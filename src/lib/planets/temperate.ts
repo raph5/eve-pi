@@ -1,5 +1,5 @@
 import Planet from './planet'
-import Atmosphere from "./atmospheres/atmosphere"
+import Atmosphere from "./atmospheres/atmosphereTemperate"
 import CloudsTemperate from "./clouds/cloudsTemperate"
 import GlobeTemperate from "./globes/globeTemperate"
 import type { timeUniform } from '../planetView/time'

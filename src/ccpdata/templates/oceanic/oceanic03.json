@@ -1,0 +1,59 @@
+{
+  "textures": {
+    "CloudsTexture": "res:/dx9/model/worldobject/Planet/Terrestrial/CloudSparse01_M.dds.0.png",
+    "PolesGradient": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
+    "CloudCapTexture": "res:/dx9/model/worldobject/Planet/Terrestrial/CloudDenseCap01_M.dds.0.png",
+    "GroundScattering1": "res:/dx9/model/worldobject/Planet/Preset/TerrestrialScatterLight01_D.dds.0.png",
+    "GroundScattering2": "res:/dx9/model/worldobject/Planet/Preset/TerrestrialScatterHue01_D.dds.0.png"
+  },
+  "settings": {
+    "MiscFactors": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "shallowWaterColor": [
+      0.2548828125,
+      0.91357421875,
+      0.8701171875,
+      1
+    ],
+    "WaterColor": [
+      0.007843017578125,
+      0.062744140625,
+      0.1019287109375,
+      1
+    ],
+    "CloudsColor": [
+      0.8583984375,
+      0.94091796875,
+      0.95263671875,
+      1
+    ],
+    "CloudsFactors": [
+      0.26513671875,
+      0.94580078125,
+      3.765625,
+      1
+    ],
+    "AtmosphereFactors": [
+      1.025390625,
+      0.05072021484375,
+      299.75,
+      0
+    ],
+    "wavelengthsMicroMeters": [
+      0.568359375,
+      0.583984375,
+      0.599609375,
+      1
+    ],
+    "ScatteringFactors": [
+      0.00499725341796875,
+      0.0019989013671875,
+      20,
+      0
+    ]
+  }
+}

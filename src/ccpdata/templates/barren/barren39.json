@@ -1,0 +1,90 @@
+{
+  "textures": {
+    "CloudsTexture": "res:/dx9/model/worldobject/planet/sandstorm/dust01_m.dds.0.png",
+    "PolesGradient": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
+    "CloudCapTexture": "res:/dx9/model/worldobject/planet/sandstorm/dustcap03_m.dds.0.png",
+    "GroundScattering1": "res:/dx9/model/worldobject/planet/preset/sandstormscatterlight01_d.dds.0.png",
+    "FillTexture": "res:/dx9/model/worldobject/planet/sandstorm/sandstormdetail03_p.dds.0.png",
+    "GroundScattering2": "res:/dx9/model/worldobject/planet/preset/sandstormscatterhue01_d.dds.0.png"
+  },
+  "settings": {
+    "CoverageFactors": [
+      0.337890625,
+      0.43701171875,
+      0.60693359375,
+      0
+    ],
+    "MiscFactors": [
+      0,
+      0.38427734375,
+      0,
+      0
+    ],
+    "EquatorTint": [
+      0.63134765625,
+      0.513671875,
+      0.38037109375,
+      1
+    ],
+    "FillTint": [
+      0.368408203125,
+      0.2430419921875,
+      0.08624267578125,
+      1
+    ],
+    "VegetationTint": [
+      0.352783203125,
+      0.2352294921875,
+      0.11761474609375,
+      1
+    ],
+    "SharpnessFactors": [
+      5,
+      4.44921875,
+      5.82421875,
+      1
+    ],
+    "DetailFactors": [
+      3,
+      19.4375,
+      0,
+      0
+    ],
+    "CloudsColor": [
+      0.96044921875,
+      0.8466796875,
+      0.71337890625,
+      1
+    ],
+    "mountainTint": [
+      0.576171875,
+      0.489990234375,
+      0.39208984375,
+      1
+    ],
+    "CloudsFactors": [
+      0.207763671875,
+      0.91650390625,
+      1.0556640625,
+      1
+    ],
+    "AtmosphereFactors": [
+      1.0234375,
+      0.04217529296875,
+      299.75,
+      0
+    ],
+    "wavelengthsMicroMeters": [
+      0.572265625,
+      0.576171875,
+      0.599609375,
+      1
+    ],
+    "ScatteringFactors": [
+      0.00499725341796875,
+      0.0019989013671875,
+      20,
+      0
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "textures": {
+    "CityDistributionMask": "res:/dx9/model/worldobject/planet/terrestrial/citylight03_m.dds.0.png",
+    "PolesGradient": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
+    "CityLight": "res:/dx9/model/worldobject/planet/terrestrial/citylight03_g.dds.0.png",
+    "CityDistributionTexture": "res:/dx9/model/worldobject/planet/terrestrial/citylight03_uv.dds.0.png",
+    "GroundScattering1": "res:/dx9/model/worldobject/Planet/Preset/TerrestrialScatterLight01_D.dds.0.png",
+    "GroundScattering2": "res:/dx9/model/worldobject/Planet/Preset/TerrestrialScatterHue01_D.dds.0.png",
+    "CloudsTexture": "res:/dx9/model/worldobject/planet/terrestrial/clouddense01_m.dds.0.png",
+    "FillTexture": "res:/dx9/model/worldobject/planet/terrestrial/terrestrialdetail04_p.dds.0.png",
+    "CloudCapTexture": "res:/dx9/model/worldobject/planet/terrestrial/clouddensecap01_m.dds.0.png"
+  },
+  "settings": {
+    "FillTint": [
+      0.556640625,
+      0.489990234375,
+      0.38818359375,
+      1
+    ],
+    "CityLightColor": [
+      0.66259765625,
+      0.6376953125,
+      0.498291015625,
+      1
+    ],
+    "WaterColor": [
+      0.0117645263671875,
+      0.07843017578125,
+      0.13720703125,
+      1
+    ],
+    "DetailFactors": [
+      4,
+      1.03515625,
+      0,
+      0
+    ],
+    "VegetationTint": [
+      0.313720703125,
+      0.352783203125,
+      0.2469482421875,
+      1
+    ],
+    "mountainTint": [
+      0.489990234375,
+      0.470458984375,
+      0.443115234375,
+      1
+    ],
+    "MiscFactors": [
+      0.04620361328125,
+      0.355712890625,
+      0,
+      0
+    ],
+    "SharpnessFactors": [
+      5.0078125,
+      4.0625,
+      6.0546875,
+      0.01227569580078125
+    ],
+    "CloudsFactors": [
+      0.371826171875,
+      0.94189453125,
+      1.025390625,
+      1
+    ],
+    "CoverageFactors": [
+      0.54052734375,
+      0.381591796875,
+      0.08209228515625,
+      1
+    ],
+    "shallowWaterColor": [
+      0.09014892578125,
+      0.40380859375,
+      0.40771484375,
+      1
+    ],
+    "EquatorTint": [
+      0.568359375,
+      0.497802734375,
+      0.344970703125,
+      1
+    ],
+    "AtmosphereFactors": [
+      1.01953125,
+      0.04998779296875,
+      299.75,
+      0
+    ],
+    "wavelengthsMicroMeters": [
+      0.552734375,
+      0.580078125,
+      0.603515625,
+      1
+    ],
+    "ScatteringFactors": [
+      0.00499725341796875,
+      0.0019989013671875,
+      20,
+      0
+    ],
+    "CloudsColor": [
+      0.8154296875,
+      0.8154296875,
+      0.8154296875,
+      1
+    ]
+  }
+}

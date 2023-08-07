@@ -1,0 +1,66 @@
+{
+  "textures": {
+    "PolesGradient": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
+    "GroundScattering1": "res:/dx9/model/worldobject/planet/preset/icescatterlight01_d.dds.0.png",
+    "FillTexture": "res:/dx9/model/worldobject/planet/ice/icedetail03_p.dds.0.png",
+    "GroundScattering2": "res:/dx9/model/worldobject/planet/preset/icescatterhue01_d.dds.0.png",
+    "ColorizeMap": "res:/dx9/model/worldobject/Planet/Ice/IcePlanetColorizeMap01_P.dds.0.png"
+  },
+  "settings": {
+    "IceFactors": [
+      0.0210418701171875,
+      0.642578125,
+      0.4755859375,
+      1
+    ],
+    "IceDetail": [
+      0.2132568359375,
+      2,
+      4,
+      0
+    ],
+    "IceRampColorMiddle": [
+      0.40771484375,
+      0.580078125,
+      0.68603515625,
+      1
+    ],
+    "Roughness": 0.55126953125,
+    "IceSpecular": [
+      0.6171875,
+      11.7578125,
+      0.06927490234375,
+      0.560546875
+    ],
+    "MiscFactors": [
+      0,
+      -0.10906982421875,
+      0,
+      0
+    ],
+    "IceRampColorHigh": [
+      0,
+      0.1058349609375,
+      0.12152099609375,
+      1
+    ],
+    "AtmosphereFactors": [
+      1.0146484375,
+      0.04998779296875,
+      299.75,
+      0
+    ],
+    "wavelengthsMicroMeters": [
+      0.583984375,
+      0.599609375,
+      0.63916015625,
+      1
+    ],
+    "ScatteringFactors": [
+      0.00499725341796875,
+      0.0019989013671875,
+      20,
+      0
+    ]
+  }
+}

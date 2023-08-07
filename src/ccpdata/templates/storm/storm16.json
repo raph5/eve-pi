@@ -1,0 +1,73 @@
+{
+  "textures": {
+    "LightningMap": "res:/dx9/model/worldobject/Planet/Thunderstorm/Lightning01_G.dds.0.png",
+    "MaskMap": "res:/dx9/model/WorldObject/planet/Thunderstorm/CloudStorm_M.dds.0.png",
+    "CloudsTexture": "res:/dx9/model/WorldObject/planet/Terrestrial/CloudDense01_M.dds.0.png",
+    "CloudCapTexture": "res:/dx9/model/WorldObject/Planet/Terrestrial/CloudDenseCap01_M.dds.0.png",
+    "GroundScattering1": "res:/dx9/model/worldobject/Planet/Preset/ThunderStormScatterLight01_D.dds.0.png",
+    "GroundScattering2": "res:/dx9/model/worldobject/Planet/Preset/ThunderStormScatterHue01_D.dds.0.png",
+    "Lava3DNoiseMap": "res:/dx9/model/worldobject/Planet/Thunderstorm/Thunderstorm01_volume_P.dds.0.png"
+  },
+  "settings": {
+    "Lightningfactors": [
+      0.599609375,
+      0.5,
+      0.2998046875,
+      0
+    ],
+    "LightningColor": [
+      0.10980224609375,
+      0.1568603515625,
+      0.1685791015625,
+      1
+    ],
+    "MagmaFactors2": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "MagmaFactors": [
+      0.5517578125,
+      0.309326171875,
+      0.00299835205078125,
+      0.0290069580078125
+    ],
+    "CloudsColor": [
+      0.039215087890625,
+      0.039215087890625,
+      0.039215087890625,
+      1
+    ],
+    "PlanetColor": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "CloudsFactors": [
+      -0.1065673828125,
+      3.1796875,
+      0.40576171875,
+      1
+    ],
+    "AtmosphereFactors": [
+      1.01171875,
+      0.005313873291015625,
+      299.75,
+      0
+    ],
+    "wavelengthsMicroMeters": [
+      0.489990234375,
+      0.501953125,
+      0.521484375,
+      1
+    ],
+    "ScatteringFactors": [
+      0.00499725341796875,
+      0.0019989013671875,
+      20,
+      0
+    ]
+  }
+}
