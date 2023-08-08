@@ -11,7 +11,7 @@ export default class Planet {
     private time: timeUniform
   ) {
 
-    this.uniforms.time = time
+    this.uniforms.time = this.time
     this.uniforms.AmbientColor = new UniformParameter(
       'AmbientColor',
       new THREE.Vector3( 0.1647, 0.0941, 0.0627 )

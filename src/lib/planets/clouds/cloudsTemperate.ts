@@ -5,13 +5,13 @@ import { createUniformTexture } from '@utils/shaders/uniformTexture'
 import type Planet from '../planet'
 
 // shaders
-import fragmentShader from '@ccpdata/shaders/temperateClouds.frag.glsl?raw'
-import vertexShader from '@ccpdata/shaders/temperateClouds.vert.glsl?raw'
+import fragmentShader from '@ccpdata/shaders/temperate/clouds.frag.glsl?raw'
+import vertexShader from '@ccpdata/shaders/temperate/clouds.vert.glsl?raw'
 import getSunDirection from '../shaders/getSunDirection.glsl?raw'
 
 // ccp data
 import planetSphere from '@ccpdata/models/planetSphere.json'
-import planetTemplate from '@ccpdata/templates/terrestrial.json'
+import planetTemplate from '@ccpdata/templates/temperate/temperate09.json'
 
 export default class CloudsTemperate {
 

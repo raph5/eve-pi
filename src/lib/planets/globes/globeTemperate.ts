@@ -5,8 +5,8 @@ import { createUniformTexture } from '@utils/shaders/uniformTexture'
 import type Planet from '../planet'
 
 // shaders
-import fragmentShader from '@ccpdata/shaders/temperate.frag.glsl?raw'
-import vertexShader from '@ccpdata/shaders/temperate.vert.glsl?raw'
+import fragmentShader from '@ccpdata/shaders/temperate/globe.frag.glsl?raw'
+import vertexShader from '@ccpdata/shaders/temperate/globe.vert.glsl?raw'
 import getSunDirection from '../shaders/getSunDirection.glsl?raw'
 
 // ccp data

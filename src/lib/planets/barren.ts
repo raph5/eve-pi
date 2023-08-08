@@ -8,7 +8,6 @@ import type { timeUniform } from '../planetView/time'
 export default class PlanetBarren extends Planet {
   
   private globe: GlobeBarren
-  private clouds: CloudsTemperate
   private atmosphere: Atmosphere
 
   constructor(

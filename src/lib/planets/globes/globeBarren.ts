@@ -5,8 +5,8 @@ import { createUniformTexture } from '@utils/shaders/uniformTexture'
 import type Planet from '../planet'
 
 // shaders
-import fragmentShader from '@ccpdata/shaders/barren.frag.glsl?raw'
-import vertexShader from '@ccpdata/shaders/barren.vert.glsl?raw'
+import fragmentShader from '@ccpdata/shaders/barren/globe.frag.glsl?raw'
+import vertexShader from '@ccpdata/shaders/barren/globe.vert.glsl?raw'
 import getSunDirection from '../shaders/getSunDirection.glsl?raw'
 
 // ccp data
@@ -14,7 +14,7 @@ import planetSphere from '@ccpdata/models/planetSphere.json'
 import planetTemplate from '@ccpdata/templates/barren/barren26.json'
 import heightMap from '@ccpdata/textures/heightMap2.png'
 
-export default class GlobeTemperate {
+export default class GlobeBarren {
 
   private geometry: THREE.BufferGeometry
   private material: THREE.ShaderMaterial

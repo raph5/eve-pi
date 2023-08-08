@@ -38,7 +38,6 @@ varying vec4 texcoord;
 varying vec4 texcoord4;
 varying vec4 texcoord6;
 varying vec4 texcoord7;
-uniform samplerCube s0;
 uniform sampler2D s1;
 uniform sampler2D s2;
 uniform sampler2D s3;
@@ -226,7 +225,6 @@ void main() {
     gl_FragColor.xyz = vec3(tmp.x?r1.x:r2.x, tmp.y?r1.y:r2.y, tmp.z?r1.z:r2.z);
   };
   gl_FragColor.w = c12.y;
-  // gl_FragColor.xyz = r7.xyz;
   #ifdef PS
     float av = floor(clamp(gl_FragData[0].a, 0.0, 1.0)*255.0+0.5);
     if(ssi.z == 0.0) {
