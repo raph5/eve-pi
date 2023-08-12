@@ -1,3 +1,18 @@
+uniform vec4 CloudsFactors;
+uniform vec4 CloudsColor;
+uniform vec4 CoverageFactors;
+uniform vec4 mountainTint;
+uniform vec4 EquatorTint;
+uniform vec4 VegetationTint;
+uniform vec4 FillTint;
+uniform vec4 SharpnessFactors;
+uniform vec4 MiscFactors;
+uniform vec4 DetailFactors;
+
+uniform vec4 fogSettings;
+uniform vec4 AmbientColor;
+uniform float time;
+
 #if defined(GL_EXT_shader_texture_lod)
   #extension GL_EXT_shader_texture_lod: enable
   #define texture2DLod texture2DLodEXT
@@ -38,14 +53,14 @@ varying vec4 texcoord;
 varying vec4 texcoord4;
 varying vec4 texcoord6;
 varying vec4 texcoord7;
-uniform sampler2D s1;
-uniform sampler2D s2;
-uniform sampler2D s3;
-uniform sampler2D s4;
-uniform sampler2D s5;
-uniform sampler2D s6;
-uniform sampler2D s7;
-uniform sampler2D s8;
+uniform sampler2D PolesGradient;
+uniform sampler2D FillTexture;
+uniform sampler2D heightMap1;
+uniform sampler2D heightMap2;
+uniform sampler2D GroundScattering1;
+uniform sampler2D GroundScattering2;
+uniform sampler2D CloudsTexture;
+uniform sampler2D CloudCapTexture;
 float saturate(float x) {
   return clamp(x, 0.0, 1.0);
 }
@@ -58,12 +73,6 @@ vec3 saturate(vec3 x) {
 vec4 saturate(vec4 x) {
   return clamp(x, vec4(0.0), vec4(1.0));
 }
-
-uniform vec4 cb7[11];
-uniform vec4 fogSettings;
-uniform vec4 AmbientColor;
-uniform float time;
-
 #ifdef PS
   uniform vec4 ssi;
   varying float ssv;
@@ -80,7 +89,6 @@ void main() {
   vec4 r4;
   vec4 r5;
   vec4 r6;
-  vec4 r7;
   vec4 c11 = vec4(0.5, 0.00999999978, 2, -1);
   vec4 c12 = vec4(4, 1, 0, 2);
   vec4 c13 = vec4(0.000277777785, 0, -0.0404499359, 0.0773993805);
@@ -91,13 +99,12 @@ void main() {
   v1 = texcoord4;
   v2 = texcoord6;
   v3 = texcoord7;
-
-  r0 = texture2D(s3, v0.xy);
+  r0 = texture2D(heightMap1, v0.xy);
   r0.xy = r0.xy*c11.zz+c11.ww;
-  r0.z = r0.z*r0.w+(-cb7[1].x);
+  r0.z = r0.z*r0.w+(-MiscFactors.x);
   r0.z = saturate(r0.z*c12.x);
   r0.w = dot(r0.xy, (-r0.xy))+c12.y;
-  r1.xy = r0.xy*cb7[1].yy;
+  r1.xy = r0.xy*MiscFactors.yy;
   r1.w = max(r0.w, c12.z);
   r0.x = r1.w == 0.0?3.402823466e+38:inversesqrt(abs(r1.w));
   r1.z = 1.0/r0.x;
@@ -105,7 +112,7 @@ void main() {
   r0.x = r0.x == 0.0?3.402823466e+38:inversesqrt(abs(r0.x));
   r2.xyz = r0.xxx*r1.xyz;
   r0.xyw = r1.xyz*(-r0.xxx)+c12.zzy;
-  r1 = texture2D(s1, v0.xy);
+  r1 = texture2D(PolesGradient, v0.xy);
   r1.x = (-r1.x)+c12.y;
   r2.w = pow(abs(r1.x), c16.x);
   r0.xyw = r2.www*r0.xyw+r2.xyz;
@@ -114,35 +121,35 @@ void main() {
   r1.z = r1.x*r1.x;
   r1.x = saturate(dot(r1.xx, r1.zz)+c12.z);
   r1.zw = c11.xx*v0.zw;
-  r2 = texture2D(s4, r1.zw);
-  r1.zw = r1.zw*cb7[0].xx;
-  r3 = texture2D(s2, r1.zw);
+  r2 = texture2D(heightMap2, r1.zw);
+  r1.zw = r1.zw*DetailFactors.xx;
+  r3 = texture2D(FillTexture, r1.zw);
   r1.z = r2.z*r2.w+(-r0.z);
   r0.z = r1.x*r1.z+r0.z;
   r2.yzw = c12.yzw;
-  r4 = cb7[0].xxxx*r2.yzzy+r2.zywz;
+  r4 = DetailFactors.xxxx*r2.yzzy+r2.zywz;
   r1.zw = r4.xy*v0.xy;
   r1.zw = r4.zw*r1.zw;
-  r4 = texture2D(s2, r1.zw);
+  r4 = texture2D(FillTexture, r1.zw);
   r5 = mix(r4, r3, r1.xxxx);
-  r1.x = r5.z*cb7[0].y;
+  r1.x = r5.z*DetailFactors.y;
   r0.z = r1.x*c11.y+r0.z;
-  r1.x = r0.z+(-cb7[1].x);
-  r1.x = (-r1.x)+cb7[8].y;
-  r1.x = saturate(cb7[3].x*r1.x+(-r1.y));
-  r1.yzw = r5.xxx*cb7[4].xyz;
-  r2.xzw = r5.yyy*cb7[5].xyz+(-r1.yzw);
+  r1.x = r0.z+(-MiscFactors.x);
+  r1.x = (-r1.x)+CoverageFactors.y;
+  r1.x = saturate(SharpnessFactors.x*r1.x+(-r1.y));
+  r1.yzw = r5.xxx*FillTint.xyz;
+  r2.xzw = r5.yyy*VegetationTint.xyz+(-r1.yzw);
   r1.xyz = r1.xxx*r2.xzw+r1.yzw;
-  r2.xzw = r5.zzz*cb7[6].xyz+(-r1.xyz);
-  r1.w = cb7[8].z+cb7[8].x;
+  r2.xzw = r5.zzz*EquatorTint.xyz+(-r1.xyz);
+  r1.w = CoverageFactors.z+CoverageFactors.x;
   r1.w = (-r1.w)+c12.y;
   r1.w = r0.z+(-r1.w);
-  r1.w = saturate(r1.w*cb7[3].y);
+  r1.w = saturate(r1.w*SharpnessFactors.y);
   r1.xyz = r1.www*r2.xzw+r1.xyz;
-  r2.xzw = r5.www*cb7[7].xyz+(-r1.xyz);
-  r1.w = r2.y+(-cb7[8].z);
+  r2.xzw = r5.www*mountainTint.xyz+(-r1.xyz);
+  r1.w = r2.y+(-CoverageFactors.z);
   r0.z = r0.z+(-r1.w);
-  r1.w = r0.w*cb7[3].z;
+  r1.w = r0.w*SharpnessFactors.z;
   r0.z = saturate(r0.z*r1.w);
   r1.xyz = r0.zzz*r2.xzw+r1.xyz;
   r0.z = dot(v2.xyz, v2.xyz);
@@ -161,29 +168,29 @@ void main() {
   r0.y = r0.y*r0.y;
   r0.y = r0.y*r0.x;
   r3.x = r2.x*c11.x+c11.x;
-  r4 = texture2D(s5, vec2(r3.x, 1.0-r3.y));
-  r3 = texture2D(s6, vec2(r3.x, 1.0-r3.y));
+  r4 = texture2D(GroundScattering1, vec2(r3.x, 1.0-r3.y));
+  r3 = texture2D(GroundScattering2, vec2(r3.x, 1.0-r3.y));
   r4.xyz = r4.xyz+AmbientColor.xyz;
   r0.xzw = r4.xyz*c11.xxx+r0.xxx;
   r0.xyz = r1.xyz*r0.xzw+r0.yyy;
-  r1.xyz = cb7[10].xxx*r3.xyz+(-r0.xyz);
+  r1.xyz = CloudsFactors.xxx*r3.xyz+(-r0.xyz);
   r5.xy = c13.xy;
   r2.xw = r5.xy*time;
   r2.xw = fract(r2.xw);
   r2.yz = r2.yz*c16.ww+r2.xw;
-  r5 = cb7[10].wwww*v0;
+  r5 = CloudsFactors.wwww*v0;
   r2.yz = r5.xy*c12.wy+r2.yz;
-  r6 = texture2D(s7, r2.yz);
-  r0.w = pow(abs(r6.x), cb7[10].z);
+  r6 = texture2D(CloudsTexture, r2.yz);
+  r0.w = pow(abs(r6.x), CloudsFactors.z);
   r0.xyz = r0.www*r1.xyz+r0.xyz;
-  r1.y = cb7[10].y;
-  r1.xyz = r1.yyy*cb7[9].xyz;
+  r1.y = CloudsFactors.y;
+  r1.xyz = r1.yyy*CloudsColor.xyz;
   r1.xyz = r1.xyz*r4.xyz+(-r0.xyz);
   r2.xy = r5.xy*c12.wy+r2.xw;
-  r4 = texture2D(s8, r5.zw);
-  r2 = texture2D(s7, r2.xy);
+  r4 = texture2D(CloudCapTexture, r5.zw);
+  r2 = texture2D(CloudsTexture, r2.xy);
   r0.w = max(r2.x, r4.x);
-  r1.w = pow(abs(r0.w), cb7[10].z);
+  r1.w = pow(abs(r0.w), CloudsFactors.z);
   r0.xyz = r1.www*r1.xyz+r0.xyz;
   r0.xyz = r3.xyz+r0.xyz;
   r1.xyz = r0.xyz+c13.zzz;
@@ -201,8 +208,7 @@ void main() {
     r0.xyz = vec3(tmp.x?r3.x:r2.x, tmp.y?r3.y:r2.y, tmp.z?r3.z:r2.z);
   };
   r1.xyz = (-v1.xyz);
-  r1.w = fogSettings.z;
-  r2.y = fogSettings.y;
+  r1.w = fogSettings.z;  r2.y = fogSettings.y;
   r3.xyz = vec3(0);
   r0.w = saturate(v1.w);
   r0.xyz = r0.www*r3.xyz+r0.xyz;
@@ -226,7 +232,7 @@ void main() {
   };
   gl_FragColor.w = c12.y;
   #ifdef PS
-    float av = floor(clamp(gl_FragData[0].a, 0.0, 1.0)*255.0+0.5);
+    float av = floor(clamp(gl_FragColor.a, 0.0, 1.0)*255.0+0.5);
     if(ssi.z == 0.0) {
       if(av*ssi.x+ssi.y<0.0)
       discard;

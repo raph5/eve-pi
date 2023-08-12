@@ -1,14 +1,59 @@
 {
   "textures": {
-    "CityDistributionMask": "res:/dx9/model/worldobject/planet/terrestrial/citylight02_m.dds.0.png",
-    "PolesGradient": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
-    "CityLight": "res:/dx9/model/worldobject/planet/terrestrial/citylight02_g.dds.0.png",
-    "CityDistributionTexture": "res:/dx9/model/worldobject/planet/terrestrial/citylight02_uv.dds.0.png",
-    "GroundScattering1": "res:/dx9/model/worldobject/Planet/Preset/TerrestrialScatterLight01_D.dds.0.png",
-    "GroundScattering2": "res:/dx9/model/worldobject/Planet/Preset/TerrestrialScatterHue01_D.dds.0.png",
-    "CloudsTexture": "res:/dx9/model/worldobject/planet/terrestrial/clouddense03_m.dds.0.png",
-    "FillTexture": "res:/dx9/model/worldobject/planet/terrestrial/terrestrialdetail03_p.dds.0.png",
-    "CloudCapTexture": "res:/dx9/model/worldobject/planet/terrestrial/clouddensecap03_m.dds.0.png"
+    "CityDistributionMask": {
+      "src": "res:/dx9/model/worldobject/planet/terrestrial/citylight02_m.dds.0.png",
+      "repeat": false,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "PolesGradient": {
+      "src": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
+      "repeat": true,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "CityLight": {
+      "src": "res:/dx9/model/worldobject/planet/terrestrial/citylight02_g.dds.0.png",
+      "repeat": false,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "CityDistributionTexture": {
+      "src": "res:/dx9/model/worldobject/planet/terrestrial/citylight02_uv.dds.0.png",
+      "repeat": false,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "GroundScattering1": {
+      "src": "res:/dx9/model/worldobject/Planet/Preset/TerrestrialScatterLight01_D.dds.0.png",
+      "repeat": false,
+      "minFilter": "linear",
+      "anisotropy": 1
+    },
+    "GroundScattering2": {
+      "src": "res:/dx9/model/worldobject/Planet/Preset/TerrestrialScatterHue01_D.dds.0.png",
+      "repeat": false,
+      "minFilter": "linear",
+      "anisotropy": 1
+    },
+    "CloudsTexture": {
+      "src": "res:/dx9/model/worldobject/planet/terrestrial/clouddense03_m.dds.0.png",
+      "repeat": true,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "FillTexture": {
+      "src": "res:/dx9/model/worldobject/planet/terrestrial/terrestrialdetail03_p.dds.0.png",
+      "repeat": true,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "CloudCapTexture": {
+      "src": "res:/dx9/model/worldobject/planet/terrestrial/clouddensecap03_m.dds.0.png",
+      "repeat": false,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    }
   },
   "settings": {
     "FillTint": [

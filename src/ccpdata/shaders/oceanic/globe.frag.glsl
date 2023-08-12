@@ -1,3 +1,12 @@
+uniform vec4 CloudsFactors;
+uniform vec4 CloudsColor;
+uniform vec4 shallowWaterColor;
+uniform vec4 WaterColor;
+
+uniform vec4 fogSettings;
+uniform vec4 AmbientColor;
+uniform float time;
+
 #if defined(GL_EXT_shader_texture_lod)
   #extension GL_EXT_shader_texture_lod: enable
   #define texture2DLod texture2DLodEXT
@@ -38,12 +47,12 @@ varying vec4 texcoord;
 varying vec4 texcoord4;
 varying vec4 texcoord6;
 varying vec4 texcoord7;
-uniform sampler2D s1;
-uniform sampler2D s2;
-uniform sampler2D s3;
-uniform sampler2D s4;
-uniform sampler2D s5;
-uniform sampler2D s6;
+uniform sampler2D PolesGradient;
+uniform sampler2D heightMap;
+uniform sampler2D GroundScattering1;
+uniform sampler2D GroundScattering2;
+uniform sampler2D CloudsTexture;
+uniform sampler2D CloudCapTexture;
 float saturate(float x) {
   return clamp(x, 0.0, 1.0);
 }
@@ -56,12 +65,6 @@ vec3 saturate(vec3 x) {
 vec4 saturate(vec4 x) {
   return clamp(x, vec4(0.0), vec4(1.0));
 }
-
-uniform vec4 cb7[5];
-uniform vec4 fogSettings;
-uniform vec4 AmbientColor;
-uniform float time;
-
 #ifdef PS
   uniform vec4 ssi;
   varying float ssv;
@@ -88,16 +91,15 @@ void main() {
   v1 = texcoord4;
   v2 = texcoord6;
   v3 = texcoord7;
-
-  r0 = texture2D(s1, v0.xy);
+  r0 = texture2D(PolesGradient, v0.xy);
   r0.x = (-r0.x)+c5.x;
   r0.y = r0.x*r0.x;
   r0.x = saturate(dot(r0.xx, r0.yy)+c5.y);
   r0.x = (-r0.x)+c5.x;
-  r1 = texture2D(s2, v0.xy);
+  r1 = texture2D(heightMap, v0.xy);
   r0.y = r1.w*r1.z;
-  r0.yzw = r0.yyy*cb7[2].xyz;
-  r0.xyz = r0.yzw*r0.xxx+cb7[1].xyz;
+  r0.yzw = r0.yyy*shallowWaterColor.xyz;
+  r0.xyz = r0.yzw*r0.xxx+WaterColor.xyz;
   r0.w = dot(v3.xyz, v3.xyz);
   r0.w = r0.w == 0.0?3.402823466e+38:inversesqrt(abs(r0.w));
   r1.yzw = r0.www*v3.xyz;
@@ -109,31 +111,31 @@ void main() {
   r2.w = saturate(r2.z+r2.z);
   r0.w = r0.w*r2.w;
   r1.x = r2.z*c5.z+c5.z;
-  r3 = texture2D(s3, vec2(r1.x, 1.0-r1.w));
-  r4 = texture2D(s4, vec2(r1.x, 1.0-r1.w));
+  r3 = texture2D(GroundScattering1, vec2(r1.x, 1.0-r1.w));
+  r4 = texture2D(GroundScattering2, vec2(r1.x, 1.0-r1.w));
   r1.xyz = r1.www*(-c5.yyw)+r1.yzw;
   r1.x = clamp(dot(r2.xyz, (-r1.xyz)), 0.0, 1.0);
   r2.z = pow(r1.x, c9.w);
   r1.xyz = r3.xyz+AmbientColor.xyz;
   r0.xyz = r0.xyz*r1.xyz+r0.www;
-  r3.xyz = cb7[4].xxx*r4.xyz+(-r0.xyz);
+  r3.xyz = CloudsFactors.xxx*r4.xyz+(-r0.xyz);
   r5.xy = c9.xy;
-  r5.xy = r5.xy*cb7[0].xx;
+  r5.xy = r5.xy*time;
   r5.xy = fract(r5.xy);
   r2.xy = r2.xy*c9.zz+r5.xy;
-  r6 = cb7[4].wwww*v0;
+  r6 = CloudsFactors.wwww*v0;
   r2.xy = r6.xy*c5.wx+r2.xy;
-  r7 = texture2D(s5, r2.xy);
-  r0.w = pow(abs(r7.x), cb7[4].z);
+  r7 = texture2D(CloudsTexture, r2.xy);
+  r0.w = pow(abs(r7.x), CloudsFactors.z);
   r0.xyz = r0.www*r3.xyz+r0.xyz;
-  r2.y = cb7[4].y;
-  r2.xyw = r2.yyy*cb7[3].xyz;
+  r2.y = CloudsFactors.y;
+  r2.xyw = r2.yyy*CloudsColor.xyz;
   r1.xyz = r2.xyw*r1.xyz+(-r0.xyz);
   r2.xy = r6.xy*c5.wx+r5.xy;
-  r3 = texture2D(s6, r6.zw);
-  r5 = texture2D(s5, r2.xy);
+  r3 = texture2D(CloudCapTexture, r6.zw);
+  r5 = texture2D(CloudsTexture, r2.xy);
   r0.w = max(r5.x, r3.x);
-  r1.w = pow(abs(r0.w), cb7[4].z);
+  r1.w = pow(abs(r0.w), CloudsFactors.z);
   r0.xyz = r1.www*r1.xyz+r0.xyz;
   r0.xyz = r2.zzz*c6.xxx+r0.xyz;
   r0.xyz = r4.xyz+r0.xyz;
@@ -152,8 +154,7 @@ void main() {
     r0.xyz = vec3(tmp.x?r3.x:r2.x, tmp.y?r3.y:r2.y, tmp.z?r3.z:r2.z);
   };
   r1.xyz = (-v1.xyz);
-  r1.w = fogSettings.z;
-  r2.y = fogSettings.y;
+  r1.w = fogSettings.z;  r2.y = fogSettings.y;
   r3.xyz = vec3(0);
   r0.w = saturate(v1.w);
   r0.xyz = r0.www*r3.xyz+r0.xyz;

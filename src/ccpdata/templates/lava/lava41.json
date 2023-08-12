@@ -1,10 +1,35 @@
 {
   "textures": {
-    "GroundScattering1": "res:/dx9/model/worldobject/planet/preset/lavascatterlight01_d.dds.0.png",
-    "PolesGradient": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
-    "GroundScattering2": "res:/dx9/model/worldobject/planet/preset/lavascatterhue01_d.dds.0.png",
-    "FillTexture": "res:/dx9/model/worldobject/planet/lava/lavamagma03_p.dds.0.png",
-    "Lava3DNoiseMap": "res:/Texture/Global/noise_volume.dds.0.png"
+    "GroundScattering1": {
+      "src": "res:/dx9/model/worldobject/planet/preset/lavascatterlight01_d.dds.0.png",
+      "repeat": false,
+      "minFilter": "linear",
+      "anisotropy": 1
+    },
+    "PolesGradient": {
+      "src": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
+      "repeat": true,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "GroundScattering2": {
+      "src": "res:/dx9/model/worldobject/planet/preset/lavascatterhue01_d.dds.0.png",
+      "repeat": false,
+      "minFilter": "linear",
+      "anisotropy": 1
+    },
+    "FillTexture": {
+      "src": "res:/dx9/model/worldobject/planet/lava/lavamagma03_p.dds.0.png",
+      "repeat": true,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "Lava3DNoiseMap": {
+      "src": "res:/Texture/Global/noise_volume.dds.0.png",
+      "repeat": true,
+      "minFilter": "linearMipmap",
+      "anisotropy": 1
+    }
   },
   "settings": {
     "MiscFactors": [

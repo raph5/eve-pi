@@ -13,7 +13,7 @@ export default class OrbitControls {
   public dragSpeed = 1
   public minZoom = 1
   public maxZoom = 10
-  public cameraFriction = 6
+  public cameraFriction = 8
   public cameraPitch = 0.6
   
   // camera spherical position and speed

@@ -1,0 +1,12 @@
+{
+  "textures": {},
+  "settings": {
+    "0": "AtmosphereFactors",
+    "1": "LightColor",
+    "2": "ScatteringFactors",
+    "3": "wavelengthsMicroMeters"
+  },
+  "time": "",
+  "background": [ 0.13333, 0.13333, 0.13333 ],
+  "sun": "cb2[12]"
+}

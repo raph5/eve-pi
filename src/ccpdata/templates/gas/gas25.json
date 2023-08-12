@@ -1,11 +1,41 @@
 {
   "textures": {
-    "PolesMaskMap": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
-    "DistortionMap": "res:/dx9/model/worldobject/Planet/GasGiant/GasGiant01_P.dds.0.png",
-    "NoiseMap": "res:/dx9/model/worldobject/Planet/GasGiant/GasGiantDetail01_M.dds.0.png",
-    "RingsTexture": "res:/dx9/model/worldobject/planet/gasgiant/gasgiantring07_d.dds.0.png",
-    "HeightMap": "res:/dx9/model/WorldObject/planet/GasGiant/GasGiant_Mixer_Tex.dds.0.png",
-    "NoiseTexture": "res:/dx9/model/worldobject/planet/gasgiant/gasgiantringdetail01_d.dds.0.png"
+    "PolesMaskMap": {
+      "src": "res:/dx9/model/worldobject/Planet/Gradient01_M.dds.0.png",
+      "repeat": true,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "DistortionMap": {
+      "src": "res:/dx9/model/worldobject/Planet/GasGiant/GasGiant01_P.dds.0.png",
+      "repeat": true,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "NoiseMap": {
+      "src": "res:/dx9/model/worldobject/Planet/GasGiant/GasGiantDetail01_M.dds.0.png",
+      "repeat": true,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "RingsTexture": {
+      "src": "res:/dx9/model/worldobject/planet/gasgiant/gasgiantring07_d.dds.0.png",
+      "repeat": false,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "HeightMap": {
+      "src": "res:/dx9/model/WorldObject/planet/GasGiant/GasGiant_Mixer_Tex.dds.0.png",
+      "repeat": false,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    },
+    "NoiseTexture": {
+      "src": "res:/dx9/model/worldobject/planet/gasgiant/gasgiantringdetail01_d.dds.0.png",
+      "repeat": false,
+      "minFilter": "linearMipmap",
+      "anisotropy": 4
+    }
   },
   "settings": {
     "BandingSpeed": 0.0016736984252929688,

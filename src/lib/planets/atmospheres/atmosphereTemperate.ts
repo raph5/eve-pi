@@ -1,99 +1,53 @@
 import * as THREE from 'three'
-import { buildResUrl } from '@utils/utils'
 import { UniformParameter } from '@utils/shaders/uniformParameter'
-import { createUniformTexture } from '@utils/shaders/uniformTexture'
-import type Planet from '../planet'
+import PlanetMesh from '../planetMesh'
 
 // shaders
 import fragmentShader from '@ccpdata/shaders/temperate/atmosphere.frag.glsl?raw'
 import vertexShader from '@ccpdata/shaders/temperate/atmosphere.vert.glsl?raw'
-import getSunDirection from '../shaders/getSunDirection.glsl?raw'
 
 // ccp data
 import planetRing from '@ccpdata/models/planetRing.json'
-import planetTemplate from '@ccpdata/templates/temperate/temperate09.json'
 
-export default class Atmosphere {
+export default class Atmosphere extends PlanetMesh {
 
-  private geometry: THREE.BufferGeometry
-  private material: THREE.ShaderMaterial
-  public mesh: THREE.Mesh
-  public uniforms: { [uniform: string]: UniformParameter } = {}
-
-  constructor( planet: Planet ) {
+  constructor( planetUniforms: { [uniform: string]: UniformParameter } ) {
 
     // build geometry
     const geometryLoader = new THREE.BufferGeometryLoader()
-    this.geometry = geometryLoader.parse( planetRing )
+    const geometry = geometryLoader.parse( planetRing )
 
     
     // build material
-    this.material = new THREE.ShaderMaterial({
-
-      vertexShader: getSunDirection + vertexShader,
-      fragmentShader: getSunDirection + fragmentShader,
-
-      blending: THREE.CustomBlending, 
-      blendEquation: THREE.AddEquation,
-      blendSrc: THREE.OneFactor,
-      blendDst: THREE.OneMinusSrcAlphaFactor,
-
-    })
-
-
-    // build planetSettings
-    const constantsOrder = [
-      'AtmosphereFactors',
-      'LightColor',
-      'ScatteringFactors',
-      'WavelengthsMicroMeters'
-    ]
-
-    const atmosphereSettings = []
-    for(const c of constantsOrder) {
-      if(c === null) {
-        atmosphereSettings.push( new THREE.Vector4( 0, 0, 0, 0 ) )
-      }
-      else {
-        atmosphereSettings.push( new THREE.Vector4( ...planetTemplate.settings[c] ) )
-      }
-    }
-
-    // create uniforms
-    this.uniforms.planetSettings = new UniformParameter(
-      'cb0',
-      atmosphereSettings
-    )
-    this.uniforms.groundScattering1 = new UniformParameter(
-      's0',
-      createUniformTexture( buildResUrl(planetTemplate.textures.GroundScattering1), false, 'linear', 1 )
-    )
-    this.uniforms.groundScattering2 = new UniformParameter(
-      's1',
-      createUniformTexture( buildResUrl(planetTemplate.textures.GroundScattering2), false, 'linear', 1 )
-    )
-    this.uniforms.cloudsTexture = new UniformParameter(
-      's2',
-      createUniformTexture( buildResUrl(planetTemplate.textures.CloudsTexture), true )
-    )
-    this.uniforms.cloudsCapTexture = new UniformParameter(
-      's3',
-      createUniformTexture( buildResUrl(planetTemplate.textures.CloudCapTexture), false )
-    )
-
-    // binding uniforms
-    for(const u in this.uniforms) {
-      this.uniforms[u].bind( this.material )
-    }
-    planet.uniforms.time.bind( this.material )
-    planet.uniforms.fogSettings.bind( this.material )
-    planet.uniforms.AmbientColor.bind( this.material )
+    const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader })
 
 
     // build mesh
-    this.mesh = new THREE.Mesh( this.geometry, this.material )
-    this.mesh.frustumCulled = false
+    super( geometry, material, 'transparent' )
 
+
+    // binding uniforms
+    this.bindUniforms([
+
+      // settings
+      planetUniforms.AtmosphereFactors,
+      planetUniforms.LightColor,
+      planetUniforms.ScatteringFactors,
+      planetUniforms.wavelengthsMicroMeters,
+      
+      // textures
+      planetUniforms.GroundScattering1,
+      planetUniforms.GroundScattering2,
+      planetUniforms.CloudsTexture,
+      planetUniforms.CloudCapTexture,
+
+      // contants
+      planetUniforms.time,
+      planetUniforms.AmbientColor,
+      planetUniforms.fogSettings
+
+    ])
+    
   }
 
 }

@@ -1,4 +1,4 @@
-
+import * as THREE from "three"
 
 // in threejs, we can't easily update shader uniforms
 // that class will handle it 
@@ -13,7 +13,7 @@ export class UniformParameter<T=any> {
 
   // attach uniform to material
   bind( material: THREE.ShaderMaterial ) {
-    material.uniforms[this.name] = { value: this.value }
+    material.uniforms[this.name] = new THREE.Uniform( this.value )
     this.bindedMaterials.push(material)
   }
 

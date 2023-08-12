@@ -1,3 +1,57 @@
+uniform vec4 wavelengthsMicroMeters;
+uniform vec4 ScatteringFactors;
+uniform vec4 LightColor;
+uniform vec4 AtmosphereFactors;
+
+vec3 getSunDirection(vec3 cameraPosition) {
+
+  vec3 rotationAxis = cameraPosition;
+  rotationAxis.y = rotationAxis.x;
+  rotationAxis.x = rotationAxis.z;
+  rotationAxis.z = -rotationAxis.y;
+  rotationAxis.y = 0.0;
+  rotationAxis = normalize(rotationAxis);
+  rotationAxis.y = 0.5;
+  rotationAxis = normalize(rotationAxis);
+  
+  float sinA = -0.52268;
+  float cosA = 0.85252;
+  vec4 quat = vec4(
+  rotationAxis.x * sinA,
+  rotationAxis.y * sinA,
+  rotationAxis.z * sinA,
+  cosA
+  );
+  quat = normalize(quat);
+
+  float xx = quat.x * quat.x;
+  float xy = quat.x * quat.y;
+  float xz = quat.x * quat.z;
+  float xw = quat.x * quat.w;
+  float yy = quat.y * quat.y;
+  float yz = quat.y * quat.z;
+  float yw = quat.y * quat.w;
+  float zz = quat.z * quat.z;
+  float zw = quat.z * quat.w;
+  mat3 rotationMatrix = mat3(
+  1.0 - 2.0 * ( yy + zz ),
+  2.0 * ( xy - zw ),
+  2.0 * ( xz + yw ),
+  2.0 * ( xy + zw ),
+  1.0 - 2.0 * ( xx + zz ),
+  2.0 * ( yz - xw ),
+  2.0 * ( xz - yw ),
+  2.0 * ( yz + xw ),
+  1.0 - 2.0 * ( xx + yy )
+  );
+
+  return normalize(cameraPosition * rotationMatrix);
+
+}
+
+
+uniform vec4 fogFactors;
+
 attribute vec4 attr0;
 attribute vec4 attr1;
 attribute vec4 attr2;
@@ -13,15 +67,13 @@ varying vec4 texcoord6;
 varying vec4 texcoord7;
 varying vec4 color;
 varying vec4 color1;
-
-uniform vec4 cb0[4];
-
+uniform vec3 ssyf;
 #ifdef PS
   uniform vec4 ssf[4];
   varying float ssv;
 #endif
 void main() {
-  vec4 v0;
+  vec3 sun = getSunDirection(cameraPosition);  vec4 v0;
   vec4 v1;
   vec4 v2;
   vec4 v3;
@@ -46,21 +98,27 @@ void main() {
   v2 = attr2;
   v3 = attr3;
   v4 = attr4;
-
-  vec4 cam = vec4(cameraPosition.xyz, 1);
-
-  r0.xyz = getSunDirection(cameraPosition);
-  r1.xyz = normalize(v3.xzy);
+  r0.x = dot(v3.xyz, modelMatrix[0].xyz);
+  r0.y = dot(v3.xyz, modelMatrix[1].xyz);
+  r0.z = dot(v3.xyz, modelMatrix[2].xyz);
+  r1.xyz = normalize(r0.xyz);
+  r0.xyz = normalize(sun.xyz);
   texcoord6.x = dot(r1.xyz, r0.xyz);
-  r2.xyz = v4.xzy;
+  r2.x = dot(v4.xyz, modelMatrix[0].xyz);
+  r2.y = dot(v4.xyz, modelMatrix[1].xyz);
+  r2.z = dot(v4.xyz, modelMatrix[2].xyz);
   r3.xyz = normalize(r2.xyz);
   texcoord6.y = dot(r3.xyz, r0.xyz);
-  r2.xyz = v2.xzy;
+  r2.x = dot(v2.xyz, modelMatrix[0].xyz);
+  r2.y = dot(v2.xyz, modelMatrix[1].xyz);
+  r2.z = dot(v2.xyz, modelMatrix[2].xyz);
   r4.xyz = normalize(r2.xyz);
   texcoord6.z = dot(r4.xyz, r0.xyz);
   r2 = v0.xyzx*c5.xxxy+c5.yyyx;
-  r5.xyz = r2.xzy;
-  r2.xyz = (-r5.xyz)+cam.xyz;
+  r5.x = dot(r2, modelMatrix[0]);
+  r5.y = dot(r2, modelMatrix[1]);
+  r5.z = dot(r2, modelMatrix[2]);
+  r2.xyz = (-r5.xyz)+cameraPosition.xyz;
   r5.xyz = normalize(r2.xyz);
   texcoord7.x = dot(r1.xyz, r5.xyz);
   texcoord2.xyz = r1.xyz;
@@ -68,18 +126,18 @@ void main() {
   texcoord7.z = dot(r4.xyz, r5.xyz);
   texcoord1.xyz = r4.xyz;
   texcoord3.xyz = r3.xyz;
-  r1.x = 1.0;
-  r1.y = 0.0;
-  r1.z = 0.0;
+  r1.x = modelMatrix[0].x;
+  r1.y = modelMatrix[1].x;
+  r1.z = modelMatrix[2].x;
   r0.w = dot(r1.xyz, r1.xyz);
   r0.w = sqrt(abs(r0.w));
   r0.w = r0.w*c5.z;
-  r1.x = r0.w*cb0[0].x+(-r0.w);
+  r1.x = r0.w*AtmosphereFactors.x+(-r0.w);
   r1.y = r1.x*v1.y+r0.w;
-  r2.x = 0.0;
-  r2.y = 0.0;
-  r2.z = 0.0;
-  r3.xyz = (-r2.xyz)+cam.xyz;
+  r2.x = modelMatrix[0].w;
+  r2.y = modelMatrix[1].w;
+  r2.z = modelMatrix[2].w;
+  r3.xyz = (-r2.xyz)+cameraPosition.xyz;
   r1.z = dot(r3.xyz, r3.xyz);
   r1.z = r1.z == 0.0?3.402823466e+38:inversesqrt(abs(r1.z));
   r1.w = r0.w*r1.z;
@@ -87,7 +145,7 @@ void main() {
   r2.w = r2.w*r1.w+c5.w;
   r1.w = r2.w*r1.w+c4.z;
   r2.w = r0.w*(-r1.z)+c5.x;
-  r0.w = r0.w*cb0[0].x;
+  r0.w = r0.w*AtmosphereFactors.x;
   r0.w = r0.w*c8.x+(-r1.x);
   r0.w = r0.w*r1.x;
   r0.w = sqrt(abs(r0.w));
@@ -145,15 +203,13 @@ void main() {
   r7.y = dot(r1.xyw, r5.xyz);
   r4.xyz = r2.xyz+r7.xyz;
   r4.w = c5.x;
-
   gl_Position = projectionMatrix * modelViewMatrix * r4;
-
   r1.x = c5.x+(-v1.y);
   r0.w = r0.w*r1.x;
-  r5.xyz = r4.xyz+(-cam.xyz);
+  r5.xyz = r4.xyz+(-cameraPosition.xyz);
   r6.xyz = normalize(r5.xyz);
   r4.xyz = r0.www*r6.xyz+r4.xyz;
-  r5.xyz = (-r4.xyz)+cam.xyz;
+  r5.xyz = (-r4.xyz)+cameraPosition.xyz;
   r0.w = dot(r5.xyz, r5.xyz);
   r0.w = r0.w == 0.0?3.402823466e+38:inversesqrt(abs(r0.w));
   texcoord4.xyz = r0.www*r5.xyz;
@@ -164,7 +220,7 @@ void main() {
   r1.w = r1.y*r1.y;
   r1.z = r1.z*r1.z+(-r1.w);
   r1.z = r1.z*c8.z;
-  r5.xyz = r4.xyz+(-cam.xyz);
+  r5.xyz = r4.xyz+(-cameraPosition.xyz);
   texcoord5.xyz = r4.xyz;
   r1.w = dot(r5.xyz, r5.xyz);
   r1.w = r1.w == 0.0?3.402823466e+38:inversesqrt(abs(r1.w));
@@ -178,7 +234,7 @@ void main() {
   r1.z = r2.w*(-c8.x)+(-r1.z);
   r1.w = r1.z*(-c4.w)+r1.w;
   r1.z = r1.z*c4.w;
-  r3.xyz = r4.xyz*r1.zzz+cam.xyz;
+  r3.xyz = r4.xyz*r1.zzz+cameraPosition.xyz;
   r1.x = r1.x*r1.w;
   r1.x = r1.x*c4.w;
   r5.xyz = r1.xxx*r4.xyz;
@@ -221,7 +277,7 @@ void main() {
   r0.w = r0.w*r2.x+c7.w;
   r0.w = r0.w*c9.x;
   r0.w = exp2(r0.w);
-  r2.x = 1.0/cb0[0].x;
+  r2.x = 1.0/AtmosphereFactors.x;
   r0.z = r1.y*r2.x+(-r0.z);
   r2.y = r1.y*(-r2.x)+r1.y;
   r2.y = 1.0/r2.y;
@@ -233,8 +289,8 @@ void main() {
   r1.z = r0.z*r1.z+r0.w;
   r0.z = r1.x*r0.z;
   r2.y = c8.y;
-  r2.yw = r2.yy*cb0[2].xy;
-  r3.xyz = cb0[3].zyx*cb0[3].zyx;
+  r2.yw = r2.yy*ScatteringFactors.xy;
+  r3.xyz = wavelengthsMicroMeters.zyx*wavelengthsMicroMeters.zyx;
   r3.xyz = r3.xyz*r3.xyz;
   r4.x = 1.0/r3.x;
   r4.y = 1.0/r3.y;
@@ -274,14 +330,14 @@ void main() {
   r1.y = exp2(r0.z);
   r1.z = exp2(r0.w);
   r0.xyz = r1.xyz*r0.yyy+r5.xyz;
-  r1.xy = cb0[2].zz*cb0[2].xy;
+  r1.xy = ScatteringFactors.zz*ScatteringFactors.xy;
   r1.xzw = r1.xxx*r4.xyz;
   r2.xyz = r0.xyz*r1.yyy;
   r0.xyz = r0.xyz*r1.xzw;
-  r0.xyz = r0.xyz*cb0[0].yyy;
-  color.xyz = r0.xyz*cb0[1].xyz;
-  r0.xyz = r2.xyz*cb0[0].yyy;
-  color1.xyz = r0.xyz*cb0[1].xyz;
+  r0.xyz = r0.xyz*AtmosphereFactors.yyy;
+  color.xyz = r0.xyz*LightColor.xyz;
+  r0.xyz = r2.xyz*AtmosphereFactors.yyy;
+  color1.xyz = r0.xyz*LightColor.xyz;
   texcoord = c5.xxyy*v1.xyxx;
   texcoord4.w = c5.y;
   texcoord6.w = c5.y;

@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import OrbitControls from './orbitControl'
 import Background from './background'
-import { loadPlanet } from '../planets'
+import { createPlanet } from '../planets'
 import { time } from './time'
 
 export interface InitOptions {
@@ -69,7 +69,8 @@ export default class View {
     this.scene.background = backgroundTexture
 
     // add default planet
-    loadPlanet( 'temperate', this.scene, time )
+    const planet = createPlanet( 'temperate', this.scene, time )
+    this.scene.add(planet)
 
     // init render loop
     const renderLoop = () => {

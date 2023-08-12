@@ -1,5 +1,7 @@
 """
 Un joli petit script pour convertir les templates ccpwgl en templates pour eve-pi
+
+TODO: adapter ce script au changement de templates apportés par ./templateFixer.py
 """
 
 import json
