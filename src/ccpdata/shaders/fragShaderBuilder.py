@@ -48,7 +48,7 @@ shader = re.sub( r"\s*r\d+ = g2l\(textureCubeLod\(s\d, r\d+.xyz, r\d+.w\)\);\n",
 shader = re.sub( r"mix\(cb2\[\d+\].xyz, r\d+.xyz, r\d+.yyy\)", "vec3(0)", shader )
 shader = re.sub( r"gl_FragData\[0\]", "gl_FragColor", shader )
 shader = re.sub( r"    ", "  ", shader )
-if config['time'] :
+if config.get('time') :
   shader = re.sub( process_for_regex(config['time']) + r".[xyzw]+", "time", shader )
 
 # replace settings
@@ -60,7 +60,10 @@ shader = re.sub( r"uniform vec4 cb7\[\d+\];\n", "", shader )
 
 # replace textures
 for i in config['textures'] :
-  shader = re.sub( i, config['textures'][i], shader )
+  shader = re.sub( r"uniform\s?sampler2D\s?" + i, f"uniform sampler2D {config['textures'][i]}", shader )
+  shader = re.sub( r"uniform\s?sampler3D\s?" + i, f"uniform sampler3D {config['textures'][i]}", shader )
+  shader = re.sub( r"texture2D\(\s?" + i, f"texture2D({config['textures'][i]}", shader )
+  shader = re.sub( r"tex3D\(\s?" + i, f"tex3D({config['textures'][i]}", shader )
 
   
   # handle ground scattering textures

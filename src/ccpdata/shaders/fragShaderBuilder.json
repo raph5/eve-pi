@@ -1,12 +1,26 @@
 {
-  "textures": {},
+  "textures": {
+    "s1": "PolesGradient",
+    "s2": "FillTexture",
+    "s3": "heightMap1",
+    "s4": "heightMap2",
+    "s5": "GroundScattering1",
+    "s6": "GroundScattering2",
+    "s7": "Lava3DNoiseMap"
+  },
   "settings": {
-    "0": "AtmosphereFactors",
-    "1": "LightColor",
-    "2": "ScatteringFactors",
-    "3": "wavelengthsMicroMeters"
+    "0": "DetailFactors",
+    "1": "MiscFactors",
+    "3": "LavaColor1",
+    "4": "LavaColor2",
+    "5": "Low",
+    "6": "Mid",
+    "7": "High",
+    "8": "LavaSpecular",
+    "9": "Parameters1",
+    "10": "Parameters2",
+    "11": "AnimationFactors"
   },
   "time": "",
-  "background": [ 0.13333, 0.13333, 0.13333 ],
-  "sun": "cb2[12]"
+  "sun": "cb7[2]"
 }

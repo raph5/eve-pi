@@ -1,10 +1,4 @@
 {
-  "pos": "r4",
-  "settings": {
-    "0": "AtmosphereFactors",
-    "1": "LightColor",
-    "2": "ScatteringFactors",
-    "3": "wavelengthsMicroMeters"
-  },
+  "pos": "v0",
   "sun": "cb1[28]"
 }
