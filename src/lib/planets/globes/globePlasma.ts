@@ -54,7 +54,8 @@ export default class GlobePlasma extends PlanetMesh {
       // contants
       planetUniforms.time,
       planetUniforms.AmbientColor,
-      planetUniforms.fogSettings
+      planetUniforms.fogSettings,
+      planetUniforms.s7sl
 
     ])
 

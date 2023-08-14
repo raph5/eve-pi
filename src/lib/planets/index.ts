@@ -5,12 +5,13 @@ import PlanetOceanic from "./planets/oceanic"
 import PlanetIce from "./planets/ice"
 import PlanetLava from "./planets/lava"
 import PlanetPlasma from "./planets/plasma"
+import PlanetStorm from "./planets/storm"
 
 
 type planetType = 'temperate' | 'storm' | 'plasma' | 'oceanic' | 'lava' | 'ice' | 'gas' | 'barren'
 
 export function createPlanet(type = 'temperate', scene: THREE.Scene, time: timeUniform) {
   
-  return new PlanetPlasma( time )
+  return new PlanetStorm( time )
 
 }

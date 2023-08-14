@@ -76,6 +76,8 @@ export default class View {
     const renderLoop = () => {
       requestAnimationFrame( renderLoop )
 
+      // update time uniform
+      time.set( performance.now() / 1000 )
       // update orbit control prosition
       this.controls.update()
       // render a new frame

@@ -29,6 +29,8 @@ export default class PlanetPlasma extends Planet {
     this.uniforms.heightMap1 = new UniformParameter( 'heightMap1', heightMapTexture )
     this.uniforms.heightMap2 = new UniformParameter( 'heightMap2', heightMapTexture )
 
+    this.uniforms.s7sl = new UniformParameter( 's7sl', 8 )
+
     // build planet
     this.globe = new GlobePlasma( this.uniforms )
     // this.atmosphere = new Atmosphere( this.uniforms )

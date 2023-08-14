@@ -1,26 +1,22 @@
 {
   "textures": {
-    "s1": "PolesGradient",
-    "s2": "FillTexture",
-    "s3": "heightMap1",
-    "s4": "heightMap2",
-    "s5": "GroundScattering1",
-    "s6": "GroundScattering2",
-    "s7": "Lava3DNoiseMap"
+    "s1": "MaskMap",
+    "s2": "GroundScattering1",
+    "s3": "GroundScattering2",
+    "s4": "CloudsTexture",
+    "s5": "CloudCapTexture",
+    "s6": "Lava3DNoiseMap",
+    "s7": "LightningMap"
   },
   "settings": {
-    "0": "DetailFactors",
-    "1": "MiscFactors",
-    "3": "LavaColor1",
-    "4": "LavaColor2",
-    "5": "Low",
-    "6": "Mid",
-    "7": "High",
-    "8": "LavaSpecular",
-    "9": "Parameters1",
-    "10": "Parameters2",
-    "11": "AnimationFactors"
+    "1": "PlanetColor",
+    "2": "MagmaFactors",
+    "3": "MagmaFactors2",
+    "4": "CloudsColor",
+    "5": "CloudsFactors",
+    "6": "LightningColor",
+    "7": "Lightningfactors"
   },
-  "time": "",
-  "sun": "cb7[2]"
+  "time": "cb7[0]",
+  "sun": "cb2[12]"
 }

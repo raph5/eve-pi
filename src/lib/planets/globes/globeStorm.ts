@@ -3,13 +3,13 @@ import { UniformParameter } from '@utils/shaders/uniformParameter'
 import PlanetMesh from '../planetMesh'
 
 // shaders
-import fragmentShader from '@ccpdata/shaders/lava/globe.frag.glsl?raw'
-import vertexShader from '@ccpdata/shaders/lava/globe.vert.glsl?raw'
+import fragmentShader from '@ccpdata/shaders/storm/globe.frag.glsl?raw'
+import vertexShader from '@ccpdata/shaders/storm/globe.vert.glsl?raw'
 
 // ccp data
 import planetSphere from '@ccpdata/models/planetSphere.json'
 
-export default class GlobeLava extends PlanetMesh {
+export default class GlobeStorm extends PlanetMesh {
 
   constructor( planetUniforms: { [uniform: string]: UniformParameter } ) {
 
@@ -30,32 +30,28 @@ export default class GlobeLava extends PlanetMesh {
     this.bindUniforms([
 
       // settings
-      planetUniforms.DetailFactors,
-      planetUniforms.MiscFactors,
-      planetUniforms.LavaColor1,
-      planetUniforms.LavaColor2,
-      planetUniforms.Low,
-      planetUniforms.Mid,
-      planetUniforms.High,
-      planetUniforms.LavaSpecular,
-      planetUniforms.Parameters1,
-      planetUniforms.Parameters2,
-      planetUniforms.AnimationFactors,
+      planetUniforms.PlanetColor,
+      planetUniforms.MagmaFactors,
+      planetUniforms.MagmaFactors2,
+      planetUniforms.CloudsColor,
+      planetUniforms.CloudsFactors,
+      planetUniforms.LightningColor,
+      planetUniforms.Lightningfactors,
       
       // textures
-      planetUniforms.PolesGradient,
-      planetUniforms.FillTexture,
-      planetUniforms.heightMap1,
-      planetUniforms.heightMap2,
+      planetUniforms.MaskMap,
       planetUniforms.GroundScattering1,
       planetUniforms.GroundScattering2,
+      planetUniforms.CloudsTexture,
+      planetUniforms.CloudCapTexture,
       planetUniforms.Lava3DNoiseMap,
+      planetUniforms.LightningMap,
 
       // contants
       planetUniforms.time,
       planetUniforms.AmbientColor,
       planetUniforms.fogSettings,
-      planetUniforms.s7sl
+      planetUniforms.s6sl
 
     ])
 
