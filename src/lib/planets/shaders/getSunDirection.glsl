@@ -10,8 +10,9 @@ vec3 getSunDirection(vec3 cameraPosition) {
   rotationAxis.y = 0.5;
   rotationAxis = normalize(rotationAxis);
   
-  float sinA = -0.52268;
-  float cosA = 0.85252;
+  float angle = -0.44 - 0.02 * length(cameraPosition);
+  float sinA = sin(angle);
+  float cosA = cos(angle);
   vec4 quat = vec4(
     rotationAxis.x * sinA,
     rotationAxis.y * sinA,

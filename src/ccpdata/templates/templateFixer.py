@@ -30,7 +30,7 @@ for f in files_to_fix :
       settings[t] = prompt_texture_param(t)
 
   for t in template['textures'].keys() :
-    template['textures'][t] = { 'src': template['textures'][t] }
+    # template['textures'][t] = { 'src': template['textures'][t] }
     template['textures'][t].update(settings[t])
   
   with open(f"{dir_to_fix}/{f}", 'w') as file :

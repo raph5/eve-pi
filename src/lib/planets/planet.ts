@@ -41,15 +41,14 @@ export default class Planet extends THREE.Group {
   bindSettings( settings: Template['settings'] ) {
     for(const i in settings) {
       const setting = settings[i]
+      let value: THREE.Vector4
       if(Array.isArray(setting)) {
-        if(setting.length === 4) {
-          const value = new THREE.Vector4( ...setting )
-          this.uniforms[i] = new UniformParameter<THREE.Vector4>( i, value )
-        }
+        value = new THREE.Vector4( ...setting )
       }
       else {
-        this.uniforms[i] = new UniformParameter<number>( i, setting )
+        value = new THREE.Vector4( setting, 0, 0, 0 )
       }
+      this.uniforms[i] = new UniformParameter<THREE.Vector4>( i, value )
     }
   }
   

@@ -95,7 +95,7 @@ void main() {
   vec4 r3;
   vec4 r4;
   vec4 r5;
-  vec4 c1 = vec4(1, 0, 1000000, 0);
+  vec4 c0 = vec4(1, 0, 1000000, 0);
   v0 = attr0;
   v1 = attr1;
   v2 = attr2;
@@ -118,7 +118,7 @@ void main() {
   r2.z = dot(v2.xyz, modelMatrix[2].xyz);
   r4.xyz = normalize(r2.xyz);
   texcoord6.z = dot(r4.xyz, r0.xyz);
-  r0 = v0.xyzx*c1.xxxy+c1.yyyx;
+  r0 = v0.xyzx*c0.xxxy+c0.yyyx;
   r2.x = dot(r0, modelMatrix[0]);
   r2.y = dot(r0, modelMatrix[1]);
   r2.z = dot(r0, modelMatrix[2]);
@@ -129,11 +129,10 @@ void main() {
   r0.xyz = r0.www*r0.xyz;
   r0.w = 1.0/r0.w;
   r0.w = r0.w*fogFactors.y;
-  r5.z = c1.z;
+  r5.z = c0.z;
   r0.w = saturate(r0.w*(-r5.z)+fogFactors.x);
   texcoord4.w = r0.w*(-fogFactors.z)+fogFactors.z;
   texcoord7.x = dot(r1.xyz, r0.xyz);
-  texcoord2.xyz = r1.xyz;
   texcoord7.y = dot(r3.xyz, r0.xyz);
   texcoord3.xyz = r3.xyz;
   texcoord7.z = dot(r4.xyz, r0.xyz);
@@ -143,10 +142,13 @@ void main() {
   texcoord5.xyz = r2.xyz;
   texcoord.xy = v1.xy;
   texcoord.zw = v5.xy;
-  texcoord6.w = c1.y;
-  texcoord7.w = c1.y;
-  color.xyz = vec3(1);
-  color1.xyz = v0.xyz;
+  texcoord2.x = modelMatrix[0].y;
+  texcoord2.y = modelMatrix[1].y;
+  texcoord2.z = modelMatrix[2].y;
+  texcoord6.w = c0.y;
+  texcoord7.w = c0.y;
+  color.xyz = c0.yyy;
+  color1.xyz = c0.yyy;
   #ifdef PS
     ssv = dot(ssf[0], gl_Position);
   #endif

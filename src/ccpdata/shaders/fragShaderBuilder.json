@@ -1,21 +1,22 @@
 {
   "textures": {
-    "s1": "MaskMap",
-    "s2": "GroundScattering1",
-    "s3": "GroundScattering2",
-    "s4": "CloudsTexture",
-    "s5": "CloudCapTexture",
-    "s6": "Lava3DNoiseMap",
-    "s7": "LightningMap"
+    "s1": "HeightMap",
+    "s2": "NoiseMap",
+    "s3": "DistortionMap",
+    "s4": "PolesMaskMap"
   },
   "settings": {
-    "1": "PlanetColor",
-    "2": "MagmaFactors",
-    "3": "MagmaFactors2",
-    "4": "CloudsColor",
-    "5": "CloudsFactors",
-    "6": "LightningColor",
-    "7": "Lightningfactors"
+    "1": "WindFactors",
+    "2": "DistoFactors",
+    "3": "FuzzyEdges",
+    "4": "BandingSpeed",
+    "5": "Saturation",
+    "6": "ringColor1",
+    "7": "ringColor2",
+    "8": "ringColor3",
+    "9": "CapColor",
+    "10": "RingsFactors",
+    "11": "Alpha"
   },
   "time": "cb7[0]",
   "sun": "cb2[12]"

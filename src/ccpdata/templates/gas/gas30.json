@@ -27,7 +27,7 @@
     "HeightMap": {
       "src": "res:/dx9/model/WorldObject/planet/GasGiant/GasGiant_Mixer_Tex.dds.0.png",
       "repeat": false,
-      "minFilter": "linearMipmap",
+      "minFilter": "linear",
       "anisotropy": 4
     }
   },
