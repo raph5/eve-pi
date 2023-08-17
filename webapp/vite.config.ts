@@ -1,19 +1,27 @@
-import { fileURLToPath, URL } from 'url'
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import sveltePreprocess from 'svelte-preprocess'
+import { resolve } from 'path'
+
+const root = resolve( __dirname, 'src' )
+const outDir = resolve( __dirname, 'dist' )
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     svelte({
-      preprocess: [sveltePreprocess({ scss: true })]
+      preprocess: [sveltePreprocess({ scss: true })],
     })
   ],
   resolve: {
     alias: {
-      '@ccpdata': fileURLToPath(new URL('./src/ccpdata', import.meta.url)),
-      '@utils': fileURLToPath(new URL('./src/lib/utils', import.meta.url)),
+      '@ccpdata': resolve( root, 'ccpdata' ),
+      '@utils': resolve( root, 'lib', 'utils' )
     },
   },
+  root,
+  build: {
+    outDir,
+    emptyOutDir: true
+  }
 })

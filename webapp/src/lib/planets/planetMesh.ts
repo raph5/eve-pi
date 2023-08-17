@@ -32,7 +32,6 @@ export default class PlanetMesh extends THREE.Mesh {
 
   bindUniforms( selection: UniformParameter[] ) {
     for(const u of selection) {
-      console.log(u)
       u.bind(this.material)
     }
   }

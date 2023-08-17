@@ -29,7 +29,7 @@ if(!process.env.SSO_CLIENT_ID || !process.env.SSO_SECRET_KEY) {
 // constants
 const PORT = 8000
 const CALLBACK_URI = `http://localhost:${PORT}/sso`
-const SCOPE = 'esi-planets.manage_planets.v1'
+const APP_URL = 'http://localhost:5173'
 
 // SSO setup
 const sso = new SingleSignOn(
@@ -45,7 +45,6 @@ const sso = new SingleSignOn(
 // express setup
 app = express()
 
-
 // Handle the SSO callback
 app.get('/sso', async (req, res) => {
   try {
@@ -54,10 +53,10 @@ app.get('/sso', async (req, res) => {
     const token_data = parseAccesToken(info)
     
     res.cookie('token_data', JSON.stringify(token_data))
-    res.redirect(302, '/app');
+    res.redirect(302, APP_URL + '/app/');
   }
   catch {
-    res.redirect(302, '/?loginerror');
+    res.redirect(302, APP_URL + '/?loginerror');
   }
 })
 
