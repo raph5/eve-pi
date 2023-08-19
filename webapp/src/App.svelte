@@ -4,15 +4,18 @@
   import { onMount } from 'svelte';
   import Lodaing from './components/views/Lodaing.svelte';
   import type { ComponentType } from 'svelte';
-  import { isLogedIn } from '@lib/user';
+  import { getUser } from '@lib/user';
+  import SSO from '@lib/eveApi/sso';
 
+  const sso = new SSO()
+  
   let view = Lodaing
 
   onMount(() => {
 
     let publicSide: boolean = true
     let _view: ComponentType
-    const logedIn = isLogedIn()
+    const user = getUser(sso)
 
     // client side routing
     page.base('/app')
@@ -20,16 +23,14 @@
     page()
 
     // show loading page if not authentified
-    logedIn.then(logedIn => {
-
-      if(logedIn) {
+    user
+      .then(u => {
+        console.log("LogIn : " + u)
         view = _view
-      }
-      else {
-        if(!publicSide) document.location.href = document.location.origin
-      }
-
-    });
+      })
+      .catch(() => {
+        location.href = location.origin
+      });
 
   })
 </script>

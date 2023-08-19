@@ -4,11 +4,12 @@ const cors = require('cors')
 
 // acces token parser
 const isValidAccesToken = (info) => (
-  typeof info === 'object' &&
+  typeof info === 'object' && info &&
   typeof info['access_token'] === 'string' &&
   typeof info['refresh_token'] === 'string' &&
   typeof info['expires_in'] === 'number' &&
-  typeof info['decoded_access_token'] === 'object'
+  typeof info['decoded_access_token'] === 'object' && info['decoded_access_token'] &&
+  typeof info['decoded_access_token']['name'] === 'string'
 )
 
 // dotenv setup
@@ -45,7 +46,7 @@ app.get('/sso', async (req, res) => {
     const token_data = await sso.getAccessToken(code)
 
     if( !isValidAccesToken(token_data) ) throw new Error("invalid acces token type")
-    
+
     res.cookie('tokenData', JSON.stringify(token_data))
     res.redirect(302, APP_URL + '/app/')
   }
