@@ -1,24 +1,15 @@
 const SingleSignOn = require('./sso')
 const express = require('express')
+const cors = require('cors')
 
 // acces token parser
-function parseAccesToken(info) {
-  if(
-    !info.access_token ||
-    !info.refresh_token ||
-    !info.decoded_access_token.sub ||
-    !info.decoded_access_token.name ||
-    info.token_type !== 'Bearer'
-  ) throw new Error("invalid token data")
-
-  return {
-    access_token: info.access_token,
-    refresh_token: info.refresh_token,
-    expiration: info.decoded_access_token.exp,
-    character_id: parseInt(info.decoded_access_token.sub.split(':')[2]),
-    character_name: info.decoded_access_token.name
-  }
-}
+const isValidAccesToken = (info) => (
+  typeof info === 'object' &&
+  typeof info['access_token'] === 'string' &&
+  typeof info['refresh_token'] === 'string' &&
+  typeof info['expires_in'] === 'number' &&
+  typeof info['decoded_access_token'] === 'object'
+)
 
 // dotenv setup
 require('dotenv').config()
@@ -44,33 +35,51 @@ const sso = new SingleSignOn(
 
 // express setup
 app = express()
+app.use(cors({ origin: APP_URL }))
+
 
 // Handle the SSO callback
 app.get('/sso', async (req, res) => {
   try {
     const code = req.query.code
-    const info = await sso.getAccessToken(code)
-    const token_data = parseAccesToken(info)
+    const token_data = await sso.getAccessToken(code)
+
+    if( !isValidAccesToken(token_data) ) throw new Error("invalid acces token type")
     
-    res.cookie('token_data', JSON.stringify(token_data))
-    res.redirect(302, APP_URL + '/app/');
+    res.cookie('tokenData', JSON.stringify(token_data))
+    res.redirect(302, APP_URL + '/app/')
   }
   catch {
-    res.redirect(302, APP_URL + '/?loginerror');
+    res.redirect(302, APP_URL + '/?loginerror')
   }
 })
 
 
 // Handle SSO token refresh
-app.get('/api/refreshtoken', async (req, res) => {
+app.get('/api/token/refresh', async (req, res) => {
   try {
     const token = req.query.token
-    const info = await sso.getAccessToken(token, true)
-    const token_data = parseAccesToken(info)
+    const token_data = await sso.getAccessToken(token, true)
 
-    res.send(token_data)
+    if( !isValidAccesToken(token_data) ) throw new Error("invalid acces token type")
+
+    res.send({ 'data': token_data })
   }
-  catch (e) {
+  catch {
+    res.send({ 'error': 'error' })
+  }
+})
+
+
+// Handle SSO token revoking
+app.get('/api/token/revok', async (req, res) => {
+  try {
+    const token = req.query.token
+    await sso.revokAccessToken(token)
+
+    res.send({ 'data': 'success' })
+  }
+  catch {
     res.send({ 'error': 'error' })
   }
 })

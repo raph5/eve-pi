@@ -16,12 +16,17 @@ export default defineConfig({
   resolve: {
     alias: {
       '@ccpdata': resolve( root, 'ccpdata' ),
-      '@utils': resolve( root, 'lib', 'utils' )
+      '@utils': resolve( root, 'lib', 'utils' ),
+      '@lib': resolve( root, 'lib' ),
+      '@src': root
     },
   },
   root,
   build: {
     outDir,
     emptyOutDir: true
+  },
+  optimizeDeps: {
+    exclude: ['torino']
   }
 })

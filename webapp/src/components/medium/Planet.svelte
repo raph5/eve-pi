@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { onMount } from "svelte"
-import { initView } from "../lib/planetView/index"
+import { initView } from "../../lib/planetView/index"
 
 
 // setup canvas HTML element

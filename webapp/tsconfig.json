@@ -16,7 +16,9 @@
     "isolatedModules": true,
     "paths": {
       "@ccpdata/*": ["./src/ccpdata/*"],
-      "@utils/*": ["./src/lib/utils/*"]
+      "@utils/*": ["./src/lib/utils/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@src/*": ["./src/*"]
     }
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],

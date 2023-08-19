@@ -111,6 +111,28 @@ class SingleSignOn {
     return data
   }
 
+  async revokAccessToken(token) {
+    const payload = {
+      token_type_hint: "refresh_token",
+      token: token
+    }
+
+    const response = await fetch(`${this.endpoint}/v2/oauth/revoke`, {
+      method: "POST",
+      body: formUrlEncoded(payload),
+      headers: {
+        Host: this.host,
+        Authorization: `Basic ${this.#authorization}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+        "User-Agent": this.userAgent
+      }
+    })
+
+    if (!response.ok) {
+      throw new HTTPFetchError(response)
+    }
+  }
+
   getKey(header, callback) {
     try {
       this.#jwks.getSigningKey(header.kid, function(err, key) {
