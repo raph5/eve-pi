@@ -1,5 +1,6 @@
 import { deleteCookie, getCookie } from "@utils/utils"
 import {  BACKEND_API, BACKEND_SSO } from "@src/var"
+import tokenStorage from "@lib/storage/ssoToken"
 
 const CLIENT_ID = '269a5ec170594bb58f694b8f799c9915'
 const SCOPE = 'esi-planets.manage_planets.v1'
@@ -15,7 +16,7 @@ const params = new URLSearchParams({
 
 const SSO_LOGIN_URL = 'https://login.eveonline.com/v2/oauth/authorize?' + params.toString()
 
-interface Token {
+export interface Token {
   access_token: string,
   expires_in: number,
   token_type: "Bearer",
@@ -71,7 +72,7 @@ export default class SSO {
   async init() {
     const cookieTokenPromise = SSO.getCookieToken()
     
-    const tokensStorage: Record<string, Token> = JSON.parse( localStorage.getItem("SSOtokens") ) ?? {}
+    const tokensStorage: Record<string, Token> = tokenStorage.getAll()
     const tokensValid = Object.values(tokensStorage).filter(t => validTokenType(t))
     const tokensPromises = tokensValid.map(t => {
       if(t.decoded_access_token.exp - 10 > Date.now() / 1000) {
@@ -93,7 +94,7 @@ export default class SSO {
       this.tokens[t.decoded_access_token.name] = t
     }
 
-    this.updateLocalStorage()
+    tokenStorage.setAll(this.tokens)
   }
 
   async getToken(tokenName: string): Promise<Token> {
@@ -119,21 +120,20 @@ export default class SSO {
   async destroyToken(tokenName: string) {
     await this.initPromise
     await SSO.revokToken( this.tokens[tokenName].refresh_token )
+
     delete this.tokens[tokenName]
-    this.updateLocalStorage()
+    tokenStorage.remove(tokenName)
   }
 
   async refreshToken(tokenName: string): Promise<Token> {
     console.log("SSO token refreshed")
     await this.initPromise
     const token = await SSO.refreshToken( this.tokens[tokenName].refresh_token )
+    
     this.tokens[tokenName] = token
-    this.updateLocalStorage()
-    return token
-  }
+    tokenStorage.add(token)
 
-  private updateLocalStorage() {
-    localStorage.setItem('SSOtokens', JSON.stringify( this.tokens ))
+    return token
   }
 
   static async getCookieToken() {

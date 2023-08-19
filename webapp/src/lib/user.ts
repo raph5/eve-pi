@@ -1,15 +1,16 @@
 import type SSO from "./eveApi/sso"
+import userStorage from "@lib/storage/user"
 
 export async function getUser(sso: SSO) {
   
-  let user = localStorage.getItem('user')
+  let user = userStorage.get()
   
-  // on first login ther is no 'user' in localStorage
+  // on first login ther is no 'user' in userStorage
   if(!user) {
     await sso.isReady()
     if(sso.cookieToken) {
       user = sso.cookieToken.decoded_access_token.name
-      localStorage.setItem('user', user)
+      userStorage.set(user)
       sso.cookieToken = null
     }
   }
@@ -25,6 +26,7 @@ export async function getUser(sso: SSO) {
 
 export async function logOff(sso: SSO) {
 
+  userStorage.remove()
   await sso.destroyToken( await getUser(sso) )
 
 }
