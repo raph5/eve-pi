@@ -46,10 +46,15 @@ const validTokenType = (tokenData: unknown) => (
   typeof tokenData['refresh_token'] === 'string' &&
   typeof tokenData['decoded_access_token'] === 'object' && tokenData['decoded_access_token'] &&
   typeof tokenData['decoded_access_token']['name'] === 'string' &&
-  typeof tokenData['decoded_access_token']['exp'] === 'number'
+  typeof tokenData['decoded_access_token']['exp'] === 'number' &&
+  typeof tokenData['decoded_access_token']['sub'] === 'string'
 )
 
 
+
+export function getUserId(token: Token) {
+  return parseInt(token.decoded_access_token.sub.split(':')[2])
+}
 
 export default class SSO {
 
@@ -119,6 +124,7 @@ export default class SSO {
   }
 
   async refreshToken(tokenName: string): Promise<Token> {
+    console.log("SSO token refreshed")
     await this.initPromise
     const token = await SSO.refreshToken( this.tokens[tokenName].refresh_token )
     this.tokens[tokenName] = token
