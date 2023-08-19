@@ -72,8 +72,8 @@ export default class SSO {
   async init() {
     const cookieTokenPromise = SSO.getCookieToken()
     
-    const tokensStorage: Record<string, Token> = tokenStorage.getAll()
-    const tokensValid = Object.values(tokensStorage).filter(t => validTokenType(t))
+    const tokensStorageData: Record<string, Token> = tokenStorage.getAll()
+    const tokensValid = Object.values(tokensStorageData).filter(t => validTokenType(t))
     const tokensPromises = tokensValid.map(t => {
       if(t.decoded_access_token.exp - 10 > Date.now() / 1000) {
         return t

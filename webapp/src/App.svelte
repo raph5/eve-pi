@@ -6,12 +6,9 @@
   import type { ComponentType } from 'svelte';
   import { getUser } from '@lib/user';
   import SSO from '@lib/eveApi/sso';
-  import { Installation } from '@lib/eveApi/installation';
+  import { installation } from '@lib/eveApi/installation';
 
   const sso = new SSO()
-
-  const inst = new Installation(sso, 'Raph Toulouse', [])
-  inst.init()
   
   let view = Lodaing
 
@@ -27,12 +24,13 @@
 
     // show loading page if not authentified
     user
-      .then(u => {
-        console.log("LogIn : " + u)
+      .then(_user => {
+        console.log("LogIn : " + _user)
         view = _view
+        installation.init(sso, _user, [])
       })
       .catch(() => {
-        location.href = location.origin
+        location.href = location.origin + '/?loginerror'
       });
 
   })

@@ -3,7 +3,7 @@ import { JsonStorage } from "./storage";
 
 const tokenStorageInterface = new JsonStorage<Record<string, Token>>('tokenStorage')
 
-if(tokenStorageInterface.read()) {
+if(!tokenStorageInterface.read()) {
   tokenStorageInterface.set({})
 }
 
