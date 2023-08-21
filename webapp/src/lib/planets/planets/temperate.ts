@@ -1,5 +1,5 @@
 import Planet from '../planet'
-import Atmosphere from "../atmospheres/atmosphereTemperate"
+import Atmosphere from "../atmospheres/atmosphere"
 import CloudsTemperate from "../clouds/cloudsTemperate"
 import GlobeTemperate from "../globes/globeTemperate"
 import planetTemplate from '@ccpdata/templates/temperate/temperate10.json'

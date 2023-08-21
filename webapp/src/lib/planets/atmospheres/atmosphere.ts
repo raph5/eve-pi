@@ -3,8 +3,8 @@ import { UniformParameter } from '@utils/shaders/uniformParameter'
 import PlanetMesh from '../planetMesh'
 
 // shaders
-import fragmentShader from '@ccpdata/shaders/temperate/atmosphere.frag.glsl?raw'
-import vertexShader from '@ccpdata/shaders/temperate/atmosphere.vert.glsl?raw'
+import fragmentShader from '@ccpdata/shaders/global/atmosphere.frag.glsl?raw'
+import vertexShader from '@ccpdata/shaders/global/atmosphere.vert.glsl?raw'
 
 // ccp data
 import planetRing from '@ccpdata/models/planetRing.json'
@@ -34,12 +34,6 @@ export default class Atmosphere extends PlanetMesh {
       planetUniforms.LightColor,
       planetUniforms.ScatteringFactors,
       planetUniforms.wavelengthsMicroMeters,
-      
-      // textures
-      planetUniforms.GroundScattering1,
-      planetUniforms.GroundScattering2,
-      planetUniforms.CloudsTexture,
-      planetUniforms.CloudCapTexture,
 
       // contants
       planetUniforms.time,

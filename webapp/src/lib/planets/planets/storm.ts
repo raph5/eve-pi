@@ -1,5 +1,5 @@
 import Planet from '../planet'
-import Atmosphere from "../atmospheres/atmosphereTemperate"
+import Atmosphere from "../atmospheres/atmosphere"
 import GlobeStorm from "../globes/globeStorm"
 import type { timeUniform } from '../../planetView/time'
 import planetTemplate from '@ccpdata/templates/storm/storm08.json'
@@ -33,10 +33,10 @@ export default class PlanetStorm extends Planet {
 
     // build planet
     this.globe = new GlobeStorm( this.uniforms )
-    // this.atmosphere = new Atmosphere( this.uniforms )
+    this.atmosphere = new Atmosphere( this.uniforms )
 
     // add planet to scene
-    this.add( this.globe )
+    this.add( this.globe, this.atmosphere )
 
   }
 

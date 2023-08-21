@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Planet from '../planet'
 import type { timeUniform } from '../../planetView/time'
-import planetTemplate from '@ccpdata/templates/gas/gas10.json'
+import planetTemplate from '@ccpdata/templates/gas/gas11.json'
 import { createUniformTexture } from '@utils/shaders/uniformTexture'
 import { UniformParameter } from '@utils/shaders/uniformParameter'
 import heightMap from '@ccpdata/textures/gasHeightMap1.png'

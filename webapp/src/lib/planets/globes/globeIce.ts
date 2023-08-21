@@ -25,7 +25,6 @@ export default class GlobeIce extends PlanetMesh {
     // build mesh
     super( geometry, material, 'opaque' )
 
-
     // binding uniforms
     this.bindUniforms([
 

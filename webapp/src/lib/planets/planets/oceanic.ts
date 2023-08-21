@@ -1,5 +1,5 @@
 import Planet from '../planet'
-import Atmosphere from "../atmospheres/atmosphereTemperate"
+import Atmosphere from "../atmospheres/atmosphere"
 import GlobeOceanic from '../globes/globeOceanic'
 import type { timeUniform } from '../../planetView/time'
 import { createUniformTexture } from '@utils/shaders/uniformTexture'
@@ -30,10 +30,10 @@ export default class PlanetOceanic extends Planet {
 
     // build planet
     this.globe = new GlobeOceanic( this.uniforms )
-    // this.atmosphere = new Atmosphere( this.uniforms )
+    this.atmosphere = new Atmosphere( this.uniforms )
 
     // add planet to scene
-    this.add( this.globe )
+    this.add( this.globe, this.atmosphere )
 
   }
 

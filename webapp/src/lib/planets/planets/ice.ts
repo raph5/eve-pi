@@ -1,9 +1,9 @@
 import * as THREE from 'three'
 import Planet from '../planet'
-import Atmosphere from "../atmospheres/atmosphereTemperate"
+import Atmosphere from "../atmospheres/atmosphere"
 import GlobeIce from '../globes/globeIce'
 import type { timeUniform } from '../../planetView/time'
-import planetTemplate from '@ccpdata/templates/ice/ice01.json'
+import planetTemplate from '@ccpdata/templates/ice/ice04.json'
 import { createUniformTexture } from '@utils/shaders/uniformTexture'
 import { UniformParameter } from '@utils/shaders/uniformParameter'
 import heightMap from '@ccpdata/textures/heightMap3.png'
@@ -42,10 +42,10 @@ export default class PlanetIce extends Planet {
 
     // build planet
     this.globe = new GlobeIce( this.uniforms )
-    // this.atmosphere = new Atmosphere( this.uniforms )
+    this.atmosphere = new Atmosphere( this.uniforms )
 
     // add planet to scene
-    this.add( this.globe )
+    this.add( this.globe, this.atmosphere )
 
   }
 
