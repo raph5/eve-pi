@@ -6,12 +6,10 @@ export type jsonable = string | number | boolean | null | jsonable[] | { [key: s
 export class Storage {
   constructor(
     public key: string
-  ) {
-    localStorage.setItem(this.key, '')
-  }
+  ) {}
 
   read(): any {
-    return localStorage.getItem(this.key)
+    return localStorage.getItem(this.key) || ''
   }
   set(data: any) {
     localStorage.setItem(this.key, data)

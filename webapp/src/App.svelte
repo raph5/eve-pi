@@ -27,9 +27,9 @@
       .then(_user => {
         console.log("LogIn : " + _user)
         view = _view
-        installation.init(sso, _user, [])
+        // installation.init(sso, _user, [])
       })
-      .catch(() => {
+      .catch((e) => {
         location.href = location.origin + '/?loginerror'
       });
 

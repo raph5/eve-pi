@@ -1,8 +1,7 @@
 import * as THREE from 'three'
 import Planet from '../planet'
-import Atmosphere from "../atmospheres/atmosphereTemperate"
 import type { timeUniform } from '../../planetView/time'
-import planetTemplate from '@ccpdata/templates/gas/gas48.json'
+import planetTemplate from '@ccpdata/templates/gas/gas10.json'
 import { createUniformTexture } from '@utils/shaders/uniformTexture'
 import { UniformParameter } from '@utils/shaders/uniformParameter'
 import heightMap from '@ccpdata/textures/gasHeightMap1.png'
@@ -12,7 +11,6 @@ import GlobeGas from '../globes/globeGas'
 export default class PlanetStorm extends Planet {
   
   private globe: GlobeGas
-  private atmosphere: Atmosphere
 
   constructor(
     time: timeUniform
@@ -33,7 +31,6 @@ export default class PlanetStorm extends Planet {
 
     // build planet
     this.globe = new GlobeGas( this.uniforms )
-    // this.atmosphere = new Atmosphere( this.uniforms )
 
     // add planet to scene
     this.add( this.globe )
