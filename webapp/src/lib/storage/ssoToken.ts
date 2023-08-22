@@ -3,10 +3,6 @@ import { JsonStorage } from "./storage";
 
 const tokenStorageInterface = new JsonStorage<Record<string, Token>>('tokenStorage')
 
-if(!tokenStorageInterface.read()) {
-  tokenStorageInterface.set({})
-}
-
 function add(token: Token) {
   const tokens = tokenStorageInterface.read()
   tokens[token.decoded_access_token.name] = token
@@ -27,4 +23,5 @@ function setAll(tokens: Record<string, Token>) {
   tokenStorageInterface.set(tokens)
 }
 
-export default { add, remove, getAll, setAll }
+const tokenStorage = { add, remove, getAll, setAll }
+export default tokenStorage

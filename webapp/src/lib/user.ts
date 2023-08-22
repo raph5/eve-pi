@@ -1,7 +1,14 @@
-import type SSO from "./eveApi/sso"
+import { getUserId, sso } from "./eveApi/sso"
 import userStorage from "@lib/storage/user"
+import userDataStorage from "./storage/userData"
+import type { UserStorage } from "./storage/userData"
+import { createInstallation } from "./eveApi/installation"
 
-export async function getUser(sso: SSO) {
+export interface UserData extends UserStorage {
+  getImg: (size: number) => string
+}
+
+export async function getUserName() {
   
   let user = userStorage.get()
   
@@ -24,9 +31,38 @@ export async function getUser(sso: SSO) {
 
 }
 
-export async function logOff(sso: SSO) {
+async function initUserData(userName: string): Promise<UserStorage> {
+  const token = await sso.getToken(userName)
+  const id = getUserId(token)
+  const mainInstallation = createInstallation('Main Installation', [{ id, name: userName }])
+  return {
+    id,
+    name: userName,
+    installations: { [mainInstallation.id]: mainInstallation }
+  }
+}
+
+export async function getUserData(userName: string): Promise<UserData> {
+  
+  let storageData = userDataStorage.get(userName)
+
+  if(!storageData) {
+    storageData = await initUserData(userName)
+    userDataStorage.set(userName, storageData)
+  }
+
+  const userData: UserData = {
+    ...storageData,
+    getImg: (size: number) => `https://images.evetech.net/characters/${userData.id}/portrait?size=${size}`
+  }
+
+  return userData
+
+}
+
+export async function logOff() {
 
   userStorage.remove()
-  await sso.destroyToken( await getUser(sso) )
+  await sso.destroyToken( await getUserName() )
 
 }

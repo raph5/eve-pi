@@ -1,0 +1,48 @@
+@import 'lib.scss';
+
+
+// main color variables
+$primary: #E4BE05;
+
+// font color variables
+$font-color: #FAFAF9;
+$font-color-secondary: rgb(251, 255, 215);
+
+// background color variables
+$background0: #030405;
+$background1: #1b1c1d;
+$background2: #393d46;
+
+// font variables
+$font: Bai Jamjuree;
+
+
+// text styles
+@mixin header1 {
+  font-family: Bai Jamjuree;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+@mixin header2 {
+  font-family: Bai Jamjuree;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+@mixin label {
+  font-family: Bai Jamjuree;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+@mixin paragraph {
+  font-family: Bai Jamjuree;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

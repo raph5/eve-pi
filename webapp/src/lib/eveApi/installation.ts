@@ -1,8 +1,6 @@
+import { randomId } from "@utils/utils";
 import { esiFetch } from "./esi";
-import { getUserId } from "./sso";
-import type SSO from "./sso";
-import { writable } from 'svelte/store';
-import type { Writable } from 'svelte/store';
+import { getUserId, sso } from "./sso";
 
 interface Commodity {
   amount: number
@@ -73,71 +71,60 @@ interface PlanetsData {
   planets: Planet[]
 }
 
+export interface InstallationData {
+  [user: string]: PlanetsData
+}
 
-// this class will store all the PI data
-class Installation {
+interface Character {
+  name: string
+  id: number
+}
 
-  data: Record<string, PlanetsData>
-  store: Writable<Record<string, PlanetsData>>
+export interface Installation {
+  id: number,
+  name: string,
+  characters: Character[]
+}
 
-  mainCharacter: string
-  altCharacters: string[]
-  private sso: SSO
-  
-  constructor() {
-    this.store = writable({})
-  }
+async function fetchInstallationData(charactersList: Character[]): Promise<InstallationData> {
 
-  async init( sso: SSO, mainCharacter: string, altCharacters: string[] ) {
-    this.sso = sso
-    this.mainCharacter = mainCharacter
-    this.altCharacters = altCharacters
+  const characters = charactersList.map(c => ({ character_name: c.name, character_id: c.id }))
 
-    this.data = await this.fetchPlanetsData()
-    this.store.set(this.data)
-  }
-
-  async fetchPlanetsData(): Promise<Record<string, PlanetsData>> {
-
-    const charactersList = [ this.mainCharacter, ...this.altCharacters ]
-
-    const charactersPromise = charactersList.map(async (name) => {
-      const token = await this.sso.getToken(name)
-      return {
-        character_id: getUserId(token),
-        character_name: name
-      }
-    })
-    const characters = await Promise.all(charactersPromise)
-    
-    const planetsDataPromise = characters.map(async (c) => {
-      const options = {
-        auth: { sso: this.sso, user: c.character_name }
-      }
-      const planets: any[] = await esiFetch( `/characters/${c.character_id}/planets/`, null, null, options )
-
-      const planetsDataPromise = planets.map(async (p) => {
-        const planetLayout: any = await esiFetch( `/characters/${c.character_id}/planets/${p.planet_id}/`, null, null, options )
-        return { ...p, planet_layout: planetLayout }
-      })
-
-      const planetsData = await Promise.all(planetsDataPromise)
-
-      return { ...c, planets: planetsData }
-    })
-
-    const _planetsData: PlanetsData[] = await Promise.all(planetsDataPromise)
-    const planetsData: Record<string, PlanetsData> = {}
-
-    for(const p of _planetsData) {
-      planetsData[p.character_name] = p
+  const planetsDataPromise = characters.map(async (c) => {
+    const options = {
+      auth: { sso: sso, user: c.character_name }
     }
+    const planets: any[] = await esiFetch( `/characters/${c.character_id}/planets/`, null, null, options )
 
-    return planetsData
+    const planetsDataPromise = planets.map(async (p) => {
+      const planetLayout: any = await esiFetch( `/characters/${c.character_id}/planets/${p.planet_id}/`, null, null, options )
+      return { ...p, planet_layout: planetLayout }
+    })
 
+    const planetsData = await Promise.all(planetsDataPromise)
+
+    return { ...c, planets: planetsData }
+  })
+
+  const _planetsData: PlanetsData[] = await Promise.all(planetsDataPromise)
+  const planetsData: Record<string, PlanetsData> = {}
+
+  for(const p of _planetsData) {
+    planetsData[p.character_name] = p
   }
+
+  return planetsData
 
 }
 
+export async function getInstallationData(charactersList: Character[]): Promise<InstallationData> {
+  return await fetchInstallationData(charactersList)
+}
 
-export const installation = new Installation()
+export function createInstallation(name: string, characters: Character[]): Installation {
+  return {
+    id: randomId(),
+    characters,
+    name
+  }
+}

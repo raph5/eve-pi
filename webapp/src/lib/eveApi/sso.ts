@@ -57,7 +57,7 @@ export function getUserId(token: Token) {
   return parseInt(token.decoded_access_token.sub.split(':')[2])
 }
 
-export default class SSO {
+class SSO {
 
   static loginUrl = SSO_LOGIN_URL
 
@@ -173,3 +173,5 @@ export default class SSO {
   }
 
 }
+
+export const sso = new SSO()

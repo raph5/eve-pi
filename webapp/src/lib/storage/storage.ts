@@ -19,13 +19,17 @@ export class Storage {
 export class JsonStorage<T=jsonable> {
   constructor(
     public key: string
-  ) {}
+  ) {
+    if(!this.read()) {
+      this.set({})
+    }
+  }
 
-  read(): T {
+  read(): T | {} {
     const serializedData = localStorage.getItem(this.key)
     return JSON.parse(serializedData)
   }
-  set(data: T) {
+  set(data: T | {}) {
     const serializedData = JSON.stringify(data)
     localStorage.setItem(this.key, serializedData)
   }

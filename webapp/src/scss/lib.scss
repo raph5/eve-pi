@@ -1,0 +1,15 @@
+
+@mixin gas-gradient-background {
+  background: radial-gradient(223.66% 104.59% at 100.00% -0.00%, rgba($color: #43424E, $alpha: 0.60) 0%, rgba($color: #43424E, $alpha: 0.00) 100%),
+  radial-gradient(108.71% 97.24% at -5.20% 100.00%, rgba($color: #BF1834, $alpha: 0.05) 0%, rgba($color: #BF1834, $alpha: 0.00) 100%),
+  $background1;
+}
+
+@mixin solid-button {
+  $top: darken($color: $background2, $amount: 8);
+  $bottom: lighten($color: $background2, $amount: 8);
+  background: linear-gradient( darken($color: $background2, $amount: 0.5), $background2, lighten($color: $background2, $amount: 0.5) );
+  box-shadow: 0 1px 0 $top,
+              0 -1px 0 $bottom,
+              0 0 4px rgba($color: #000000, $alpha: 0.15);
+}

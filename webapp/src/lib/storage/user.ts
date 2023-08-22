@@ -14,4 +14,5 @@ function remove() {
   userStorageInterface.set('')
 }
 
-export default { set, get, remove }
+const userStorage = { set, get, remove }
+export default userStorage

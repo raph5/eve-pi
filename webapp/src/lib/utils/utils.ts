@@ -53,9 +53,6 @@ export function deleteCookie(cmane: string) {
 
 
 
-// redirection function
-// export function redirect(url: string) {
-//   const el = document.createElement('a')
-//   el.href = document.location.origin + url
-//   el.click()
-// }
+export function randomId() {
+  return Math.round(Math.random() * 10e10)
+}

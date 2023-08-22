@@ -28,5 +28,6 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: ['torino']
-  }
+  },
+  publicDir: '../public'
 })
