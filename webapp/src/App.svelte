@@ -3,6 +3,7 @@
   import userStore from '@lib/stores/user';
   import Error from './components/medium/Error.svelte';
   import { view } from '@lib/router';
+  import LandingPage from './components/views/LandingPage.svelte';
 </script>
 
 
@@ -10,8 +11,12 @@
   <Loading />
 {:then user}
   <svelte:component this={$view.component} {...$view.props} {user} />
-{:catch}
-  <Error message="user not loged" redirection={location.origin + '/?loginerror'} />
+  {:catch}
+  {#if $view.component == LandingPage}
+    <LandingPage />
+  {:else}
+    <Error message="user not loged" redirection={location.origin + '/?loginerror'} />
+  {/if}
 {/await}
 
 

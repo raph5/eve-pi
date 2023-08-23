@@ -107,7 +107,7 @@ class SSO {
       return token
     }
 
-    const refreshedToken = await this.refreshToken(token.refresh_token)
+    const refreshedToken = await this.refreshToken(tokenName)
       .catch(e => { throw new Error("Error while refreshing token :\n" + e) })
     
     return refreshedToken

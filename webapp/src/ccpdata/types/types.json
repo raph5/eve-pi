@@ -1,0 +1,1500 @@
+{
+  "2867": {
+    "name": "Broadcast Node",
+    "type_id": 2867,
+    "volume": 50.0,
+    "capacity": 0.0,
+    "group_id": 1041
+  },
+  "2868": {
+    "name": "Integrity Response Drones",
+    "type_id": 2868,
+    "volume": 50.0,
+    "capacity": 0.0,
+    "group_id": 1041
+  },
+  "2869": {
+    "name": "Nano-Factory",
+    "type_id": 2869,
+    "volume": 50.0,
+    "capacity": 0.0,
+    "group_id": 1041
+  },
+  "2870": {
+    "name": "Organic Mortar Applicators",
+    "type_id": 2870,
+    "volume": 50.0,
+    "capacity": 0.0,
+    "group_id": 1041
+  },
+  "2871": {
+    "name": "Recursive Computing Module",
+    "type_id": 2871,
+    "volume": 50.0,
+    "capacity": 0.0,
+    "group_id": 1041
+  },
+  "2872": {
+    "name": "Self-Harmonizing Power Core",
+    "type_id": 2872,
+    "volume": 50.0,
+    "capacity": 0.0,
+    "group_id": 1041
+  },
+  "2875": {
+    "name": "Sterile Conduits",
+    "type_id": 2875,
+    "volume": 50.0,
+    "capacity": 0.0,
+    "group_id": 1041
+  },
+  "2876": {
+    "name": "Wetware Mainframe",
+    "type_id": 2876,
+    "volume": 50.0,
+    "capacity": 0.0,
+    "group_id": 1041
+  },
+  "2400": {
+    "name": "Toxic Metals",
+    "type_id": 2400,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2401": {
+    "name": "Chiral Structures",
+    "type_id": 2401,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "3683": {
+    "name": "Oxygen",
+    "type_id": 3683,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "9828": {
+    "name": "Silicon",
+    "type_id": 9828,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2397": {
+    "name": "Industrial Fibers",
+    "type_id": 2397,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "3779": {
+    "name": "Biomass",
+    "type_id": 3779,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2389": {
+    "name": "Plasmoids",
+    "type_id": 2389,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2390": {
+    "name": "Electrolytes",
+    "type_id": 2390,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2392": {
+    "name": "Oxidizing Compound",
+    "type_id": 2392,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2393": {
+    "name": "Bacteria",
+    "type_id": 2393,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2395": {
+    "name": "Proteins",
+    "type_id": 2395,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2396": {
+    "name": "Biofuels",
+    "type_id": 2396,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "3645": {
+    "name": "Water",
+    "type_id": 3645,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2398": {
+    "name": "Reactive Metals",
+    "type_id": 2398,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2399": {
+    "name": "Precious Metals",
+    "type_id": 2399,
+    "volume": 0.19,
+    "capacity": 0.0,
+    "group_id": 1042
+  },
+  "2272": {
+    "name": "Heavy Metals",
+    "type_id": 2272,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1032
+  },
+  "2305": {
+    "name": "Autotrophs",
+    "type_id": 2305,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1035
+  },
+  "2306": {
+    "name": "Non-CS Crystals",
+    "type_id": 2306,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1032
+  },
+  "2307": {
+    "name": "Felsic Magma",
+    "type_id": 2307,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1032
+  },
+  "2308": {
+    "name": "Suspended Plasma",
+    "type_id": 2308,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1033
+  },
+  "2309": {
+    "name": "Ionic Solutions",
+    "type_id": 2309,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1033
+  },
+  "2310": {
+    "name": "Noble Gas",
+    "type_id": 2310,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1033
+  },
+  "2311": {
+    "name": "Reactive Gas",
+    "type_id": 2311,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1033
+  },
+  "2286": {
+    "name": "Planktic Colonies",
+    "type_id": 2286,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1035
+  },
+  "2287": {
+    "name": "Complex Organisms",
+    "type_id": 2287,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1035
+  },
+  "2288": {
+    "name": "Carbon Compounds",
+    "type_id": 2288,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1035
+  },
+  "2073": {
+    "name": "Microorganisms",
+    "type_id": 2073,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1035
+  },
+  "2267": {
+    "name": "Base Metals",
+    "type_id": 2267,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1032
+  },
+  "2268": {
+    "name": "Aqueous Liquids",
+    "type_id": 2268,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1033
+  },
+  "2270": {
+    "name": "Noble Metals",
+    "type_id": 2270,
+    "volume": 0.005,
+    "capacity": 0.0,
+    "group_id": 1032
+  },
+  "2312": {
+    "name": "Supertensile Plastics",
+    "type_id": 2312,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "9836": {
+    "name": "Consumer Electronics",
+    "type_id": 9836,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "3725": {
+    "name": "Livestock",
+    "type_id": 3725,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "2319": {
+    "name": "Test Cultures",
+    "type_id": 2319,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "2321": {
+    "name": "Polyaramids",
+    "type_id": 2321,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "2317": {
+    "name": "Oxides",
+    "type_id": 2317,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "15317": {
+    "name": "Genetically Enhanced Livestock",
+    "type_id": 15317,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "2327": {
+    "name": "Microfiber Shielding",
+    "type_id": 2327,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "2328": {
+    "name": "Water-Cooled CPU",
+    "type_id": 2328,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "2329": {
+    "name": "Biocells",
+    "type_id": 2329,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "2463": {
+    "name": "Nanites",
+    "type_id": 2463,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "9830": {
+    "name": "Rocket Fuel",
+    "type_id": 9830,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "9832": {
+    "name": "Coolant",
+    "type_id": 9832,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "3689": {
+    "name": "Mechanical Parts",
+    "type_id": 3689,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "3691": {
+    "name": "Synthetic Oil",
+    "type_id": 3691,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "44": {
+    "name": "Enriched Uranium",
+    "type_id": 44,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "3693": {
+    "name": "Fertilizer",
+    "type_id": 3693,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "9838": {
+    "name": "Superconductors",
+    "type_id": 9838,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "3695": {
+    "name": "Polytextiles",
+    "type_id": 3695,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "9840": {
+    "name": "Transmitter",
+    "type_id": 9840,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "3697": {
+    "name": "Silicate Glass",
+    "type_id": 3697,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "9842": {
+    "name": "Miniature Electronics",
+    "type_id": 9842,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "3828": {
+    "name": "Construction Blocks",
+    "type_id": 3828,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "3775": {
+    "name": "Viral Agent",
+    "type_id": 3775,
+    "volume": 0.75,
+    "capacity": 0.0,
+    "group_id": 1034
+  },
+  "17392": {
+    "name": "Data Chips",
+    "type_id": 17392,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2360": {
+    "name": "Industrial Explosives",
+    "type_id": 2360,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2352": {
+    "name": "Nuclear Reactors",
+    "type_id": 2352,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2358": {
+    "name": "Biotech Research Reports",
+    "type_id": 2358,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "12836": {
+    "name": "Transcranial Microcontrollers",
+    "type_id": 12836,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "9834": {
+    "name": "Guidance Systems",
+    "type_id": 9834,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2344": {
+    "name": "Condensates",
+    "type_id": 2344,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2345": {
+    "name": "Camera Drones",
+    "type_id": 2345,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2346": {
+    "name": "Synthetic Synapses",
+    "type_id": 2346,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2348": {
+    "name": "Gel-Matrix Biopaste",
+    "type_id": 2348,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2349": {
+    "name": "Supercomputers",
+    "type_id": 2349,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "28974": {
+    "name": "Vaccines",
+    "type_id": 28974,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2351": {
+    "name": "Smartfab Units",
+    "type_id": 2351,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "17136": {
+    "name": "Ukomi Superconductors",
+    "type_id": 17136,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2354": {
+    "name": "Neocoms",
+    "type_id": 2354,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "9846": {
+    "name": "Planetary Vehicles",
+    "type_id": 9846,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "9848": {
+    "name": "Robotics",
+    "type_id": 9848,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2361": {
+    "name": "Hermetic Membranes",
+    "type_id": 2361,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "17898": {
+    "name": "High-Tech Transmitters",
+    "type_id": 17898,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2366": {
+    "name": "Hazmat Detection Systems",
+    "type_id": 2366,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2367": {
+    "name": "Cryoprotectant Solution",
+    "type_id": 2367,
+    "volume": 3.0,
+    "capacity": 0.0,
+    "group_id": 1040
+  },
+  "2409": {
+    "name": "Barren Aqueous Liquid Extractor",
+    "type_id": 2409,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2412": {
+    "name": "Temperate Aqueous Liquid Extractor",
+    "type_id": 2412,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2413": {
+    "name": "Storm Aqueous Liquid Extractor",
+    "type_id": 2413,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2414": {
+    "name": "Oceanic Aqueous Liquid Extractor",
+    "type_id": 2414,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2415": {
+    "name": "Ice Aqueous Liquid Extractor",
+    "type_id": 2415,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2416": {
+    "name": "Gas Aqueous Liquid Extractor",
+    "type_id": 2416,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2417": {
+    "name": "Plasma Suspended Plasma Extractor",
+    "type_id": 2417,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2418": {
+    "name": "Lava Suspended Plasma Extractor",
+    "type_id": 2418,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2419": {
+    "name": "Storm Suspended Plasma Extractor",
+    "type_id": 2419,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2422": {
+    "name": "Storm Ionic Solutions Extractor",
+    "type_id": 2422,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2423": {
+    "name": "Ice Noble Gas Extractor",
+    "type_id": 2423,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2424": {
+    "name": "Gas Ionic Solutions Extractor",
+    "type_id": 2424,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2425": {
+    "name": "Storm Noble Gas Extractor",
+    "type_id": 2425,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2426": {
+    "name": "Gas Noble Gas Extractor",
+    "type_id": 2426,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2427": {
+    "name": "Gas Reactive Gas Extractor",
+    "type_id": 2427,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2428": {
+    "name": "Lava Base Metals Extractor",
+    "type_id": 2428,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2429": {
+    "name": "Plasma Base Metals Extractor",
+    "type_id": 2429,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2430": {
+    "name": "Barren Base Metals Extractor",
+    "type_id": 2430,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2431": {
+    "name": "Storm Base Metals Extractor",
+    "type_id": 2431,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2432": {
+    "name": "Ice Microorganisms Extractor",
+    "type_id": 2432,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2433": {
+    "name": "Gas Base Metals Extractor",
+    "type_id": 2433,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2434": {
+    "name": "Plasma Noble Metals Extractor",
+    "type_id": 2434,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2435": {
+    "name": "Barren Noble Metals Extractor",
+    "type_id": 2435,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2438": {
+    "name": "Ice Planktic Colonies Extractor",
+    "type_id": 2438,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2439": {
+    "name": "Lava Heavy Metals Extractor",
+    "type_id": 2439,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2440": {
+    "name": "Plasma Heavy Metals Extractor",
+    "type_id": 2440,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2441": {
+    "name": "Ice Heavy Metals Extractor",
+    "type_id": 2441,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2442": {
+    "name": "Lava Non-CS Crystals Extractor",
+    "type_id": 2442,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2443": {
+    "name": "Plasma Non-CS Crystals Extractor",
+    "type_id": 2443,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2448": {
+    "name": "Lava Felsic Magma Extractor",
+    "type_id": 2448,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2449": {
+    "name": "Barren Microorganisms Extractor",
+    "type_id": 2449,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2450": {
+    "name": "Temperate Microorganisms Extractor",
+    "type_id": 2450,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2451": {
+    "name": "Oceanic Microorganisms Extractor",
+    "type_id": 2451,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2452": {
+    "name": "Oceanic Planktic Colonies Extractor",
+    "type_id": 2452,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2453": {
+    "name": "Temperate Complex Organisms Extractor",
+    "type_id": 2453,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2458": {
+    "name": "Oceanic Complex Organisms Extractor",
+    "type_id": 2458,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2459": {
+    "name": "Barren Carbon Compounds Extractor",
+    "type_id": 2459,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2460": {
+    "name": "Temperate Carbon Compounds Extractor",
+    "type_id": 2460,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2461": {
+    "name": "Oceanic Carbon Compounds Extractor",
+    "type_id": 2461,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2462": {
+    "name": "Temperate Autotrophs Extractor",
+    "type_id": 2462,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1026
+  },
+  "2129": {
+    "name": "Limited Barren Command Center",
+    "type_id": 2129,
+    "volume": 100.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2130": {
+    "name": "Standard Barren Command Center",
+    "type_id": 2130,
+    "volume": 200.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2131": {
+    "name": "Improved Barren Command Center",
+    "type_id": 2131,
+    "volume": 400.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2132": {
+    "name": "Advanced Barren Command Center",
+    "type_id": 2132,
+    "volume": 800.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2133": {
+    "name": "Elite Barren Command Center",
+    "type_id": 2133,
+    "volume": 1600.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2134": {
+    "name": "Limited Gas Command Center",
+    "type_id": 2134,
+    "volume": 100.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2135": {
+    "name": "Standard Gas Command Center",
+    "type_id": 2135,
+    "volume": 200.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2136": {
+    "name": "Improved Gas Command Center",
+    "type_id": 2136,
+    "volume": 400.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2137": {
+    "name": "Advanced Gas Command Center",
+    "type_id": 2137,
+    "volume": 800.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2138": {
+    "name": "Elite Gas Command Center",
+    "type_id": 2138,
+    "volume": 1600.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2139": {
+    "name": "Limited Ice Command Center",
+    "type_id": 2139,
+    "volume": 100.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2140": {
+    "name": "Standard Ice Command Center",
+    "type_id": 2140,
+    "volume": 200.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2141": {
+    "name": "Improved Ice Command Center",
+    "type_id": 2141,
+    "volume": 400.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2142": {
+    "name": "Advanced Ice Command Center",
+    "type_id": 2142,
+    "volume": 800.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2143": {
+    "name": "Elite Ice Command Center",
+    "type_id": 2143,
+    "volume": 1600.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2144": {
+    "name": "Limited Lava Command Center",
+    "type_id": 2144,
+    "volume": 100.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2145": {
+    "name": "Standard Lava Command Center",
+    "type_id": 2145,
+    "volume": 200.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2146": {
+    "name": "Improved Lava Command Center",
+    "type_id": 2146,
+    "volume": 400.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2147": {
+    "name": "Advanced Lava Command Center",
+    "type_id": 2147,
+    "volume": 800.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2148": {
+    "name": "Elite Lava Command Center",
+    "type_id": 2148,
+    "volume": 1600.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2149": {
+    "name": "Limited Oceanic Command Center",
+    "type_id": 2149,
+    "volume": 100.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2150": {
+    "name": "Standard Oceanic Command Center",
+    "type_id": 2150,
+    "volume": 200.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2151": {
+    "name": "Improved Oceanic Command Center",
+    "type_id": 2151,
+    "volume": 400.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2152": {
+    "name": "Advanced Oceanic Command Center",
+    "type_id": 2152,
+    "volume": 800.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2153": {
+    "name": "Elite Oceanic Command Center",
+    "type_id": 2153,
+    "volume": 1600.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2154": {
+    "name": "Limited Plasma Command Center",
+    "type_id": 2154,
+    "volume": 100.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2155": {
+    "name": "Standard Plasma Command Center",
+    "type_id": 2155,
+    "volume": 200.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2156": {
+    "name": "Improved Plasma Command Center",
+    "type_id": 2156,
+    "volume": 400.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2157": {
+    "name": "Advanced Plasma Command Center",
+    "type_id": 2157,
+    "volume": 800.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2158": {
+    "name": "Elite Plasma Command Center",
+    "type_id": 2158,
+    "volume": 1600.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2159": {
+    "name": "Limited Storm Command Center",
+    "type_id": 2159,
+    "volume": 100.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2160": {
+    "name": "Standard Storm Command Center",
+    "type_id": 2160,
+    "volume": 200.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2254": {
+    "name": "Temperate Command Center",
+    "type_id": 2254,
+    "volume": 1000.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2524": {
+    "name": "Barren Command Center",
+    "type_id": 2524,
+    "volume": 1000.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2525": {
+    "name": "Oceanic Command Center",
+    "type_id": 2525,
+    "volume": 1000.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2533": {
+    "name": "Ice Command Center",
+    "type_id": 2533,
+    "volume": 1000.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2534": {
+    "name": "Gas Command Center",
+    "type_id": 2534,
+    "volume": 1000.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2549": {
+    "name": "Lava Command Center",
+    "type_id": 2549,
+    "volume": 1000.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2550": {
+    "name": "Storm Command Center",
+    "type_id": 2550,
+    "volume": 1000.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2551": {
+    "name": "Plasma Command Center",
+    "type_id": 2551,
+    "volume": 1000.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2574": {
+    "name": "Improved Storm Command Center",
+    "type_id": 2574,
+    "volume": 400.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2576": {
+    "name": "Advanced Storm Command Center",
+    "type_id": 2576,
+    "volume": 800.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2577": {
+    "name": "Elite Storm Command Center",
+    "type_id": 2577,
+    "volume": 1600.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2578": {
+    "name": "Limited Temperate Command Center",
+    "type_id": 2578,
+    "volume": 100.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2581": {
+    "name": "Standard Temperate Command Center",
+    "type_id": 2581,
+    "volume": 200.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2582": {
+    "name": "Improved Temperate Command Center",
+    "type_id": 2582,
+    "volume": 400.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2585": {
+    "name": "Advanced Temperate Command Center",
+    "type_id": 2585,
+    "volume": 800.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2586": {
+    "name": "Elite Temperate Command Center",
+    "type_id": 2586,
+    "volume": 1600.0,
+    "capacity": 500.0,
+    "group_id": 1027
+  },
+  "2469": {
+    "name": "Lava Basic Industry Facility",
+    "type_id": 2469,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2470": {
+    "name": "Lava Advanced Industry Facility",
+    "type_id": 2470,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2471": {
+    "name": "Plasma Basic Industry Facility",
+    "type_id": 2471,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2472": {
+    "name": "Plasma Advanced Industry Facility",
+    "type_id": 2472,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2473": {
+    "name": "Barren Basic Industry Facility",
+    "type_id": 2473,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2474": {
+    "name": "Barren Advanced Industry Facility",
+    "type_id": 2474,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2475": {
+    "name": "Barren High-Tech Production Plant",
+    "type_id": 2475,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2480": {
+    "name": "Temperate Advanced Industry Facility",
+    "type_id": 2480,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2481": {
+    "name": "Temperate Basic Industry Facility",
+    "type_id": 2481,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2482": {
+    "name": "Temperate High-Tech Production Plant",
+    "type_id": 2482,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2483": {
+    "name": "Storm Basic Industry Facility",
+    "type_id": 2483,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2484": {
+    "name": "Storm Advanced Industry Facility",
+    "type_id": 2484,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2485": {
+    "name": "Oceanic Advanced Industry Facility",
+    "type_id": 2485,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2490": {
+    "name": "Oceanic Basic Industry Facility",
+    "type_id": 2490,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2491": {
+    "name": "Ice Advanced Industry Facility",
+    "type_id": 2491,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2492": {
+    "name": "Gas Basic Industry Facility",
+    "type_id": 2492,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2493": {
+    "name": "Ice Basic Industry Facility",
+    "type_id": 2493,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2494": {
+    "name": "Gas Advanced Industry Facility",
+    "type_id": 2494,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1028
+  },
+  "2257": {
+    "name": "Ice Storage Facility",
+    "type_id": 2257,
+    "volume": 0.0,
+    "capacity": 12000.0,
+    "group_id": 1029
+  },
+  "2535": {
+    "name": "Oceanic Storage Facility",
+    "type_id": 2535,
+    "volume": 0.0,
+    "capacity": 12000.0,
+    "group_id": 1029
+  },
+  "2536": {
+    "name": "Gas Storage Facility",
+    "type_id": 2536,
+    "volume": 0.0,
+    "capacity": 12000.0,
+    "group_id": 1029
+  },
+  "2541": {
+    "name": "Barren Storage Facility",
+    "type_id": 2541,
+    "volume": 0.0,
+    "capacity": 12000.0,
+    "group_id": 1029
+  },
+  "2558": {
+    "name": "Lava Storage Facility",
+    "type_id": 2558,
+    "volume": 0.0,
+    "capacity": 12000.0,
+    "group_id": 1029
+  },
+  "2560": {
+    "name": "Plasma Storage Facility",
+    "type_id": 2560,
+    "volume": 0.0,
+    "capacity": 12000.0,
+    "group_id": 1029
+  },
+  "2561": {
+    "name": "Storm Storage Facility",
+    "type_id": 2561,
+    "volume": 0.0,
+    "capacity": 12000.0,
+    "group_id": 1029
+  },
+  "2562": {
+    "name": "Temperate Storage Facility",
+    "type_id": 2562,
+    "volume": 0.0,
+    "capacity": 12000.0,
+    "group_id": 1029
+  },
+  "2256": {
+    "name": "Temperate Launchpad",
+    "type_id": 2256,
+    "volume": 0.0,
+    "capacity": 10000.0,
+    "group_id": 1030
+  },
+  "2542": {
+    "name": "Oceanic Launchpad",
+    "type_id": 2542,
+    "volume": 0.0,
+    "capacity": 10000.0,
+    "group_id": 1030
+  },
+  "2543": {
+    "name": "Gas Launchpad",
+    "type_id": 2543,
+    "volume": 0.0,
+    "capacity": 10000.0,
+    "group_id": 1030
+  },
+  "2544": {
+    "name": "Barren Launchpad",
+    "type_id": 2544,
+    "volume": 0.0,
+    "capacity": 10000.0,
+    "group_id": 1030
+  },
+  "2552": {
+    "name": "Ice Launchpad",
+    "type_id": 2552,
+    "volume": 0.0,
+    "capacity": 10000.0,
+    "group_id": 1030
+  },
+  "2555": {
+    "name": "Lava Launchpad",
+    "type_id": 2555,
+    "volume": 0.0,
+    "capacity": 10000.0,
+    "group_id": 1030
+  },
+  "2556": {
+    "name": "Plasma Launchpad",
+    "type_id": 2556,
+    "volume": 0.0,
+    "capacity": 10000.0,
+    "group_id": 1030
+  },
+  "2557": {
+    "name": "Storm Launchpad",
+    "type_id": 2557,
+    "volume": 0.0,
+    "capacity": 10000.0,
+    "group_id": 1030
+  },
+  "2280": {
+    "name": "Link",
+    "type_id": 2280,
+    "volume": 0.0,
+    "capacity": 1000.0,
+    "group_id": 1036
+  },
+  "2848": {
+    "name": "Barren Extractor Control Unit",
+    "type_id": 2848,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1063
+  },
+  "3060": {
+    "name": "Gas Extractor Control Unit",
+    "type_id": 3060,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1063
+  },
+  "3061": {
+    "name": "Ice Extractor Control Unit",
+    "type_id": 3061,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1063
+  },
+  "3062": {
+    "name": "Lava Extractor Control Unit",
+    "type_id": 3062,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1063
+  },
+  "3063": {
+    "name": "Oceanic Extractor Control Unit",
+    "type_id": 3063,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1063
+  },
+  "3064": {
+    "name": "Plasma Extractor Control Unit",
+    "type_id": 3064,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1063
+  },
+  "3067": {
+    "name": "Storm Extractor Control Unit",
+    "type_id": 3067,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1063
+  },
+  "3068": {
+    "name": "Temperate Extractor Control Unit",
+    "type_id": 3068,
+    "volume": 0.0,
+    "capacity": 0.0,
+    "group_id": 1063
+  }
+}

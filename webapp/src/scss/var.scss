@@ -9,9 +9,15 @@ $font-color: #FAFAF9;
 $font-color-secondary: rgb(251, 255, 215);
 
 // background color variables
-$background0: #030405;
-$background1: #1b1c1d;
+$background0: #050607;
+$background1: #1c1c1f;
 $background2: #393d46;
+
+// chart colors
+$chart-color1: #6FBFE7;
+$chart-color2: #7E4CE1;
+$chart-color3: #E566BB;
+$chart-color4: #B7E45E;
 
 // font variables
 $font: Bai Jamjuree;
@@ -29,7 +35,7 @@ $font: Bai Jamjuree;
   font-family: Bai Jamjuree;
   font-size: 18px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: normal;
 }
 @mixin label {

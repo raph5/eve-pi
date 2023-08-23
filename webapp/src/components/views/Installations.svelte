@@ -3,23 +3,37 @@
   import type { UserData } from "@lib/user";
   import NavDrawer from "../medium/NavDrawer.svelte";
   import { redirect } from "@lib/router";
+  import installationStore from "@lib/stores/installation";
+    import PlanetCard from "../medium/PlanetCard.svelte";
 
   export let user: UserData
   export let id: string = ''
 
-  $: console.log(user.installations[id])
-
-  let installation: Installation
-  $: if(user.installations[id]) {
-    installation = user.installations[id]
+  let curentInstallation: Installation
+  if(user.installations[id]) {
+    curentInstallation = user.installations[id]
   } else {
     redirect(location.origin + '/app/installations/' + Object.values(user.installations)[0].id)
+    curentInstallation = user.installations[id]
   }
+
+  
 </script>
 
 
 <main class="main">
-  <NavDrawer {user} {installation} />
+  <NavDrawer {user} {curentInstallation} />
+  <section class="main__planets">
+    <div class="main__planets-grid">
+      {#await $installationStore then store}
+        {#await store[curentInstallation.id] then installation}
+          {#each installation[user.name].planets as planetData}
+            <PlanetCard {planetData} />
+          {/each}
+        {/await}
+      {/await}
+    </div>
+  </section>
 </main>
 
 
@@ -30,5 +44,22 @@
     background: $background0;
     width: 100%;
     height: 100vh;
+    display: flex;
+
+    &__planets {
+      width: 100%;
+      height: 100%;
+      overflow-x: auto;
+    }
+    &__planets-grid {
+      padding: 48px;
+      box-sizing: border-box;
+      width: 100%;
+      height: max-content;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-rows: max-content;
+      gap: 32px;
+    }
   }
 </style>

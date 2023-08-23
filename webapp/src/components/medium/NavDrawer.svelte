@@ -3,9 +3,7 @@
   import type { UserData } from "@lib/user";
 
   export let user: UserData;
-  export let installation: Installation;
-
-  $: console.log(installation)
+  export let curentInstallation: Installation;
 </script>
 
 
@@ -20,7 +18,7 @@
 
   <ul class="nav__ul">
     {#each Object.values(user.installations) as inst}
-      {@const active = inst.id == installation.id}
+      {@const active = inst.id == curentInstallation.id}
       <li class="nav__li">
         <a class={`nav__button ${active ? 'nav__button--active' : ''} button`} href={`/app/installation/${inst.id}`}>
           <span class="nav__button-icon material-symbols-rounded">factory</span>
@@ -45,9 +43,11 @@
   @import '../../scss/var';
 
   .nav {
+    flex: 1;
     height: 100%;
-    width: 240px;
-    @include gas-gradient-background;
+    width: 220px;
+    min-width: 220px;
+    background: $background1;
     padding: 32px 16px;
     overflow-y: auto;
     color: $font-color;

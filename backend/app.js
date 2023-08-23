@@ -50,7 +50,8 @@ app.get('/sso', async (req, res) => {
     res.cookie('tokenData', JSON.stringify(token_data))
     res.redirect(302, APP_URL + '/app/')
   }
-  catch {
+  catch(e) {
+    console.error(e)
     res.redirect(302, APP_URL + '/?loginerror')
   }
 })

@@ -1,4 +1,4 @@
-import type SSO from "./sso"
+import { sso } from "./sso"
 
 const ESI_ROOT = "https://esi.evetech.net/latest"
 
@@ -9,7 +9,6 @@ export async function esiFetch(
   options: {
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE',
     auth?: {
-      sso: SSO,
       user: string
     }
   } = {},
@@ -33,7 +32,7 @@ export async function esiFetch(
   headers.set('User-Agent', 'discord: raph_5#0989')
   headers.set('Content-Type', 'application/json')
   if(auth) {
-    const token = await auth.sso.getToken(auth.user) 
+    const token = await sso.getToken(auth.user) 
     headers.set('Authorization', 'Bearer ' + token.access_token)
   }
 

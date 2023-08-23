@@ -1,6 +1,7 @@
 import { randomId } from "@utils/utils";
 import { esiFetch } from "./esi";
-import { getUserId, sso } from "./sso";
+import schematics from "@ccpdata/schematics/schematics.json"
+import types from "@ccpdata/types/types.json"
 
 interface Commodity {
   amount: number
@@ -50,7 +51,7 @@ interface Pin {
   }
 }
 
-interface Planet {
+export interface Planet {
   last_update: string
   num_pins: number
   owner_id: number
@@ -86,13 +87,15 @@ export interface Installation {
   characters: Character[]
 }
 
-async function fetchInstallationData(charactersList: Character[]): Promise<InstallationData> {
+const SPACEPORTS_ID = 1030
+const STORAGES_ID = 1029
 
+async function fetchInstallationData(charactersList: Character[]): Promise<InstallationData> {
   const characters = charactersList.map(c => ({ character_name: c.name, character_id: c.id }))
 
   const planetsDataPromise = characters.map(async (c) => {
     const options = {
-      auth: { sso: sso, user: c.character_name }
+      auth: { user: c.character_name }
     }
     const planets: any[] = await esiFetch( `/characters/${c.character_id}/planets/`, null, null, options )
 
@@ -113,8 +116,8 @@ async function fetchInstallationData(charactersList: Character[]): Promise<Insta
     planetsData[p.character_name] = p
   }
 
+  console.log(planetsData)
   return planetsData
-
 }
 
 export async function getInstallationData(charactersList: Character[]): Promise<InstallationData> {
@@ -127,4 +130,59 @@ export function createInstallation(name: string, characters: Character[]): Insta
     characters,
     name
   }
+}
+
+export function getExtractedCommoditys(planet: Planet): number[] {
+  const commoditys = []
+  for(const p of planet.planet_layout.pins) {
+    if(p?.extractor_details?.product_type_id) {
+      const commodity = p.extractor_details.product_type_id;
+      if(!commoditys.includes(commodity)) {
+        commoditys.push(commodity)
+      }
+    }
+  }
+  return commoditys
+}
+export function getPorcessedCommoditys(planet: Planet): number[] {
+  const commoditys = []
+  for(const p of planet.planet_layout.pins) {
+    if(p?.schematic_id) {
+      const commodity = schematics[p.schematic_id].output.typeID;
+      if(!commoditys.includes(commodity)) {
+        commoditys.push(commodity)
+      }
+    }
+  }
+  return commoditys
+}
+export function getStoredCommoditys(planet: Planet): number[] {
+  const commoditys = []
+  for(const p of planet.planet_layout.pins) {
+    if(p?.contents) {
+      for(const c of p?.contents) {
+        if(!commoditys.includes(c.type_id)) {
+          commoditys.push(c.type_id)
+        }
+      }
+    }
+  }
+  return commoditys
+}
+
+export function getProgress(planet: Planet): number {
+  // TODO:
+  return 0.5
+}
+export function getStorage(planet: Planet): number {
+  const storages = planet.planet_layout.pins.filter(planet => (
+    types[planet.type_id].group_id == SPACEPORTS_ID ||
+    types[planet.type_id].group_id == STORAGES_ID
+  ))
+  const storagesTotalFilling = storages.map(storage => ([
+    storage.type_id,
+    storage.contents.reduce((a,b) => a + b.amount * types[b.type_id].volume, 0)
+  ]))
+  const storagesFilling = storagesTotalFilling.map(([ id, content ]) => content / types[id].capacity)
+  return Math.max(...storagesFilling)
 }
