@@ -4,38 +4,39 @@
   import NavDrawer from "../medium/NavDrawer.svelte";
   import { redirect } from "@lib/router";
   import installationStore from "@lib/stores/installation";
-    import PlanetCard from "../medium/PlanetCard.svelte";
+  import PlanetCard from "../medium/PlanetCard.svelte";
 
   export let user: UserData
   export let id: string = ''
 
   let curentInstallation: Installation
-  if(user.installations[id]) {
+  $: if(user.installations[id]) {
     curentInstallation = user.installations[id]
   } else {
     redirect(location.origin + '/app/installations/' + Object.values(user.installations)[0].id)
     curentInstallation = user.installations[id]
   }
-
   
 </script>
 
 
 <main class="main">
-  <NavDrawer {user} {curentInstallation} />
-  <section class="main__planets">
-    <div class="main__planets-grid">
-      {#await $installationStore then store}
-        {#await store[curentInstallation.id] then installation}
-          {#each installation[user.name].planets as planetData}
-            <PlanetCard {planetData} />
-          {/each}
+  {#if curentInstallation}
+    <NavDrawer {user} {curentInstallation} />
+    <section class="main__planets">
+      <div class="main__planets-grid">
+        {#await $installationStore then store}
+          {#await store[curentInstallation.id] then installation}
+            {#each installation[user.name].planets as planetData}
+              <PlanetCard {planetData} />
+            {/each}
+          {/await}
         {/await}
-      {/await}
-    </div>
-  </section>
+      </div>
+    </section>
+  {/if}
 </main>
-
+  
 
 <style lang="scss">
   @import '../../scss/var';

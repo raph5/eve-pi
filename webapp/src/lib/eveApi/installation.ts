@@ -116,7 +116,6 @@ async function fetchInstallationData(charactersList: Character[]): Promise<Insta
     planetsData[p.character_name] = p
   }
 
-  console.log(planetsData)
   return planetsData
 }
 

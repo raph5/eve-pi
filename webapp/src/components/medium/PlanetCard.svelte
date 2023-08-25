@@ -2,14 +2,18 @@
   import types from "@ccpdata/types/types.json"
   import { esiFetch } from "@lib/eveApi/esi";
   import { getExtractedCommoditys, getPorcessedCommoditys, getProgress, getStorage, getStoredCommoditys, type Planet } from "@lib/eveApi/installation";
+  import Modal from "./Modal.svelte";
+  import TextInput from "../small/TextInput.svelte";
 
   export let planetData: Planet
 
+  // planet name
   let planetName: Promise<string>
   $: planetName = esiFetch(`/universe/planets/${planetData.planet_id}`)
     .then(p => p.name)
     .catch(() => "Error while planet name")
 
+  // commoditys inons
   let extractedCommoditys: number[]
   let porcessedCommoditys: number[]
   let storedCommoditys: number[]
@@ -17,20 +21,20 @@
   $: porcessedCommoditys = getPorcessedCommoditys(planetData)
   $: storedCommoditys = getStoredCommoditys(planetData)
 
+  // progess and storage indicators
   let progress: number
   let storage: number
   progress = getProgress(planetData)
   storage = getStorage(planetData)
-
-  function cardClick() {
-    // TODO: handle card onclick event
-  }
-  // TODO: review semantic
-  // TODO: add edit button
+  
+  // edit planet modal
+  let showEditModal = false
+  let modalPlanetName = ''
+  $: planetName.then(name => modalPlanetName = name)
 </script>
 
 
-<div class="card">
+<a href={'TODO: set rederection url'} class="card">
   <div class="card__info">
 
     {#await planetName then name}
@@ -42,7 +46,7 @@
         <div class="card__resources-row">
           <img src="/assets/eveIcons/extractor.png" alt="extractor icon">
           {#each extractedCommoditys as commodity}
-            <img src={`https://imageserver.eveonline.com/Type/${commodity}_32.png`} alt={`commodity image ${commodity}`} title={types[commodity]}>
+            <img src="https://imageserver.eveonline.com/Type/{commodity}_32.png" alt="commodity image {commodity}" title={types[commodity]}>
           {/each}
         </div>
       {:else}
@@ -50,7 +54,7 @@
           <img src="/assets/eveIcons/storage.png" alt="storage icon">
           {#each extractedCommoditys as commodity}
             {#if !porcessedCommoditys.includes(commodity)}
-              <img src={`https://imageserver.eveonline.com/Type/${commodity}_32.png`} alt={`commodity image ${commodity}`} title={types[commodity]}>
+              <img src="https://imageserver.eveonline.com/Type/{commodity}_32.png" alt="commodity image {commodity}" title={types[commodity]}>
             {/if}
           {/each}
         </div>
@@ -59,7 +63,7 @@
         <div class="card__resources-row">
           <img src="/assets/eveIcons/process.png" alt="process icon">
           {#each porcessedCommoditys as commodity}
-            <img src={`https://imageserver.eveonline.com/Type/${commodity}_32.png`} alt={`commodity image ${commodity}`} title={types[commodity]}>
+            <img src="https://imageserver.eveonline.com/Type/{commodity}_32.png" alt="commodity image {commodity}" title={types[commodity]}>
           {/each}
         </div>
       {/if}
@@ -74,14 +78,28 @@
 
   </div>
 
-  <img class="card__bg" src={`/assets/planets/${planetData.planet_type}.png`} alt="${planetData.planet_type} planet img">
-</div>
+  <button class="edit-button" on:click|stopPropagation={() => showEditModal = true}>
+    <span class="edit-button__icon material-symbols-rounded">edit</span>
+  </button>
+  <Modal
+    title="Planet settings"
+    bind:showModal={showEditModal}
+    cancelButton="cancel"
+    okButton="save"
+  >
+    <TextInput name="Planet name" bind:value={modalPlanetName} showLabel={true} />
+  </Modal>
+
+  <img class="card__bg" src="/assets/planets/{planetData.planet_type}.png" alt="{planetData.planet_type} planet img">
+</a>
 
 
 <style lang="scss">
   @import '../../scss/var';
 
   .card {
+    display: block;
+    text-decoration: none;
     aspect-ratio: 3/2;
     max-width: 400px;
     width: 100%;
@@ -163,6 +181,28 @@
         transform: scaleX(calc(100% * var(--storage)));
         background: $chart-color1;
       }
+    }
+  }
+
+  .edit-button {
+    @include solid-button($background3, 20px, 0.4);
+    @include button-reset;
+    position: absolute;
+    z-index: 3;
+    right: 16px;
+    top: 16px;
+    border-radius: 8px;
+    padding: 4px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    
+    &__icon {
+      color: $font-color;
+      font-size: 20px;
     }
   }
 </style>

@@ -1,8 +1,10 @@
 @import 'lib.scss';
+@import 'reset.scss';
 
 
 // main color variables
 $primary: #E4BE05;
+$primary-dark: #584f22;
 
 // font color variables
 $font-color: #FAFAF9;
@@ -11,7 +13,8 @@ $font-color-secondary: rgb(251, 255, 215);
 // background color variables
 $background0: #050607;
 $background1: #1c1c1f;
-$background2: #393d46;
+$background2: #242527;
+$background3: #393d46;
 
 // chart colors
 $chart-color1: #6FBFE7;

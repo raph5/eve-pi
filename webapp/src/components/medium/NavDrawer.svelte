@@ -11,7 +11,7 @@
 
   <div class="installation-data">
     <div class="installation-data__main-char">
-      <img src={user.getImg(32)} alt={`${user.name}'s profile picture`}>
+      <img src={user.getImg(32)} alt="{user.name}'s profile picture">
       <span>{user.name}</span>
     </div>
   </div>
@@ -20,7 +20,7 @@
     {#each Object.values(user.installations) as inst}
       {@const active = inst.id == curentInstallation.id}
       <li class="nav__li">
-        <a class={`nav__button ${active ? 'nav__button--active' : ''} button`} href={`/app/installation/${inst.id}`}>
+        <a class="nav__button {active ? 'nav__button--active' : ''} button" href="/app/installation/{inst.id}">
           <span class="nav__button-icon material-symbols-rounded">factory</span>
           <span class="nav__button-label">{inst.name}</span>
         </a>
@@ -28,6 +28,7 @@
     {/each}
   </ul>
 
+  <!-- TODO: replace by <hr> -->
   <div class="nav__spacer"></div>
 
   <!-- TODO: add installation creation popup -->
@@ -87,7 +88,7 @@
       
 
       &--active {
-        @include solid-button;
+        @include solid;
       }
       &:hover {
         color: $primary;

@@ -1,15 +1,24 @@
 
 @mixin gas-gradient-background($brightness: 0.60, $saturation: 0.05, $bg-brightness: 0) {
-  background: radial-gradient(223.66% 104.59% at 100.00% -0.00%, rgba($color: #43424E, $alpha: $brightness) 0%, rgba($color: #43424E, $alpha: 0.00) 100%),
-  radial-gradient(108.71% 97.24% at -5.20% 100.00%, rgba($color: #BF1834, $alpha: $saturation) 0%, rgba($color: #BF1834, $alpha: 0.00) 100%),
-  lighten($background1, $bg-brightness);
+  background: radial-gradient(223.66% 104.59% at 100.00% -0.00%, rgba(#43424E, $brightness) 0%, rgba(#43424E, 0.00) 100%),
+              radial-gradient(108.71% 97.24% at -5.20% 100.00%, rgba(#BF1834, $saturation) 0%, rgba(#BF1834, 0.00) 100%),
+              lighten($background1, $bg-brightness);
 }
 
-@mixin solid-button {
-  $top: darken($color: $background2, $amount: 8);
-  $bottom: lighten($color: $background2, $amount: 8);
-  background: linear-gradient( darken($color: $background2, $amount: 0.5), $background2, lighten($color: $background2, $amount: 0.5) );
+@mixin solid($bg: $background3, $shadow: 4px, $shadow-alpha: 0.15) {
+  $top: darken($bg, 8);
+  $bottom: lighten($bg, 8);
+  background: linear-gradient( darken($bg, 0.5), $bg, lighten($bg, 0.5) );
   box-shadow: 0 1px 0 $top,
               0 -1px 0 $bottom,
-              0 0 4px rgba($color: #000000, $alpha: 0.15);
+              0 0 $shadow rgba(#000000, $shadow-alpha);
+}
+
+@mixin solid-button($bg: $background3, $shadow: 4px, $shadow-alpha: 0.15) {
+  @include solid($bg, $shadow, $shadow-alpha);
+  
+  &:hover, &:focus, &:active {
+    outline: none;
+    @include solid(lighten($bg, 8), $shadow, $shadow-alpha);
+  }
 }
