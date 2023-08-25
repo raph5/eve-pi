@@ -1,6 +1,7 @@
 import { deleteCookie, getCookie } from "@utils/utils"
 import {  BACKEND_API, BACKEND_SSO } from "@src/var"
 import tokenStorage from "@lib/storage/ssoToken"
+import { AuthError } from "@lib/errors"
 
 const CLIENT_ID = '269a5ec170594bb58f694b8f799c9915'
 const SCOPE = 'esi-planets.manage_planets.v1'
@@ -101,14 +102,14 @@ class SSO {
     await this.initPromise
     const token = this.tokens[tokenName]
     
-    if(!token) throw new Error("No token with this name")
+    if(!token) throw new AuthError()
 
     if(token.decoded_access_token.exp - 10 > Date.now() / 1000) {
       return token
     }
 
     const refreshedToken = await this.refreshToken(tokenName)
-      .catch(e => { throw new Error("Error while refreshing token :\n" + e) })
+      .catch(e => { throw new AuthError() })
     
     return refreshedToken
   }

@@ -1,8 +1,7 @@
 <script lang="ts">
   import type { Installation } from "@lib/eveApi/installation";
-  import type { UserData } from "@lib/user";
+  import user from "@lib/stores/user";
 
-  export let user: UserData;
   export let curentInstallation: Installation;
 </script>
 
@@ -11,13 +10,13 @@
 
   <div class="installation-data">
     <div class="installation-data__main-char">
-      <img src={user.getImg(32)} alt="{user.name}'s profile picture">
-      <span>{user.name}</span>
+      <img src={$user.getImg(32)} alt="{$user.name}'s profile picture">
+      <span>{$user.name}</span>
     </div>
   </div>
 
   <ul class="nav__ul">
-    {#each Object.values(user.installations) as inst}
+    {#each Object.values($user.installations) as inst}
       {@const active = inst.id == curentInstallation.id}
       <li class="nav__li">
         <a class="nav__button {active ? 'nav__button--active' : ''} button" href="/app/installation/{inst.id}">

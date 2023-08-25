@@ -3,12 +3,13 @@ import userStorage from "@lib/storage/user"
 import userDataStorage from "./storage/userData"
 import type { UserStorage } from "./storage/userData"
 import { createInstallation } from "./eveApi/installation"
+import { AuthError } from "./errors"
 
 export interface UserData extends UserStorage {
   getImg: (size: number) => string
 }
 
-export async function getUserName() {
+export async function getUserName(): Promise<string> {
   
   let user = userStorage.get()
   
@@ -22,12 +23,9 @@ export async function getUserName() {
     }
   }
   
-  const token = await sso.getToken(user).catch((e: Error) => {
-    if(e.message === "No token with this name") throw new Error("User not loged")
-    else throw e
-  })
-  
-  return token.decoded_access_token.name
+  if(!user) throw new AuthError()
+
+  return user
 
 }
 

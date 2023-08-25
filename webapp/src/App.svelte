@@ -1,23 +1,22 @@
 <script lang="ts">
-  import Loading from './components/views/Loading.svelte';
-  import userStore from '@lib/stores/user';
-  import Error from './components/medium/Error.svelte';
   import { view } from '@lib/router';
-  import LandingPage from './components/views/LandingPage.svelte';
+  import AuthErrorPage from './components/pages/AuthErrorPage.svelte';
+
+  let authError = false
+  window.onunhandledrejection = (ev: PromiseRejectionEvent) => {
+    const error = ev.reason as Error
+    if(error.name === 'AuthError') {
+      authError = true
+    }
+  }
 </script>
 
 
-{#await $userStore}
-  <Loading />
-{:then user}
-  <svelte:component this={$view.component} {...$view.props} {user} />
-  {:catch}
-  {#if $view.component == LandingPage}
-    <LandingPage />
-  {:else}
-    <Error message="user not loged" redirection={location.origin + '/?loginerror'} />
-  {/if}
-{/await}
+{#if authError}
+  <AuthErrorPage />
+{:else}
+  <svelte:component this={$view.component} {...$view.props} />
+{/if}
 
 
 <style lang="scss" global>

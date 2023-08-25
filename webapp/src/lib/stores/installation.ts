@@ -4,20 +4,20 @@ import { getInstallationData, type InstallationData } from "@lib/eveApi/installa
 import type { UserData } from "@lib/user";
 import type { Readable } from "svelte/store";
 
-type userData = Readable<Promise<UserData>>
-type installationsData = Promise<Record<string, Promise<InstallationData>>>
+type userData = Readable<UserData>
+type installationsData = Record<string, Promise<InstallationData>>
 
 const installationStore = derived<userData, installationsData>(
   userStore,
-  ($user) => $user.then(u => {
+  ($user) => {
     const installations = {}
 
-    for(const i in u.installations) {
-      installations[i] = getInstallationData(u.installations[i].characters)
+    for(const i in $user.installations) {
+      installations[i] = getInstallationData($user.installations[i].characters)
     }
 
     return installations
-  })
+  }
 )
 
 export default installationStore
