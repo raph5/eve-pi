@@ -1,6 +1,6 @@
 import { deleteCookie, getCookie } from "@utils/utils"
 import {  BACKEND_API, BACKEND_SSO } from "@src/var"
-import tokenStorage from "@lib/storage/ssoToken"
+import tokenStorage from "@lib/sso/storage"
 import { AuthError } from "@lib/errors"
 
 const CLIENT_ID = '269a5ec170594bb58f694b8f799c9915'

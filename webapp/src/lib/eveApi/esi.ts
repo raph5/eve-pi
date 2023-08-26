@@ -1,4 +1,5 @@
-import { sso } from "./sso"
+import { EsiError } from "@lib/errors"
+import { sso } from "../sso/sso"
 
 const ESI_ROOT = "https://esi.evetech.net/latest"
 
@@ -38,9 +39,9 @@ export async function esiFetch(
 
   const rep = await fetch(ESI_ROOT + url + '?' + params.toString(), { body: encodedBody, headers, method })
     .then(r => r.json())
-    .catch(e => { throw new Error("Error while fetching esi :\n" + e) })
+    .catch(e => { throw new EsiError(e) })
 
-  if( rep['error'] ) throw new Error("ESI error : " + rep['error'])
+  if( rep['error'] ) throw new EsiError()
 
   return rep
 

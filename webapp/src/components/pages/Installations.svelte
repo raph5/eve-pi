@@ -1,39 +1,27 @@
 <script lang="ts">
-  import type { Installation } from "@lib/eveApi/installation";
   import NavDrawer from "../medium/NavDrawer.svelte";
   import { redirect } from "@lib/router";
-  import installationStore from "@lib/stores/installation";
   import PlanetCard from "../medium/PlanetCard.svelte";
-  import user from "@lib/stores/user";
+  import user from "@lib/resources/userData/store";
+  import planets from "@lib/resources/planetsSetup/store";
 
   export let id: string = ''
 
-  let curentInstallation: Installation
-  $: if($user.installations[id]) {
-    curentInstallation = $user.installations[id]
-  } else {
-    redirect(location.origin + '/app/installations/' + Object.values($user.installations)[0].id)
-    curentInstallation = $user.installations[id]
+  $: if(!$user.installations.includes(id)) {
+    redirect(location.origin + '/app/installations/' + $user.installations[0])
   }
-  
 </script>
 
 
 <main class="main">
-  {#if curentInstallation}
-    <NavDrawer {curentInstallation} />
-    <section class="main__planets">
-      <div class="main__planets-grid">
-        {#await $installationStore then store}
-          {#await store[curentInstallation.id] then installation}
-            {#each installation[$user.name].planets as planetData}
-              <PlanetCard {planetData} />
-            {/each}
-          {/await}
-        {/await}
-      </div>
-    </section>
-  {/if}
+  <NavDrawer currentInstallationId={id} />
+  <section class="main__planets">
+    <div class="main__planets-grid">
+      {#each Object.values($planets) as planet}
+        <PlanetCard setupId={planet.setup_id} />
+      {/each}
+    </div>
+  </section>
 </main>
   
 

@@ -1,5 +1,5 @@
-import type { Token } from "@lib/eveApi/sso";
-import { JsonStorage } from "./storage";
+import type { Token } from "@lib/sso/sso";
+import { JsonStorage } from "../storage";
 
 const tokenStorageInterface = new JsonStorage<Record<string, Token>>('tokenStorage')
 

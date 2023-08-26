@@ -1,8 +1,9 @@
 <script lang="ts">
-  import type { Installation } from "@lib/eveApi/installation";
-  import user from "@lib/stores/user";
+  import user from "@lib/resources/userData/store";
+  import installations from "@lib/resources/installations/store";
+  import { characterImg } from "@utils/ui";
 
-  export let curentInstallation: Installation;
+  export let currentInstallationId: string;
 </script>
 
 
@@ -10,18 +11,18 @@
 
   <div class="installation-data">
     <div class="installation-data__main-char">
-      <img src={$user.getImg(32)} alt="{$user.name}'s profile picture">
+      <img src={characterImg($user.id)} alt="{$user.name}'s profile picture">
       <span>{$user.name}</span>
     </div>
   </div>
 
   <ul class="nav__ul">
-    {#each Object.values($user.installations) as inst}
-      {@const active = inst.id == curentInstallation.id}
+    {#each Object.values($user.installations) as installationsId}
+      {@const active = installationsId == currentInstallationId}
       <li class="nav__li">
-        <a class="nav__button {active ? 'nav__button--active' : ''} button" href="/app/installation/{inst.id}">
+        <a class="nav__button {active ? 'nav__button--active' : ''} button" href="/app/installation/{$installations[installationsId].id}">
           <span class="nav__button-icon material-symbols-rounded">factory</span>
-          <span class="nav__button-label">{inst.name}</span>
+          <span class="nav__button-label">{$installations[installationsId].name}</span>
         </a>
       </li>
     {/each}
@@ -111,6 +112,8 @@
       align-items: flex-end;
 
       img {
+        width: 32px;
+        height: 32px;
         border-radius: 8px;
       }
       span {

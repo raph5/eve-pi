@@ -1,75 +1,56 @@
 <script lang="ts">
   import types from "@ccpdata/types/types.json"
-  import { esiFetch } from "@lib/eveApi/esi";
-  import { getExtractedCommoditys, getPorcessedCommoditys, getProgress, getStorage, getStoredCommoditys, type Planet } from "@lib/eveApi/installation";
   import Modal from "./Modal.svelte";
   import TextInput from "../small/TextInput.svelte";
+  import planets from "@lib/resources/planetsSetup/store";
+  import { planetsProgress, planetsStorage, extractedCommoditys, porcessedCommoditys, storedCommoditys } from "@lib/resources/planetsSetup/derived"
+    import { itemImg } from "@utils/ui";
 
-  export let planetData: Planet
-
-  // planet name
-  let planetName: Promise<string>
-  $: planetName = esiFetch(`/universe/planets/${planetData.planet_id}`)
-    .then(p => p.name)
-    .catch(() => "Error while planet name")
-
-  // commoditys inons
-  let extractedCommoditys: number[]
-  let porcessedCommoditys: number[]
-  let storedCommoditys: number[]
-  $: extractedCommoditys = getExtractedCommoditys(planetData)
-  $: porcessedCommoditys = getPorcessedCommoditys(planetData)
-  $: storedCommoditys = getStoredCommoditys(planetData)
-
-  // progess and storage indicators
-  let progress: number
-  let storage: number
-  progress = getProgress(planetData)
-  storage = getStorage(planetData)
+  export let setupId: string;
   
   // edit planet modal
   let showEditModal = false
-  let modalPlanetName = ''
-  $: planetName.then(name => modalPlanetName = name)
+  let planetName = $planets[setupId].setup_name
+  function setPlanetName() {
+    planets.setName(setupId, planetName)
+  }
 </script>
 
 
 <a href={'TODO: set rederection url'} class="card">
   <div class="card__info">
 
-    {#await planetName then name}
-      <span class="card__title">{name}</span>
-    {/await}
+    <span class="card__title">{$planets[setupId].setup_name}</span>
 
     <div class="card__resources">
-      {#if extractedCommoditys}
+      {#if $extractedCommoditys[setupId]}
         <div class="card__resources-row">
           <img src="/assets/eveIcons/extractor.png" alt="extractor icon">
-          {#each extractedCommoditys as commodity}
-            <img src="https://imageserver.eveonline.com/Type/{commodity}_32.png" alt="commodity image {commodity}" title={types[commodity]}>
+          {#each $extractedCommoditys[setupId] as commodity}
+            <img src={itemImg(commodity.type)} alt="commodity image {commodity.type}" title={commodity.name}>
           {/each}
         </div>
       {:else}
         <div class="card__resources-row">
           <img src="/assets/eveIcons/storage.png" alt="storage icon">
-          {#each extractedCommoditys as commodity}
-            {#if !porcessedCommoditys.includes(commodity)}
-              <img src="https://imageserver.eveonline.com/Type/{commodity}_32.png" alt="commodity image {commodity}" title={types[commodity]}>
+          {#each $storedCommoditys[setupId] as commodity}
+            {#if !$porcessedCommoditys[setupId].includes(commodity)}
+              <img src={itemImg(commodity.type)} alt="commodity image {commodity.type}" title={commodity.name}>
             {/if}
           {/each}
         </div>
       {/if}
-      {#if porcessedCommoditys}
+      {#if $porcessedCommoditys[setupId]}
         <div class="card__resources-row">
           <img src="/assets/eveIcons/process.png" alt="process icon">
-          {#each porcessedCommoditys as commodity}
-            <img src="https://imageserver.eveonline.com/Type/{commodity}_32.png" alt="commodity image {commodity}" title={types[commodity]}>
+          {#each $porcessedCommoditys[setupId] as commodity}
+            <img src={itemImg(commodity.type)} alt="commodity image {commodity.type}" title={commodity.name}>
           {/each}
         </div>
       {/if}
     </div>
 
-    <div class="card__progress" style="--progress: {progress}; --storage: {storage}">
+    <div class="card__progress" style="--progress: {$planetsProgress[setupId]}; --storage: {$planetsStorage[setupId]}">
       <span class="card__progress-label">progress</span>
       <span class="card__progress-bar card__progress-bar--progress"></span>
       <span class="card__progress-label">storage</span>
@@ -86,11 +67,12 @@
     bind:showModal={showEditModal}
     cancelButton="cancel"
     okButton="save"
+    on:ok={setPlanetName}
   >
-    <TextInput name="Planet name" bind:value={modalPlanetName} showLabel={true} />
+    <TextInput name="Planet name" bind:value={planetName} showLabel={true} />
   </Modal>
 
-  <img class="card__bg" src="/assets/planets/{planetData.planet_type}.png" alt="{planetData.planet_type} planet img">
+  <img class="card__bg" src="/assets/planets/{$planets[setupId].planet_type}.png" alt="{$planets[setupId].planet_type} planet img">
 </a>
 
 
@@ -138,6 +120,7 @@
 
       img {
         width: 24px;
+        height: 24px;
       }
     }
     &__resources-row {
