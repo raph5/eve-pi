@@ -1,6 +1,7 @@
 import { writable } from "svelte/store"
 import installationsStorage from "./storage"
-import type { Installation, Character } from "./factory"
+import type { Installation } from "./factory"
+import type { Character } from "../userData/factory"
 import { initInstallation } from "./factory"
 
 function createInstallationsStore() {
