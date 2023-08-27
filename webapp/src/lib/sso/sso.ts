@@ -7,15 +7,17 @@ const CLIENT_ID = '269a5ec170594bb58f694b8f799c9915'
 const SCOPE = 'esi-planets.manage_planets.v1'
 
 // create sso url
-const params = new URLSearchParams({
-  response_type: 'code',
-  redirect_uri: BACKEND_SSO,
-  client_id: CLIENT_ID,
-  scope: SCOPE,
-  state: 'state'
-})
-
-const SSO_LOGIN_URL = 'https://login.eveonline.com/v2/oauth/authorize?' + params.toString()
+export function getSsoUrl(state: string) {
+  const params = new URLSearchParams({
+    response_type: 'code',
+    redirect_uri: BACKEND_SSO,
+    client_id: CLIENT_ID,
+    scope: SCOPE,
+    state
+  })
+  
+  return 'https://login.eveonline.com/v2/oauth/authorize?' + params.toString()
+}
 
 export interface Token {
   access_token: string,
@@ -60,8 +62,6 @@ export function getUserId(token: Token) {
 
 class SSO {
 
-  static loginUrl = SSO_LOGIN_URL
-
   private initPromise: Promise<void>
   tokens: Record<string, Token> = {}
   cookieToken: Token | null
@@ -87,6 +87,7 @@ class SSO {
 
     this.cookieToken = await cookieTokenPromise.catch(() => null)
     if(this.cookieToken) {
+      console.log('cookieToken !', this.cookieToken)
       tokens.push(this.cookieToken)
       deleteCookie('tokenData')
     }

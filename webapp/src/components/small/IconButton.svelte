@@ -4,37 +4,40 @@
   type buttonStyle = 'primary' | 'bg-3' | 'bg-4' | 'unfiorm' | 'transparent'
 
   export let style: buttonStyle = 'primary'
-  export let icon: string = ''
-  export let text: string
+  export let icon: string
   export let loading = false
 </script>
 
 
-<button class="button button--{style}" on:click>
+<button class="icon-button icon-button--{style}" on:click disabled={loading}>
   {#if loading}
     <LoadingIcon />
-  {:else if icon}
-    <span class="button__icon material-symbols-rounded">{icon}</span>
+  {:else}
+    <span class="icon-button__icon material-symbols-rounded">{icon}</span>
   {/if}
-  <span class="button__text">{text}</span>
 </button>
 
 
 <style lang="scss">
   @import '../../scss/var.scss';
 
-  .button {
+  .icon-button {
     @include button-reset;
     background: $bg-3;
-    color: $font-light;
+    border-radius: 8px;
+    width: 32px;
+    height: 30px;
+    margin: 1px 0;
     display: flex;
     align-items: center;
-    height: 32px;
-    padding: 0 12px;
-    border-radius: 8px;
-    gap: 4px;
+    justify-content: center;
+    color: $font-light;
     outline: none;
     cursor: pointer;
+
+    &__icon {
+      font-size: 20px;
+    }
     
     &--transparent, &--uniform {
       color: $font-med;
@@ -61,18 +64,11 @@
       }
     }
     &--bg-4 {
-      @include solid($bg-4, 5);
+      @include solid($bg-4, 8);
       
       &:hover, &:focus, &:active {
         @include solid(lighten($bg-4, 10));
       }
-    }
-
-    &__icon {
-      font-size: 20px;
-    }
-    &__text {
-      @include label;
     }
   }
 </style>

@@ -6,7 +6,6 @@
   export let title: string
   export let okButton = ''
   export let cancelButton = 'close'
-  export let okButtonEnabled = true
 
 	let dialog: HTMLDialogElement;
   
@@ -45,15 +44,14 @@
         on:click={() => ok()}
         icon="done"
         text={okButton}
-        style={okButtonEnabled ? 'solid' : 'solid'}
+        style="primary"
       />
     {/if}
     {#if cancelButton}
       <Button
         on:click={() => cancel()}
-        icon="close"
         text={cancelButton}
-        style="solid"
+        style="bg-3"
       />
     {/if}
   </div>
@@ -66,26 +64,26 @@
   .modal {
     border: none;
     border-radius: 8px;
-    background: $background2;
-    min-width: 50%;
+    background: $bg-2;
+    min-width: 700px;
     max-width: 90%;
     min-height: 300px;
     max-height: 80%;
     display: flex;
+    visibility: hidden;
     flex-direction: column;
     margin-top: 100px;
     box-shadow: 0 0 40px #0006;
-    color: $font-color;
+    color: $font-light;
     cursor: default;
-    padding: 16px 0;
+    padding: 0;
     opacity: 0;
     transform: translateY(-70px);
     transition: opacity 200ms, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
     
     &__header {
-      padding: 0 16px;
-      padding-bottom: 16px;
-      border-bottom: solid 1px lighten($color: $background2, $amount: 5);
+      padding: 16px;
+      border-bottom: solid 1px $bg-3;
     }
     &__title {
       margin: 0;
@@ -95,13 +93,16 @@
       height: 100%;
     }
     &__footer {
-      padding: 0 16px;
-      padding-top: 16px;
+      padding: 16px;
       display: flex;
-      justify-content: flex-end;
+      flex-direction: row-reverse;
       gap: 8px;
       margin-top: auto;
-      border-top: solid 1px lighten($color: $background2, $amount: 5);
+      border-top: solid 1px $bg-3;
+    }
+
+    hr {
+      background: $bg-3;
     }
 
     &::backdrop {
@@ -111,6 +112,7 @@
     }
     
     &[open] {
+      visibility: visible;
       opacity: 1;
       transform: none;
       

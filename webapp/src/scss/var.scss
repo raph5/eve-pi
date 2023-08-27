@@ -3,24 +3,27 @@
 
 
 // main color variables
-$primary: #E4BE05;
-$primary-dark: #584f22;
+$primary: #2684F8;
+$secondary: #FFD742;
 
 // font color variables
-$font-color: #FAFAF9;
-$font-color-secondary: rgb(251, 255, 215);
+$font-light: #FAFAF9;
+$font-med: #B2B0AC;
+$font-dark: #0c0e0f;
 
 // background color variables
-$background0: #050607;
-$background1: #1c1c1f;
-$background2: #242527;
-$background3: #393d46;
+$bg-0: #050507;
+$bg-1: #1c1c1f;
+$bg-2: #29292c;
+$bg-3: #3c3c3f;
+$bg-4: #4f4f52;
 
 // chart colors
-$chart-color1: #6FBFE7;
-$chart-color2: #7E4CE1;
-$chart-color3: #E566BB;
-$chart-color4: #B7E45E;
+$blue: #2684F8;
+$yellow: #FFD742;
+$red: #ff6370;
+$green: #70cf97;
+$purple: #6662fd;
 
 // font variables
 $font: Bai Jamjuree;
@@ -43,14 +46,21 @@ $font: Bai Jamjuree;
 }
 @mixin label {
   font-family: Bai Jamjuree;
-  font-size: 14px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
+@mixin tag {
+  font-family: Bai Jamjuree;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 @mixin paragraph {
   font-family: Bai Jamjuree;
-  font-size: 14px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

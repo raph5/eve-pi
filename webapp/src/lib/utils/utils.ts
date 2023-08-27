@@ -53,12 +53,12 @@ export function deleteCookie(cmane: string) {
 
 
 
-const BASE64_STRING = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+const CHAR_STRING = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
 export function randomId() {
   let id = ''
   for(let i=0; i<10; i++) {
     const randomIndex = Math.floor(Math.random() * 64)
-    id += BASE64_STRING[randomIndex]
+    id += CHAR_STRING[randomIndex]
   }
   return id
 }

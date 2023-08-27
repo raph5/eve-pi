@@ -1,9 +1,13 @@
 import { getUserId, sso } from "@lib/sso/sso";
 import installations from "@lib/resources/installations/store";
 
-export interface UserData {
+export interface Character {
   name: string
-  id: number,
+  id: number
+}
+
+export interface UserData extends Character {
+  alts: Character[]
   installations: string[]
 }
 
@@ -20,7 +24,8 @@ export async function initUserData(userName: string): Promise<UserData> {
   return {
     name: userName,
     id: userId,
-    installations: [ mainInstallation ]
+    installations: [ mainInstallation ],
+    alts: []
   }
 
 }

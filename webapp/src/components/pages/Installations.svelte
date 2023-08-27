@@ -29,7 +29,7 @@
   @import '../../scss/var';
 
   .main {
-    background: $background0;
+    background: $bg-0;
     width: 100%;
     height: 100vh;
     display: flex;

@@ -4,23 +4,23 @@
   import TextInput from "../small/TextInput.svelte";
   import planets from "@lib/resources/planetsSetup/store";
   import { planetsProgress, planetsStorage, extractedCommoditys, porcessedCommoditys, storedCommoditys } from "@lib/resources/planetsSetup/derived"
-    import { itemImg } from "@utils/ui";
+  import { characterImg, itemImg } from "@utils/ui";
+  import PlanetSettings from "../modals/PlanetSettings.svelte";
+  import IconButton from "../small/IconButton.svelte";
 
   export let setupId: string;
   
-  // edit planet modal
-  let showEditModal = false
-  let planetName = $planets[setupId].setup_name
-  function setPlanetName() {
-    planets.setName(setupId, planetName)
-  }
+  let showSettingsModal = false
 </script>
 
 
 <a href={'TODO: set rederection url'} class="card">
   <div class="card__info">
 
-    <span class="card__title">{$planets[setupId].setup_name}</span>
+    <div class="card__header">
+      <img class="card__pp" src={characterImg($planets[setupId].character_id)} alt="{$planets[setupId].character_name} profile picture">
+      <span class="card__title">{$planets[setupId].setup_name}</span>
+    </div>
 
     <div class="card__resources">
       {#if $extractedCommoditys[setupId]}
@@ -59,27 +59,21 @@
 
   </div>
 
-  <button class="edit-button" on:click|stopPropagation={() => showEditModal = true}>
-    <span class="edit-button__icon material-symbols-rounded">edit</span>
-  </button>
-  <Modal
-    title="Planet settings"
-    bind:showModal={showEditModal}
-    cancelButton="cancel"
-    okButton="save"
-    on:ok={setPlanetName}
-  >
-    <TextInput name="Planet name" bind:value={planetName} showLabel={true} />
-  </Modal>
+  <div class="card__edit-btn">
+    <IconButton style="bg-3" icon="edit" on:click={() => showSettingsModal = true} />
+  </div>
 
   <img class="card__bg" src="/assets/planets/{$planets[setupId].planet_type}.png" alt="{$planets[setupId].planet_type} planet img">
 </a>
+
+<PlanetSettings bind:showModal={showSettingsModal} {setupId} />
 
 
 <style lang="scss">
   @import '../../scss/var';
 
   .card {
+    @include solid-shadow($bg-1, $shadow: 0 0 16px #000);
     display: block;
     text-decoration: none;
     aspect-ratio: 3/2;
@@ -88,8 +82,7 @@
     border-radius: 8px;
     position: relative;
     overflow: hidden;
-    background: $background1;
-    box-shadow: 0 0 16px #000;
+    background: $bg-1;
     user-select: none;
     cursor: pointer;
 
@@ -98,14 +91,24 @@
       box-sizing: border-box;
       height: 100%;
       z-index: 2;
-      color: $font-color;
+      color: $font-light;
       padding: 16px;
       padding-right: 0;
       display: flex;
       flex-direction: column;
     }
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     &__title {
       @include header2;
+    }
+    &__pp {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
     }
     &__bg {
       width: 115%;
@@ -139,7 +142,7 @@
       @include label;
     }
     &__progress-bar {
-      margin-top: 9px;
+      margin-top: 7px;
       height: 3px;
       width: 100%;
       border-radius: 10px;
@@ -158,34 +161,20 @@
       }
       &--progress::after {
         transform: scaleX(calc(100% * var(--progress)));
-        background: $chart-color4;
+        background: $blue;
       }
       &--storage::after {
         transform: scaleX(calc(100% * var(--storage)));
-        background: $chart-color1;
+        background: $green;
       }
     }
-  }
-
-  .edit-button {
-    @include solid-button($background3, 20px, 0.4);
-    @include button-reset;
-    position: absolute;
-    z-index: 3;
-    right: 16px;
-    top: 16px;
-    border-radius: 8px;
-    padding: 4px;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    
-    &__icon {
-      color: $font-color;
-      font-size: 20px;
+    &__edit-btn {
+      position: absolute;
+      z-index: 3;
+      right: 16px;
+      top: 16px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px #0008;
     }
   }
 </style>

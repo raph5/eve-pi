@@ -42,13 +42,14 @@ app.use(cors({ origin: APP_URL }))
 // Handle the SSO callback
 app.get('/sso', async (req, res) => {
   try {
+    const state = req.query.state
     const code = req.query.code
     const token_data = await sso.getAccessToken(code)
-
+    
     if( !isValidAccesToken(token_data) ) throw new Error("invalid acces token type")
-
+    
     res.cookie('tokenData', JSON.stringify(token_data))
-    res.redirect(302, APP_URL + '/app/')
+    res.redirect(302, APP_URL + state)
   }
   catch(e) {
     console.error(e)

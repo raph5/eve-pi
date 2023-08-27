@@ -1,11 +1,7 @@
 import { randomId } from "@utils/utils"
 import planets from "../planetsSetup/store"
 import { fetchPlanetData } from "./esi"
-
-export interface Character {
-  name: string
-  id: number
-}
+import type { Character } from "../userData/factory"
 
 export interface CharacterData extends Character {
   planets: string[]

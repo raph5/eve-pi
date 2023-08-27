@@ -5,18 +5,28 @@ import { AuthError } from "../errors"
 export async function getUserName(): Promise<string> {
   
   let user = userStorage.get()
-  
-  // on first login ther is no 'user' in userStorage
-  if(!user) {
-    await sso.isReady()
-    if(sso.cookieToken) {
+
+  // this code is at the wrong place
+  // the code relating to soo internal logic need to be elsewhere
+  // TODO: moove this piece code
+  await sso.isReady()
+
+  if(sso.cookieToken) {
+    if(!user) {
+      // on first login ther is no 'user' in userStorage
       user = sso.cookieToken.decoded_access_token.name
       userStorage.set(user)
       sso.cookieToken = null
     }
+    else if(sso.cookieToken.decoded_access_token.name === user) {
+      sso.cookieToken = null
+    }
   }
-  
+
   if(!user) throw new AuthError()
+  
+  // check if user is logged
+  await sso.getToken(user)
 
   return user
 
@@ -24,7 +34,10 @@ export async function getUserName(): Promise<string> {
 
 export async function logOff() {
 
-  userStorage.remove()
-  await sso.destroyToken( await getUserName() )
+  const userName = userStorage.get()
+  if(userName) {
+    await sso.destroyToken(userName)
+    userStorage.remove()
+  }
 
 }
