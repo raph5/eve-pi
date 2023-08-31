@@ -38,7 +38,7 @@
   bind:showModal
   title="User settings"
   cancelButton="cancel"
-  okButton="save"
+  saveButton="save"
 >
   <div class="list__parent">
     <span class="label">Character List</span>

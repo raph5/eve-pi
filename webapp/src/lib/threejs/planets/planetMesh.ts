@@ -16,8 +16,8 @@ export default class PlanetMesh extends THREE.Mesh {
     if(blendMode === 'transparent') {
       material.blending = THREE.CustomBlending
       material.blendEquation = THREE.AddEquation
-      material.blendSrc = THREE.OneFactor
-      material.blendDst = THREE.OneFactor
+      material.blendSrc = THREE.OneFactor    
+      material.blendDst = THREE.OneFactor 
     }
     else if(blendMode === 'transparentSphere') {
       material.blending = THREE.CustomBlending

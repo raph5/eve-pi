@@ -1,26 +1,25 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import Button from "../small/Button.svelte";
-
-	export let showModal: boolean
-  export let title: string
-  export let okButton = ''
-  export let cancelButton = 'close'
-
-	let dialog: HTMLDialogElement;
   
 	const dispatch = createEventDispatcher();
 
-  function ok() {
+	export let showModal: boolean
+  export let title: string
+  export let saveButton = ''
+  export let cancelButton = 'close'
+
+	let dialog: HTMLDialogElement;
+  $: if (dialog && showModal) dialog.showModal();
+
+  function save() {
     dialog.close()
-    dispatch('ok')
+    dispatch('save')
   }
   function cancel() {
     dialog.close()
     dispatch('cancel')
   }
-
-	$: if (dialog && showModal) dialog.showModal();
 </script>
 
 
@@ -39,11 +38,11 @@
   </div>
 
   <div class="modal__footer">
-    {#if okButton}
+    {#if saveButton}
       <Button
-        on:click={() => ok()}
+        on:click={() => save()}
         icon="done"
-        text={okButton}
+        text={saveButton}
         style="primary"
       />
     {/if}

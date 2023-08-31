@@ -1,8 +1,7 @@
 import * as THREE from 'three'
 import OrbitControls from './orbitControl'
 import Background from './background'
-import { createPlanet } from '../planets'
-import { time } from './time'
+import { time, type timeUniform } from './time'
 
 export interface InitOptions {
   fov?: number
@@ -14,18 +13,21 @@ export interface InitOptions {
 
 export default class View {
 
+  public alive = true
+
   private fov: number
   private near: number
   private far: number
   private width: number
   private height: number
-  private scene: THREE.Scene
+  public scene: THREE.Scene
   private camera: THREE.PerspectiveCamera
   private renderer: THREE.WebGLRenderer
   private controls: OrbitControls
 
   constructor(
     canvas: HTMLCanvasElement,
+    public time: timeUniform,
     options: InitOptions = {}
   ) {
 
@@ -68,12 +70,11 @@ export default class View {
     const backgroundTexture = bg.color
     this.scene.background = backgroundTexture
 
-    // add default planet
-    const planet = createPlanet( 'temperate', this.scene, time )
-    this.scene.add(planet)
-
     // init render loop
     const renderLoop = () => {
+      // if view is not alive, stop render loop
+      if(!this.alive) return
+
       requestAnimationFrame( renderLoop )
 
       // update time uniform
@@ -92,7 +93,6 @@ export default class View {
   }
 
   setSize(width: number, height: number) {
-
     this.width = width
     this.height = height
 
@@ -102,7 +102,10 @@ export default class View {
 
     // change canvas size
     this.renderer.setSize(width, height)
+  }
 
+  destroy() {
+    this.alive = false
   }
 
 }

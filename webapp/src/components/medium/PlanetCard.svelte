@@ -14,7 +14,7 @@
 </script>
 
 
-<a href={'TODO: set rederection url'} class="card">
+<a href="/app/planets/{setupId}" class="card">
   <div class="card__info">
 
     <div class="card__header">

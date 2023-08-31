@@ -18,7 +18,8 @@
   bind:showModal
   title="Planet settings"
   cancelButton="cancel"
-  okButton="save"
+  saveButton="save"
+  on:save={setPlanetName}
 >
   <span class="label">Planet name</span>
   <TextInput bind:value={planetName} />

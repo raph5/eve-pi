@@ -39,7 +39,7 @@
     <!-- TODO: add installation creation popup -->
     <button class="nav__button">
       <span class="nav__button-icon material-symbols-rounded">add</span>
-      <span class="nav__button-label">Add Installation</span>
+      <span class="nav__button-label">Create Installation</span>
     </button>
   </div>
 

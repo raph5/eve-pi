@@ -3,6 +3,7 @@ import { readable } from "svelte/store";
 import navaid from "navaid";
 import Installations from "@src/components/pages/Installations.svelte";
 import type { ComponentType } from "svelte";
+import Planet from "@src/components/pages/Planet.svelte";
 
 interface View {
   component: ComponentType
@@ -22,7 +23,9 @@ export const view = readable<View>(loadingView, (set) => {
   router.on('/app/', () => router.route('/app/installations/', true))
   router.on('/app/installations/', () => set( createView(Installations) ))
   router.on('/app/installations/:id', ({ id }) => set( createView(Installations, { id }) ))
-
+  router.on('/app/planets/', () => router.route('/app/installations/', true))
+  router.on('/app/planets/:id', ({ id }) => set( createView(Planet, { id }) ))
+  
   router.listen()
 
   return () => router.unlisten()
