@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { UniformParameter } from '@utils/shaders/uniformParameter'
+import { UniformParameter } from '@utils/threejs/uniformParameter'
 import PlanetMesh from '../planetMesh'
 
 // shaders

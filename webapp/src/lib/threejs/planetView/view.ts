@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import OrbitControls from './orbitControl'
 import Background from './background'
-import { time, type timeUniform } from './time'
+import Time from '../time'
 
 export interface InitOptions {
   fov?: number
@@ -15,6 +15,8 @@ export default class View {
 
   public alive = true
 
+  public time: Time
+
   private fov: number
   private near: number
   private far: number
@@ -27,9 +29,10 @@ export default class View {
 
   constructor(
     canvas: HTMLCanvasElement,
-    public time: timeUniform,
     options: InitOptions = {}
   ) {
+
+    this.time = new Time()
 
     // setup options
     this.fov = options.fov ?? 70
@@ -77,9 +80,8 @@ export default class View {
 
       requestAnimationFrame( renderLoop )
 
-      // update time uniform
-      time.set( performance.now() / 1000 )
-      // update orbit control prosition
+      // update time and orbit control
+      this.time.update()
       this.controls.update()
       // render a new frame
       this.render()

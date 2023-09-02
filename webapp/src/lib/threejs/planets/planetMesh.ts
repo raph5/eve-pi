@@ -1,4 +1,4 @@
-import type { UniformParameter } from "@utils/shaders/uniformParameter";
+import type { UniformParameter } from "@utils/threejs/uniformParameter";
 import * as THREE from "three";
 
 export default class PlanetMesh extends THREE.Mesh {

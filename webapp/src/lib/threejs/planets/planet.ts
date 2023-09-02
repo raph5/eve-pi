@@ -1,16 +1,16 @@
 import * as THREE from "three"
-import { UniformParameter } from "@utils/shaders/uniformParameter";
-import type { timeUniform } from "../planetView/time";
-import { createUniformTexture } from "@utils/shaders/uniformTexture";
+import { UniformParameter } from "@utils/threejs/uniformParameter";
+import { createUniformTexture } from "@utils/threejs/uniformTexture";
 import { buildResUrl } from "@utils/utils";
 import type { Template } from "./types";
+import type Time from "../time";
 
 export default class Planet extends THREE.Group {
 
   public uniforms: { [uniform: string]: UniformParameter } = {}
 
   constructor(
-    private time: timeUniform,
+    private time: Time,
   ) {
     
     super()

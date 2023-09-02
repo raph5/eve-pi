@@ -1,12 +1,12 @@
 import Planet from '../planet'
 import Atmosphere from "../atmospheres/atmosphere"
-import type { timeUniform } from '../../planetView/time'
 import planetTemplate from '@ccpdata/templates/plasma/plasma02.json'
-import { createUniformTexture } from '@utils/shaders/uniformTexture'
-import { UniformParameter } from '@utils/shaders/uniformParameter'
+import { createUniformTexture } from '@utils/threejs/uniformTexture'
+import { UniformParameter } from '@utils/threejs/uniformParameter'
 import heightMap from '@ccpdata/textures/lavaHeightMap1.png'
 import GlobePlasma from '../globes/globePlasma'
 import * as THREE from 'three'
+import type Time from '@lib/threejs/time'
 
 export default class PlanetPlasma extends Planet {
   
@@ -14,7 +14,7 @@ export default class PlanetPlasma extends Planet {
   private atmosphere: Atmosphere
 
   constructor(
-    time: timeUniform
+    time: Time
   ) {
 
     super(time)

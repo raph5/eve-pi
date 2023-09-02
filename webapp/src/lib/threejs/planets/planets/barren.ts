@@ -1,11 +1,11 @@
 import Planet from '../planet'
 import Atmosphere from "../atmospheres/atmosphere"
 import GlobeBarren from "../globes/globeBarren"
-import type { timeUniform } from '../../planetView/time'
 import planetTemplate from '@ccpdata/templates/barren/barren26.json'
-import { createUniformTexture } from '@utils/shaders/uniformTexture'
-import { UniformParameter } from '@utils/shaders/uniformParameter'
+import { createUniformTexture } from '@utils/threejs/uniformTexture'
+import { UniformParameter } from '@utils/threejs/uniformParameter'
 import heightMap from '@ccpdata/textures/heightMap2.png'
+import type Time from '@lib/threejs/time'
 
 
 export default class PlanetBarren extends Planet {
@@ -14,7 +14,7 @@ export default class PlanetBarren extends Planet {
   private atmosphere: Atmosphere
 
   constructor(
-    time: timeUniform
+    time: Time
   ) {
 
     super(time)

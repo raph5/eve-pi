@@ -1,4 +1,3 @@
-import type { timeUniform } from "../planetView/time"
 import PlanetBarren from "./planets/barren"
 import PlanetTemperate from "./planets/temperate"
 import PlanetOceanic from "./planets/oceanic"
@@ -7,11 +6,12 @@ import PlanetLava from "./planets/lava"
 import PlanetPlasma from "./planets/plasma"
 import PlanetStorm from "./planets/storm"
 import PlanetGas from "./planets/gas"
+import type Time from "../time"
 
 type planetClass = typeof PlanetBarren | typeof PlanetTemperate | typeof PlanetOceanic | typeof PlanetIce | typeof PlanetLava | typeof PlanetPlasma | typeof PlanetStorm | typeof PlanetGas
 type planetType = 'temperate' | 'storm' | 'plasma' | 'oceanic' | 'lava' | 'ice' | 'gas' | 'barren'
 
-export function createPlanet(type: planetType, time: timeUniform): InstanceType<planetClass> {
+export function createPlanet(type: planetType, time: Time): InstanceType<planetClass> {
 
   let PlanetClass: planetClass
 

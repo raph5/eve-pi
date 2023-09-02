@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import PlanetMesh from '../planetMesh'
-import { UniformParameter } from '@utils/shaders/uniformParameter'
+import { UniformParameter } from '@utils/threejs/uniformParameter'
 
 // shaders
 import fragmentShader from '@ccpdata/shaders/oceanic/globe.frag.glsl?raw'

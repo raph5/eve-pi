@@ -2,11 +2,11 @@ import * as THREE from 'three'
 import Planet from '../planet'
 import Atmosphere from "../atmospheres/atmosphere"
 import GlobeIce from '../globes/globeIce'
-import type { timeUniform } from '../../planetView/time'
 import planetTemplate from '@ccpdata/templates/ice/ice04.json'
-import { createUniformTexture } from '@utils/shaders/uniformTexture'
-import { UniformParameter } from '@utils/shaders/uniformParameter'
+import { createUniformTexture } from '@utils/threejs/uniformTexture'
+import { UniformParameter } from '@utils/threejs/uniformParameter'
 import heightMap from '@ccpdata/textures/heightMap3.png'
+import type Time from '@lib/threejs/time'
 
 
 export default class PlanetIce extends Planet {
@@ -15,7 +15,7 @@ export default class PlanetIce extends Planet {
   private atmosphere: Atmosphere
 
   constructor(
-    time: timeUniform
+    time: Time
   ) {
 
     super(time)

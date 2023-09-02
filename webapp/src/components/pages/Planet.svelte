@@ -4,8 +4,7 @@
   import { redirect } from "@lib/router";
   import View from "@lib/threejs/planetView/view";
   import { onDestroy, onMount } from "svelte";
-  import { time } from "@lib/threejs/planetView/time";
-    import PlanetPin from "../threejs/PlanetPin.svelte";
+  import PlanetPin from "../threejs/PlanetPin.svelte";
 
   export let id: string
 
@@ -19,7 +18,7 @@
   onMount(() => {
 
     // setup planet
-    view = new View(canvas, time, {
+    view = new View(canvas, {
       width: window.innerWidth,
       height: window.innerHeight
     })

@@ -3,10 +3,10 @@ import Atmosphere from "../atmospheres/atmosphere"
 import CloudsTemperate from "../clouds/cloudsTemperate"
 import GlobeTemperate from "../globes/globeTemperate"
 import planetTemplate from '@ccpdata/templates/temperate/temperate10.json'
-import type { timeUniform } from '../../planetView/time'
-import { createUniformTexture } from '@utils/shaders/uniformTexture'
+import { createUniformTexture } from '@utils/threejs/uniformTexture'
 import heightMap from '@ccpdata/textures/heightMap1.png'
-import { UniformParameter } from '@utils/shaders/uniformParameter'
+import { UniformParameter } from '@utils/threejs/uniformParameter'
+import type Time from '@lib/threejs/time'
 
 
 export default class PlanetTemperate extends Planet {
@@ -16,7 +16,7 @@ export default class PlanetTemperate extends Planet {
   private atmosphere: Atmosphere
 
   constructor(
-    time: timeUniform
+    time: Time
   ) {
 
     super(time)

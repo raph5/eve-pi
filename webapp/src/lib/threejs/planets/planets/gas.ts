@@ -1,11 +1,11 @@
 import * as THREE from 'three'
 import Planet from '../planet'
-import type { timeUniform } from '../../planetView/time'
 import planetTemplate from '@ccpdata/templates/gas/gas11.json'
-import { createUniformTexture } from '@utils/shaders/uniformTexture'
-import { UniformParameter } from '@utils/shaders/uniformParameter'
+import { createUniformTexture } from '@utils/threejs/uniformTexture'
+import { UniformParameter } from '@utils/threejs/uniformParameter'
 import heightMap from '@ccpdata/textures/gasHeightMap1.png'
 import GlobeGas from '../globes/globeGas'
+import type Time from '@lib/threejs/time'
 
 
 export default class PlanetStorm extends Planet {
@@ -13,7 +13,7 @@ export default class PlanetStorm extends Planet {
   private globe: GlobeGas
 
   constructor(
-    time: timeUniform
+    time: Time
   ) {
 
     super(time)

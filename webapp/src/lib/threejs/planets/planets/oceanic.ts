@@ -1,11 +1,11 @@
 import Planet from '../planet'
 import Atmosphere from "../atmospheres/atmosphere"
 import GlobeOceanic from '../globes/globeOceanic'
-import type { timeUniform } from '../../planetView/time'
-import { createUniformTexture } from '@utils/shaders/uniformTexture'
-import { UniformParameter } from '@utils/shaders/uniformParameter'
+import { createUniformTexture } from '@utils/threejs/uniformTexture'
+import { UniformParameter } from '@utils/threejs/uniformParameter'
 import planetTemplate from '@ccpdata/templates/oceanic/oceanic10.json'
 import heightMap from '@ccpdata/textures/oceanHeightMap1.png'
+import type Time from '@lib/threejs/time'
 
 
 export default class PlanetOceanic extends Planet {
@@ -14,7 +14,7 @@ export default class PlanetOceanic extends Planet {
   private atmosphere: Atmosphere
 
   constructor(
-    time: timeUniform
+    time: Time
   ) {
 
     super(time)
