@@ -40,7 +40,9 @@
 
   {#if view}
     <PlanetView {view} setup={$planets[id]} />
-    <PlanetPin {view} pinData={$planets[id].layout.pins[0]} />
+    {#each $planets[id].layout.pins as pin}
+      <PlanetPin {view} pinData={pin} />
+    {/each}
   {/if}
 </main>
 

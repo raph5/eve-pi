@@ -7,6 +7,13 @@ import layer2DoubleFragShader from "./shaders/layer2/double.frag.glsl?raw";
 import layer2TirleFragShader from "./shaders/layer2/triple.frag.glsl?raw";
 import { UniformParameterTransition } from "@utils/threejs/uniformParameter";
 
+export interface PinOptions {
+  primaryColor: THREE.Color
+  secondaryColor: THREE.Color
+  pinTexture: THREE.Texture
+  rings: [number] | [number, number] | [number, number, number]
+}
+
 export default class Pin extends THREE.Group {
 
   private focusValue: UniformParameterTransition
@@ -14,8 +21,7 @@ export default class Pin extends THREE.Group {
   constructor(
     latitude: number,
     longitude: number,
-    pinTexture: THREE.Texture,
-    rings: 1 | 2 | 3
+    options: PinOptions
   ) {
 
     super()
@@ -25,16 +31,18 @@ export default class Pin extends THREE.Group {
     const layer1 = Pin.createLayer1(this.focusValue)
     this.add(layer1)
 
-    const layer2 = Pin.createLayer2(this.focusValue, pinTexture, rings)
+    const layer2 = Pin.createLayer2(this.focusValue, options)
     layer2.position.z = 0.1
     this.add(layer2)
-
-    console.log(latitude)
-    console.log(longitude)
-    this.rotateX(latitude - Math.PI/2)
-    this.rotateY(longitude)
+    
+    const axisX = new THREE.Vector3(1, 0, 0)
+    const rotationY = new THREE.Quaternion().setFromAxisAngle( axisX, latitude - Math.PI/2 )
+    const rotationYReverse = new THREE.Quaternion( rotationY.x, rotationY.y, rotationY.z, -rotationY.w )
+    const axisZ = new THREE.Vector3(0, 1, 0).applyQuaternion(rotationYReverse)
+    const rotationZ = new THREE.Quaternion().setFromAxisAngle( axisZ, longitude )
+    this.quaternion.multiplyQuaternions(rotationY, rotationZ)
     this.position.setFromSphericalCoords(1.01, latitude, longitude)
-    this.scale.setScalar(0.04)
+    this.scale.setScalar(0.012)
 
     layer1.onBeforeRender = () => {
       this.focusValue.update()
@@ -54,11 +62,11 @@ export default class Pin extends THREE.Group {
     }
   }
 
-  static createLayer2(focus: UniformParameterTransition, pinTexture: THREE.Texture, rings: 1 | 2 | 3) {
+  static createLayer2(focus: UniformParameterTransition, options: PinOptions) {
 
     let fragmentShader: string
 
-    switch (rings) {
+    switch (options.rings.length) {
       case 1:
         fragmentShader = layer2SimpleFragShader
         break
@@ -77,11 +85,16 @@ export default class Pin extends THREE.Group {
       fragmentShader,
 
       uniforms: {
-        pinTexture: new THREE.Uniform( pinTexture ),
-        ringColor: new THREE.Uniform( new THREE.Color( 0xff0000 ) )
+        rings: new THREE.Uniform( [0.9] ),
+        pinTexture: new THREE.Uniform( options.pinTexture ),
+        primaryColor: new THREE.Uniform( options.primaryColor ),
+        secondaryColor: new THREE.Uniform( options.secondaryColor )
       },
 
-      blending: THREE.AdditiveBlending
+      blending: THREE.CustomBlending,
+      blendEquation: THREE.AddEquation,
+      blendSrc: THREE.SrcAlphaFactor,
+      blendDst: THREE.OneMinusSrcAlphaFactor
     })
 
     focus.bind(material)
